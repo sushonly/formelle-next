@@ -2,12 +2,12 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Formelle — Dressed to Lead',
-  description: 'Premium workwear for ambitious professional women in India. Structured, elegant, and built for the woman in charge.',
-  keywords: 'women workwear India, formal wear women, premium trousers women, professional clothing India',
+  title: "Formelle — Women's Formal Wear India | Luxury Workwear | Dressed to Lead",
+  description: "Formelle is India's premium formal wear brand for professional women. Shop structured blazer tops, trousers, and power dressing essentials. Free shipping. All sizes available.",
+  keywords: 'women formal wear India, premium workwear women, professional women clothing India',
   openGraph: {
     title: 'Formelle — Dressed to Lead',
-    description: 'Premium workwear for ambitious professional women in India.',
+    description: 'Structured, elegant formal wear for the professional Indian woman.',
     url: 'https://www.formellewear.com',
     siteName: 'Formelle',
     locale: 'en_IN',
