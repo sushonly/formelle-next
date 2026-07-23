@@ -6,13 +6,13 @@ const TESTIMONIALS = [
     quote: "It's comfy. These days I love wide-leg trousers, and this one is the one.",
     name: 'Garima V.',
     meta: 'Precision Trouser, Cocoa Brown',
-    img: 'https://psdaycsuawyoqtppbgec.supabase.co/storage/v1/object/public/product-images/uploads/garima.jpeg',
+    img: 'https://psdaycsuawyoqtppbgec.supabase.co/storage/v1/object/public/product-images/uploads/WhatsApp%20Image%202026-06-17%20at%203.12.01%20PM.jpeg',
   },
   {
     quote: "Wore this to a client meeting in Morocco. It just felt right.",
     name: 'Amee Shah',
     meta: 'The Formelle Muse',
-     img: "https://psdaycsuawyoqtppbgec.supabase.co/storage/v1/object/public/product-images/uploads/amee.jpeg",
+    img: 'https://psdaycsuawyoqtppbgec.supabase.co/storage/v1/object/public/product-images/uploads/amee.jpeg',
   },
 ]
 
@@ -29,16 +29,16 @@ export default function TestimonialsCarousel() {
         </h2>
       </div>
 
-      <div style={{ maxWidth: '1100px', margin: '0 auto', position: 'relative', borderTop: '0.5px solid rgba(17,17,17,0.1)', borderBottom: '0.5px solid rgba(17,17,17,0.1)' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', height: '440px' }}>
-          <div style={{ height: '100%', overflow: 'hidden', background: 'var(--noir)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div className="testi-carousel">
+        <div className="testi-slide">
+          <div className="testi-photo-wrap">
             {t.img && (
               <img src={t.img} alt={t.name} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
             )}
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '48px 64px' }}>
+          <div className="testi-content">
             <div style={{ fontFamily: 'var(--font-display)', fontSize: '64px', fontStyle: 'italic', color: 'var(--accent)', lineHeight: 1, marginBottom: '8px', opacity: 0.5 }}>&ldquo;</div>
-            <p style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(22px,2.4vw,30px)', fontStyle: 'italic', lineHeight: 1.4, color: 'var(--noir)', marginBottom: '28px' }}>{t.quote}</p>
+            <p style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(20px,2.4vw,30px)', fontStyle: 'italic', lineHeight: 1.4, color: 'var(--noir)', marginBottom: '28px' }}>{t.quote}</p>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
               <span style={{ fontSize: '11px', letterSpacing: '1.5px', textTransform: 'uppercase', fontWeight: 600, color: 'var(--noir)' }}>{t.name}</span>
               {t.meta && <>
@@ -50,14 +50,10 @@ export default function TestimonialsCarousel() {
         </div>
 
         {TESTIMONIALS.length > 1 && <>
-          <button onClick={() => setIdx((idx - 1 + TESTIMONIALS.length) % TESTIMONIALS.length)}
-            style={{ position: 'absolute', top: '50%', left: '12px', transform: 'translateY(-50%)', width: '40px', height: '40px', borderRadius: '50%', background: 'var(--ivory)', border: '0.5px solid rgba(17,17,17,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-            aria-label="Previous">
+          <button className="testi-arrow prev" onClick={() => setIdx((idx - 1 + TESTIMONIALS.length) % TESTIMONIALS.length)} aria-label="Previous">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M15 18l-6-6 6-6"/></svg>
           </button>
-          <button onClick={() => setIdx((idx + 1) % TESTIMONIALS.length)}
-            style={{ position: 'absolute', top: '50%', right: '12px', transform: 'translateY(-50%)', width: '40px', height: '40px', borderRadius: '50%', background: 'var(--ivory)', border: '0.5px solid rgba(17,17,17,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-            aria-label="Next">
+          <button className="testi-arrow next" onClick={() => setIdx((idx + 1) % TESTIMONIALS.length)} aria-label="Next">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M9 18l6-6-6-6"/></svg>
           </button>
         </>}
