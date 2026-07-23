@@ -6,13 +6,13 @@ const TESTIMONIALS = [
     quote: "It's comfy. These days I love wide-leg trousers, and this one is the one.",
     name: 'Garima V.',
     meta: 'Precision Trouser, Cocoa Brown',
-    img: 'https://psdaycsuawyoqtppbgec.supabase.co/storage/v1/object/public/product-images/uploads/WhatsApp%20Image%202026-06-17%20at%203.12.01%20PM.jpeg',
+    img: 'https://psdaycsuawyoqtppbgec.supabase.co/storage/v1/object/public/product-images/uploads/garima.jpeg',
   },
   {
     quote: "Wore this to a client meeting in Morocco. It just felt right.",
     name: 'Amee Shah',
     meta: 'The Formelle Muse',
-    img: 'https://psdaycsuawyoqtppbgec.supabase.co/storage/v1/object/public/product-images/uploads/amee.jpeg',
+     img: "https://psdaycsuawyoqtppbgec.supabase.co/storage/v1/object/public/product-images/uploads/amee.jpeg",
   },
 ]
 
