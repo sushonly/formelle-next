@@ -1,6 +1,5 @@
 'use client'
 import { useState } from 'react'
-import Image from 'next/image'
 
 const TESTIMONIALS = [
   {
@@ -25,21 +24,21 @@ export default function TestimonialsCarousel() {
     <section style={{ background: 'var(--parchment)', padding: '88px 56px', overflow: 'hidden' }}>
       <div style={{ textAlign: 'center', marginBottom: '56px' }}>
         <span style={{ fontSize: '8.5px', letterSpacing: '4px', textTransform: 'uppercase', color: 'var(--accent)', fontWeight: 500, display: 'block', marginBottom: '14px' }}>In Her Words</span>
-        <h2 style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(32px,4vw,48px)', fontWeight: 300, letterSpacing: '-0.02em', color: 'var(--noir)' }}>
+        <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(32px,4vw,48px)', fontWeight: 300, letterSpacing: '-0.02em', color: 'var(--noir)' }}>
           Messages that made <em style={{ fontStyle: 'italic', color: 'var(--accent)' }}>our day</em>
         </h2>
       </div>
 
       <div style={{ maxWidth: '1100px', margin: '0 auto', position: 'relative', borderTop: '0.5px solid rgba(17,17,17,0.1)', borderBottom: '0.5px solid rgba(17,17,17,0.1)' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', height: '440px' }}>
-          <div style={{ height: '100%', overflow: 'hidden', background: 'linear-gradient(160deg,#ede8df,#dfd9cc)', position: 'relative' }}>
+          <div style={{ height: '100%', overflow: 'hidden', background: 'var(--noir)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             {t.img && (
-              <Image src={t.img} alt={t.name} fill style={{ objectFit: 'contain' }} sizes="50vw" />
+              <img src={t.img} alt={t.name} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
             )}
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '48px 64px' }}>
-            <div style={{ fontFamily: 'var(--font-cormorant)', fontSize: '64px', fontStyle: 'italic', color: 'var(--accent)', lineHeight: 1, marginBottom: '8px', opacity: 0.5 }}>&ldquo;</div>
-            <p style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(22px,2.4vw,30px)', fontStyle: 'italic', lineHeight: 1.4, color: 'var(--noir)', marginBottom: '28px' }}>{t.quote}</p>
+            <div style={{ fontFamily: 'var(--font-display)', fontSize: '64px', fontStyle: 'italic', color: 'var(--accent)', lineHeight: 1, marginBottom: '8px', opacity: 0.5 }}>&ldquo;</div>
+            <p style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(22px,2.4vw,30px)', fontStyle: 'italic', lineHeight: 1.4, color: 'var(--noir)', marginBottom: '28px' }}>{t.quote}</p>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
               <span style={{ fontSize: '11px', letterSpacing: '1.5px', textTransform: 'uppercase', fontWeight: 600, color: 'var(--noir)' }}>{t.name}</span>
               {t.meta && <>
@@ -50,7 +49,6 @@ export default function TestimonialsCarousel() {
           </div>
         </div>
 
-        {/* Arrows */}
         {TESTIMONIALS.length > 1 && <>
           <button onClick={() => setIdx((idx - 1 + TESTIMONIALS.length) % TESTIMONIALS.length)}
             style={{ position: 'absolute', top: '50%', left: '12px', transform: 'translateY(-50%)', width: '40px', height: '40px', borderRadius: '50%', background: 'var(--ivory)', border: '0.5px solid rgba(17,17,17,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
@@ -65,7 +63,6 @@ export default function TestimonialsCarousel() {
         </>}
       </div>
 
-      {/* Dots */}
       <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginTop: '32px' }}>
         {TESTIMONIALS.map((_, i) => (
           <button key={i} onClick={() => setIdx(i)}
