@@ -75,8 +75,20 @@ nav { position:sticky; top:0; z-index:100; background:var(--ivory); border-botto
 .product-card:hover .product-image-wrap img{
     opacity:.94;
 }
-.product-overlay { position:absolute; inset:0; background:rgba(17,17,17,0); transition:background var(--tr); display:flex; align-items:flex-end; justify-content:center; padding:24px; }
-.product-card:hover .product-overlay { background:transparent; }
+
+.product-overlay{
+    position:absolute;
+    inset:0;
+    display:flex;
+    justify-content:center;
+    align-items:flex-end;
+    padding:28px;
+    background:transparent;
+}
+.product-card:hover .product-quick-add{
+    opacity:1;
+    transform:translateY(0);
+}
 .product-quick-add{
 background:var(--ivory);
 color:var(--noir);
