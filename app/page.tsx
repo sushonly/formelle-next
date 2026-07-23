@@ -45,7 +45,7 @@ export default async function HomePage() {
           </div>
         </div>
         <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden', minHeight: '500px' }}>
-          <img src="/images/hero.png" alt="Formelle luxury formal wear" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }} />
+          <img src="public/images/hero.png" alt="Formelle luxury formal wear" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }} />
           <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.18)' }} />
           <div style={{ position: 'absolute', top: '40px', right: '40px', background: 'var(--noir)', color: 'var(--ivory)', width: '100px', height: '100px', borderRadius: '50%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', fontSize: '8px', letterSpacing: '1.5px', textTransform: 'uppercase', lineHeight: 1.8, fontWeight: 500 }}>
             <span>Dressed</span><span>to</span><span>Lead</span>
