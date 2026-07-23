@@ -97,6 +97,7 @@ export default async function HomePage() {
           </div>
         </div>
         <div className="about-visual" aria-hidden="true">
+        
           <img src="/images/about-image.png" alt="Professional woman wearing Formelle formalwear" className="about-photo" />
           <div className="about-overlay"></div>
           <div className="about-tagline">&quot;Dressed to lead.&quot;</div>
