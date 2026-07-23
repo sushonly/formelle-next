@@ -1,7 +1,7 @@
 import { supabase } from '@/lib/supabase'
 import type { Product } from '@/lib/types'
 import Nav from '@/components/Nav'
-import ProductCard from '@/components/ProductCard'
+import ShopSection from '@/components/ShopSection'
 import TestimonialsCarousel from '@/components/TestimonialsCarousel'
 import UpcomingSection from '@/components/UpcomingSection'
 import FaqSection from '@/components/FaqSection'
@@ -73,14 +73,7 @@ export default async function HomePage() {
       </div>
 
       {/* SHOP */}
-      <section id="shop" aria-label="Shop — Women's Formal Wear Collection">
-        <div className="section-header">
-          <h2 className="section-title">Our Collection</h2>
-        </div>
-        <div className="product-grid" aria-live="polite">
-          {products.map(p => <ProductCard key={p.id} product={p} />)}
-        </div>
-      </section>
+      <ShopSection products={products} />
 
       {/* TESTIMONIALS */}
       <TestimonialsCarousel />
