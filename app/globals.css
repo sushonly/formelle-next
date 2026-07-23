@@ -45,7 +45,7 @@ nav { position:sticky; top:0; z-index:100; background:var(--ivory); border-botto
 .marquee-section { background:var(--charcoal); padding:16px 0; overflow:hidden; }
 .marquee-track { display:flex; width:max-content; animation:marquee 25s linear infinite; }
 .marquee-item { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:rgba(240,236,227,0.7); white-space:nowrap; padding:0 40px; display:flex; align-items:center; gap:40px; }
-.marquee-item::after { content:'Â·'; color:var(--accent-light); }
+.marquee-item::after { content:'·'; color:var(--accent-light); }
 
 .section-header { text-align:center; padding:60px 40px 32px; }
 .section-eyebrow { font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--accent); font-weight:500; margin-bottom:16px; display:block; }
@@ -76,7 +76,7 @@ nav { position:sticky; top:0; z-index:100; background:var(--ivory); border-botto
 }
 .product-overlay { position:absolute; inset:0; background:rgba(17,17,17,0); transition:background var(--tr); display:flex; align-items:flex-end; justify-content:center; padding:24px; }
 .product-card:hover .product-overlay { background:transparent; }
-..product-quick-add{
+.product-quick-add{
 background:var(--ivory);
 color:var(--noir);
 padding:18px 46px;
