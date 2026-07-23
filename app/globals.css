@@ -71,7 +71,7 @@ nav { position:sticky; top:0; z-index:100; background:var(--ivory); border-botto
 .product-tag { position:absolute; top:16px; left:16px; background:var(--noir); color:var(--ivory); font-size:8px; letter-spacing:2px; text-transform:uppercase; padding:5px 10px; font-weight:500; }
 .product-info { padding:20px 16px 24px 16px; border-top:1px solid rgba(17,17,17,0.06); background:var(--parchment); }
 .product-category { font-size:9px; letter-spacing:2.5px; text-transform:uppercase; color:var(--accent); font-weight:500; margin-bottom:10px; margin-top:0; }
-.product-name {font-family: var(--font-display); font-size: 24px; line-height: 1.08; font-weight: 400; margin-bottom: 0; margin-top:0; letter-spacing: -0.02em;}
+.product-name {font-family: var(--font-display); font-size: 24px; line-height: 1.15; font-weight: 400; margin-bottom: 4px; margin-top:0; letter-spacing: -0.02em;}
 .product-footer {display: flex;align-items: center; }
 
 #about { background:var(--noir); padding:70px 60px; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
