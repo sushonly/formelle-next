@@ -7,6 +7,8 @@
   --charcoal: #2c2c2a;
   --accent: #8c7355;
   --accent-light: #c4a882;
+  --font-cormorant: 'Cormorant Garamond', serif;
+  --font-montserrat: 'Montserrat', sans-serif;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }

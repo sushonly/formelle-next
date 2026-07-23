@@ -11,8 +11,8 @@ export default function Nav() {
         Free shipping &nbsp;·&nbsp; Pan-India Delivery
       </div>
       <nav style={{ position: 'sticky', top: 0, zIndex: 100, background: 'var(--ivory)', borderBottom: '1px solid rgba(17,17,17,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 48px', height: '72px' }}>
-        <Link href="/" style={{ fontFamily: 'var(--font-cormorant)', fontSize: '28px', fontWeight: 400, letterSpacing: '4px', textTransform: 'uppercase' }}>
-          Formelle
+        <Link href="/" style={{ fontFamily: 'var(--font-cormorant)', fontSize: '28px', fontWeight: 400, letterSpacing: '4px', textTransform: 'uppercase', lineHeight: 1 }}>
+          FORMELLE
         </Link>
 
         <ul style={{ display: 'flex', gap: '36px', listStyle: 'none', alignItems: 'center' }} className="nav-links">

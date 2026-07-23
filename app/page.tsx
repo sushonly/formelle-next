@@ -23,24 +23,33 @@ export default async function HomePage() {
       <Nav />
 
       {/* HERO */}
-      <section style={{ background: 'var(--noir)', color: 'var(--ivory)', minHeight: '90vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '80px 24px' }}>
-        <p style={{ fontSize: '9px', letterSpacing: '4px', textTransform: 'uppercase', color: 'var(--accent-light)', marginBottom: '24px', fontWeight: 500 }}>New Collection</p>
-        <h1 style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(48px,8vw,96px)', fontWeight: 300, lineHeight: 1.0, letterSpacing: '-0.02em', marginBottom: '28px', maxWidth: '900px' }}>
-          Dressed<br /><em style={{ fontStyle: 'italic' }}>to Lead.</em>
-        </h1>
-        <p style={{ fontSize: '13px', lineHeight: 1.9, color: 'rgba(240,236,227,0.65)', maxWidth: '480px', marginBottom: '8px' }}>
-          Formal wear designed for women who move through boardrooms and break through ceilings.
-        </p>
-        <p style={{ fontSize: '11px', letterSpacing: '1.5px', color: 'rgba(240,236,227,0.4)', fontStyle: 'italic', fontFamily: 'var(--font-cormorant)', marginBottom: '48px' }}>
-          Worn by women leading rooms across India.
-        </p>
-        <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: 'center' }}>
-          <Link href="#shop" style={{ background: 'var(--ivory)', color: 'var(--noir)', padding: '16px 36px', fontSize: '10px', letterSpacing: '3px', fontWeight: 600, textTransform: 'uppercase' }}>
-            Shop the Edit
-          </Link>
-          <Link href="/about" style={{ background: 'transparent', color: 'var(--ivory)', padding: '16px 36px', fontSize: '10px', letterSpacing: '3px', fontWeight: 500, textTransform: 'uppercase', border: '1px solid rgba(240,236,227,0.3)' }}>
-            Our Story
-          </Link>
+      <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', minHeight: 'calc(100vh - 108px)' }}>
+        <div style={{ background: 'var(--noir)', color: 'var(--ivory)', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '60px', position: 'relative', overflow: 'hidden' }}>
+          <span style={{ fontSize: '10px', letterSpacing: '4px', fontWeight: 500, textTransform: 'uppercase', color: 'var(--accent-light)', marginBottom: '28px' }}>New Collection · 2026</span>
+          <h1 style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(52px,6vw,88px)', fontWeight: 300, lineHeight: 1.0, color: 'var(--ivory)', marginBottom: '32px', letterSpacing: '-1px' }}>
+            Dress like<br />the leader<br />you <em style={{ fontStyle: 'italic', color: 'var(--accent-light)' }}>already</em><br />are.
+          </h1>
+          <p style={{ fontSize: '13px', lineHeight: 1.8, color: 'rgba(240,236,227,0.65)', maxWidth: '380px', marginBottom: '12px' }}>
+            Formal wear designed for women who move through boardrooms and break through ceilings. Structured, elegant, and built for the woman in charge.
+          </p>
+          <p style={{ fontSize: '11px', letterSpacing: '1.5px', color: 'rgba(240,236,227,0.5)', fontStyle: 'italic', fontFamily: 'var(--font-cormorant)', marginBottom: '48px' }}>
+            Worn by women leading rooms across India.
+          </p>
+          <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+            <Link href="#shop" style={{ background: 'var(--ivory)', color: 'var(--noir)', padding: '16px 40px', fontSize: '10px', letterSpacing: '3px', fontWeight: 600, textTransform: 'uppercase', border: '1px solid var(--ivory)' }}>
+              Shop Now
+            </Link>
+            <Link href="/about" style={{ background: 'transparent', color: 'var(--ivory)', padding: '16px 40px', fontSize: '10px', letterSpacing: '3px', fontWeight: 500, textTransform: 'uppercase', border: '1px solid rgba(240,236,227,0.4)' }}>
+              Our Story
+            </Link>
+          </div>
+        </div>
+        <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden', minHeight: '500px' }}>
+          <img src="/images/hero.png" alt="Formelle luxury formal wear" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }} />
+          <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.18)' }} />
+          <div style={{ position: 'absolute', top: '40px', right: '40px', background: 'var(--noir)', color: 'var(--ivory)', width: '100px', height: '100px', borderRadius: '50%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', fontSize: '8px', letterSpacing: '1.5px', textTransform: 'uppercase', lineHeight: 1.8, fontWeight: 500 }}>
+            <span>Dressed</span><span>to</span><span>Lead</span>
+          </div>
         </div>
       </section>
 
