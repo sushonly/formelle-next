@@ -14,5 +14,6 @@ export interface Product {
   details?: string[]
   sold_out_sizes?: string[]
   is_active: boolean
+  is_bestseller?: boolean
   sort_order?: number
 }
