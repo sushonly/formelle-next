@@ -6,6 +6,8 @@ import type { Product } from '@/lib/types'
 
 const ALL_SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL']
 const WHATSAPP = '919989674894'
+const INDIAN_STATES = ['Andhra Pradesh','Arunachal Pradesh','Assam','Bihar','Chhattisgarh','Delhi','Goa','Gujarat','Haryana','Himachal Pradesh','Jharkhand','Karnataka','Kerala','Madhya Pradesh','Maharashtra','Manipur','Meghalaya','Mizoram','Nagaland','Odisha','Punjab','Rajasthan','Sikkim','Tamil Nadu','Telangana','Tripura','Uttar Pradesh','Uttarakhand','West Bengal','Other']
+
 const SG_DATA: Record<string, { headers: string[]; rows: string[][] }> = {
   tops: {
     headers: ['Size', 'Chest (in)', 'Shoulder (in)', 'Length (in)'],
@@ -38,6 +40,19 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
   const [notifySubmitting, setNotifySubmitting] = useState(false)
   const [notifySuccess, setNotifySuccess] = useState(false)
   const [toast, setToast] = useState('')
+
+  // Checkout modal state
+  const [checkoutOpen, setCheckoutOpen] = useState(false)
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [phone, setPhone] = useState('')
+  const [email, setEmail] = useState('')
+  const [address1, setAddress1] = useState('')
+  const [address2, setAddress2] = useState('')
+  const [city, setCity] = useState('')
+  const [pincode, setPincode] = useState('')
+  const [state, setState] = useState('')
+  const [formError, setFormError] = useState(false)
 
   const images = product.images?.filter(Boolean) || []
   const catLabel = CAT_LABELS[product.category] || product.category
@@ -84,10 +99,21 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
     showToast(`Added — ${product.name} / ${selectedSize}`)
   }
 
-  function orderOnWhatsApp() {
+  function openCheckout() {
     if (!selectedSize) { setSizeError(true); return }
-    const msg = `Hi Formelle! I'd like to order:\n\n*${product.name}*\nSize: ${selectedSize}\nPrice: ₹${price}\n\nPlease share your UPI ID to complete payment. Thank you!`
+    setFormError(false)
+    setCheckoutOpen(true)
+  }
+
+  function sendToWhatsApp() {
+    if (!firstName || !phone || !address1 || !city || !pincode || !state) {
+      setFormError(true)
+      return
+    }
+    const msg = `Hi Formelle! I'd like to place an order:\n\n*ORDER DETAILS*\n- ${product.name} (${selectedSize}) = Rs.${price}\n\n*Total: Rs.${price}*\n\n*DELIVERY ADDRESS*\nName: ${firstName} ${lastName}\nPhone: ${phone}${email ? '\nEmail: ' + email : ''}\nAddress: ${address1}${address2 ? ', ' + address2 : ''}\n${city}, ${state} - ${pincode}\n\nPlease share your UPI ID to complete payment. Thank you!`
     window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank')
+    setCheckoutOpen(false)
+    showToast('WhatsApp opened — please send your order')
   }
 
   const accordions = [
@@ -116,7 +142,7 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
           <div className="thumb-strip">
             {images.map((img, i) => (
               <div key={i} className={`thumb ${i === activeImg ? 'active' : ''}`} onClick={() => setActiveImg(i)}>
-                <img src={img} alt={product.name} />
+                <img src={img} alt={product.name} loading="lazy" />
               </div>
             ))}
           </div>
@@ -131,7 +157,7 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
           <div className="mobile-carousel">
             <div className="carousel-track" style={{ transform: `translateX(-${activeImg * 100}%)` }}>
               {images.map((img, i) => (
-                <div key={i} className="carousel-slide"><img src={img} alt={product.name} /></div>
+                <div key={i} className="carousel-slide"><img src={img} alt={product.name} loading="lazy" /></div>
               ))}
             </div>
             {images.length > 1 && <>
@@ -179,7 +205,7 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
 
           <div className="cta-row">
             <button className="btn-add-bag" onClick={addToBag}>Add to Bag</button>
-            <button className="btn-whatsapp-order" onClick={orderOnWhatsApp}>💬 &nbsp; Order on WhatsApp</button>
+            <button className="btn-whatsapp-order" onClick={openCheckout}>💬 &nbsp; Order on WhatsApp</button>
           </div>
 
           <div className="accordion">
@@ -215,7 +241,7 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
             {relatedProducts.slice(0, 4).map(p => (
               <Link key={p.id} href={`/product/${p.slug}`} className="also-card">
                 <div className="also-img">
-                  {p.images?.[0] && <img src={p.images[0]} alt={p.name} />}
+                  {p.images?.[0] && <img src={p.images[0]} alt={p.name} loading="lazy" />}
                 </div>
                 <div className="also-info">
                   <div className="also-cat">{CAT_LABELS[p.category] || p.category}</div>
@@ -227,6 +253,7 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
         </section>
       )}
 
+      {/* SIZE GUIDE MODAL */}
       {sgOpen && (
         <div className="sg-overlay" onClick={(e) => e.target === e.currentTarget && setSgOpen(false)}>
           <div className="sg-modal">
@@ -256,6 +283,7 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
         </div>
       )}
 
+      {/* NOTIFY ME MODAL */}
       {notifyOpen && (
         <div className="notify-overlay" onClick={(e) => e.target === e.currentTarget && setNotifyOpen(false)}>
           <div className="notify-modal">
@@ -282,6 +310,53 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
                 <p style={{ fontSize: '12px', color: 'rgba(44,44,42,0.6)' }}>We&apos;ll reach out as soon as it&apos;s back in stock.</p>
               </div>
             )}
+          </div>
+        </div>
+      )}
+
+      {/* CHECKOUT MODAL — delivery details before WhatsApp */}
+      {checkoutOpen && (
+        <div className="checkout-overlay" onClick={(e) => e.target === e.currentTarget && setCheckoutOpen(false)}>
+          <div className="checkout-modal">
+            <div className="checkout-header">
+              <div className="checkout-logo">Formelle</div>
+              <button className="checkout-close" onClick={() => setCheckoutOpen(false)}>✕</button>
+            </div>
+            <div className="checkout-body">
+              <p className="checkout-section-title">Delivery Details</p>
+              <div className="form-row">
+                <div className="form-group"><label>First Name *</label><input type="text" value={firstName} onChange={e => setFirstName(e.target.value)} /></div>
+                <div className="form-group"><label>Last Name</label><input type="text" value={lastName} onChange={e => setLastName(e.target.value)} /></div>
+              </div>
+              <div className="form-group"><label>Phone *</label><input type="tel" value={phone} onChange={e => setPhone(e.target.value)} /></div>
+              <div className="form-group"><label>Email</label><input type="email" value={email} onChange={e => setEmail(e.target.value)} /></div>
+              <div className="form-group"><label>Address Line 1 *</label><input type="text" placeholder="Flat / Building / Street" value={address1} onChange={e => setAddress1(e.target.value)} /></div>
+              <div className="form-group"><label>Address Line 2</label><input type="text" placeholder="Area / Landmark (optional)" value={address2} onChange={e => setAddress2(e.target.value)} /></div>
+              <div className="form-row">
+                <div className="form-group"><label>City *</label><input type="text" value={city} onChange={e => setCity(e.target.value)} /></div>
+                <div className="form-group"><label>Pincode *</label><input type="text" inputMode="numeric" maxLength={6} value={pincode} onChange={e => setPincode(e.target.value)} /></div>
+              </div>
+              <div className="form-group">
+                <label>State *</label>
+                <select value={state} onChange={e => setState(e.target.value)}>
+                  <option value="">Select State</option>
+                  {INDIAN_STATES.map(s => <option key={s} value={s}>{s}</option>)}
+                </select>
+              </div>
+              {formError && <p className="size-error" style={{ marginBottom: '12px' }}>Please fill in all required fields</p>}
+              <hr className="divider" />
+              <p className="checkout-section-title">Order Summary</p>
+              <div className="order-summary-item"><span>{product.name} ({selectedSize})</span><span style={{ fontFamily: 'var(--font-display)', fontSize: '18px' }}>₹{price}</span></div>
+              <div className="order-grand"><span>Total</span><span>₹{price}</span></div>
+              <hr className="divider" />
+              <p className="checkout-section-title">Payment</p>
+              <div className="wa-info">
+                <div className="wa-info-icon">💬</div>
+                <div className="wa-info-text"><strong>How it works</strong>WhatsApp opens with your full order pre-filled. Send it and we reply with our UPI ID within minutes.</div>
+              </div>
+              <button className="btn-wa" onClick={sendToWhatsApp}>✅ &nbsp; Confirm Order on WhatsApp</button>
+              <p className="secure-note">Zero extra charges · Pay via UPI after confirmation</p>
+            </div>
           </div>
         </div>
       )}
