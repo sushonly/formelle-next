@@ -105,15 +105,44 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
     setCheckoutOpen(true)
   }
 
-  function sendToWhatsApp() {
+  async function sendToWhatsApp() {
     if (!firstName || !phone || !address1 || !city || !pincode || !state) {
       setFormError(true)
       return
     }
+
+    const orderItems = [{
+      name: product.name,
+      size: selectedSize,
+      qty: 1,
+      price: product.price,
+    }]
+
+    try {
+      await supabase.from('orders').insert([{
+        customer_name: `${firstName} ${lastName}`.trim(),
+        phone: phone,
+        email: email || null,
+        address: `${address1}${address2 ? ', ' + address2 : ''}`,
+        city: city,
+        state: state,
+        pincode: pincode,
+        items: orderItems,
+        subtotal: product.price,
+        shipping: 0,
+        total: product.price,
+        status: 'pending',
+        notes: null,
+      }])
+    } catch (err) {
+      // Don't block the WhatsApp flow even if the save fails —
+      // the order still reaches the customer's WhatsApp message either way
+    }
+
     const msg = `Hi Formelle! I'd like to place an order:\n\n*ORDER DETAILS*\n- ${product.name} (${selectedSize}) = Rs.${price}\n\n*Total: Rs.${price}*\n\n*DELIVERY ADDRESS*\nName: ${firstName} ${lastName}\nPhone: ${phone}${email ? '\nEmail: ' + email : ''}\nAddress: ${address1}${address2 ? ', ' + address2 : ''}\n${city}, ${state} - ${pincode}\n\nPlease share your UPI ID to complete payment. Thank you!`
     window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank')
     setCheckoutOpen(false)
-    showToast('WhatsApp opened — please send your order')
+    showToast('Order saved — WhatsApp opened, please send your order')
   }
 
   const accordions = [
