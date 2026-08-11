@@ -1,39 +1,30 @@
 import { supabase } from '@/lib/supabase'
 import type { Product } from '@/lib/types'
 import Nav from '@/components/Nav'
+import BestSellersCarousel from '@/components/BestSellersCarousel'
 import ShopSection from '@/components/ShopSection'
 import TestimonialsCarousel from '@/components/TestimonialsCarousel'
-//import UpcomingSection from '@/components/UpcomingSection'
+import UpcomingSection from '@/components/UpcomingSection'
 import FaqSection from '@/components/FaqSection'
 import Link from 'next/link'
 
 async function getProducts(): Promise<Product[]> {
-  const { data } = await supabase
-    .from('products')
-    .select('*')
-    .eq('is_active', true)
-    .order('sort_order', { ascending: true })
+  const { data } = await supabase.from('products').select('*').eq('is_active', true).order('sort_order', { ascending: true })
   return data || []
 }
 
 export default async function HomePage() {
   const products = await getProducts()
-
+  const bestsellers = products.filter(p => p.is_bestseller)
   return (
     <>
       <Nav />
-
-      {/* HERO */}
       <section className="hero" aria-label="Hero — Dressed to Lead">
         <div className="hero-text">
           <span className="hero-eyebrow">New Collection · 2026</span>
-          <h1 className="hero-headline">
-            Dress like<br />the leader<br />you <em>already</em><br />are.
-          </h1>
+          <h1 className="hero-headline">Dress like<br />the leader<br />you <em>already</em><br />are.</h1>
           <p className="hero-sub">Formal wear designed for women who move through boardrooms and break through ceilings. Structured, elegant, and built for the woman in charge.</p>
-          <p style={{ fontSize: '11px', letterSpacing: '1.5px', color: 'rgba(240,236,227,0.5)', fontStyle: 'italic', fontFamily: "'Cormorant Garamond', serif", marginTop: '-28px', marginBottom: '48px' }}>
-            Worn by women leading rooms across India.
-          </p>
+          <p style={{ fontSize: '11px', letterSpacing: '1.5px', color: 'rgba(240,236,227,0.5)', fontStyle: 'italic', fontFamily: "'Cormorant Garamond', serif", marginTop: '-28px', marginBottom: '48px' }}>Worn by women leading rooms across India.</p>
           <div className="hero-actions">
             <Link href="#shop" className="btn-primary">Shop Now</Link>
             <Link href="/about" className="btn-outline">Our Story</Link>
@@ -45,23 +36,14 @@ export default async function HomePage() {
           <div className="hero-badge" aria-hidden="true"><span>Dressed</span><span>to</span><span>Lead</span></div>
         </div>
       </section>
-
-      {/* TRUST BAR */}
       <div style={{ background: 'var(--parchment)', borderTop: '0.5px solid rgba(17,17,17,0.08)', borderBottom: '0.5px solid rgba(17,17,17,0.08)', display: 'grid', gridTemplateColumns: 'repeat(4,1fr)' }}>
-        {[
-          ['Free Shipping', 'On all orders'],
-          ['Made in India', 'For Indian women'],
-          ['Easy Exchange', 'Within 7 days'],
-          ['Concierge Order', 'Via WhatsApp'],
-        ].map(([title, sub], i) => (
+        {[['Free Shipping', 'On all orders'],['Made in India', 'For Indian women'],['Easy Exchange', 'Within 7 days'],['Concierge Order', 'Via WhatsApp']].map(([title, sub], i) => (
           <div key={title} style={{ padding: '20px 24px', textAlign: 'center', borderRight: i < 3 ? '0.5px solid rgba(17,17,17,0.08)' : 'none' }}>
             <div style={{ fontSize: '8.5px', letterSpacing: '2.5px', textTransform: 'uppercase', fontWeight: 600, color: 'var(--noir)', marginBottom: '4px' }}>{title}</div>
             <div style={{ fontSize: '10px', color: 'rgba(44,44,42,0.5)', fontWeight: 300 }}>{sub}</div>
           </div>
         ))}
       </div>
-
-      {/* MARQUEE */}
       <div className="marquee-section" aria-hidden="true">
         <div className="marquee-track">
           {Array.from({ length: 2 }).flatMap((_, rep) =>
@@ -71,56 +53,37 @@ export default async function HomePage() {
           )}
         </div>
       </div>
-
-      {/* SHOP */}
+      <BestSellersCarousel products={bestsellers} />
       <ShopSection products={products} />
-
-      {/* TESTIMONIALS */}
       <TestimonialsCarousel />
-
-      {/* UPCOMING */}
- 
-
-      {/* ABOUT */}
+      <UpcomingSection />
       <section id="about" aria-label="About Formelle">
         <div>
           <span className="section-eyebrow" style={{ color: 'var(--accent-light)', marginBottom: '16px', display: 'block' }}>Our Story</span>
           <h2 className="about-headline">For the woman<br />who <em>leads</em>,<br />not just works.</h2>
-        
-         <p className="about-body">
-  Formelle was born from a simple frustration — why is it so hard to find formal wear that feels as powerful as you do? From high-waist formal trousers to structured blazer tops, every piece is designed for office wear women can actually live in — not just survive.
-  <br /><br />
-  We design for the consulting principal who has back-to-back meetings. The founder who just closed a round. The manager who&apos;s the youngest in the room, and owns it. Every piece is structured where it counts and thoughtful in the details. Formal blazer tops and formalwear built for the women leading India.
-</p>
-            
-           
+          <p className="about-body">
+            Formelle was born from a simple frustration — why is it so hard to find formal wear that feels as powerful as you do? Clothes that fit well, move with you, and say &quot;I&apos;m in charge&quot; the moment you walk in.
+            <br /><br />
+            We design for the consulting principal who has back-to-back meetings. The founder who just closed a round. The manager who&apos;s the youngest in the room, and owns it. Every piece is structured where it counts and thoughtful in the details. Designed for the women leading India.
+          </p>
           <div className="about-stats">
             <div><div className="about-stat-num">India</div><div className="about-stat-label">Delivered Nationwide</div></div>
             <div><div className="about-stat-num">All</div><div className="about-stat-label">Sizes Available</div></div>
           </div>
         </div>
         <div className="about-visual" aria-hidden="true">
-        
           <img src="/images/about-image.png" alt="Professional woman wearing Formelle formalwear" className="about-photo" />
           <div className="about-overlay"></div>
           <div className="about-tagline">&quot;Dressed to lead.&quot;</div>
         </div>
       </section>
-
-      {/* WHY FORMELLE */}
       <section style={{ background: 'var(--parchment)', padding: '72px 56px' }}>
         <div style={{ textAlign: 'center', marginBottom: '48px' }}>
           <span style={{ fontSize: '8.5px', letterSpacing: '4px', textTransform: 'uppercase', color: 'var(--accent)', fontWeight: 500, display: 'block', marginBottom: '12px' }}>Why Formelle</span>
-          <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(36px,4vw,56px)', fontWeight: 300, lineHeight: 1.1, letterSpacing: '-0.02em' }}>
-            What sets us <em style={{ fontStyle: 'italic', color: 'var(--accent)' }}>apart</em>
-          </h2>
+          <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(36px,4vw,56px)', fontWeight: 300, lineHeight: 1.1, letterSpacing: '-0.02em' }}>What sets us <em style={{ fontStyle: 'italic', color: 'var(--accent)' }}>apart</em></h2>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 0, border: '0.5px solid rgba(17,17,17,0.1)' }}>
-          {[
-            ['01', 'Designed for Indian women', 'Every silhouette is cut for the Indian body — proportions, drape, and fit that actually works. Not imported templates, not afterthoughts.'],
-            ['02', 'Structure without stiffness', "Pieces that hold their shape through 10-hour days. Formal enough for boardrooms. Comfortable enough to forget you're wearing them."],
-            ['03', 'Concierge by WhatsApp', 'Order via WhatsApp, pay via UPI. A real person confirms every order. No bots — just direct, personal service.'],
-          ].map(([num, title, body], i) => (
+          {[['01', 'Designed for Indian women', 'Every silhouette is cut for the Indian body — proportions, drape, and fit that actually works. Not imported templates, not afterthoughts.'],['02', 'Structure without stiffness', "Pieces that hold their shape through 10-hour days. Formal enough for boardrooms. Comfortable enough to forget you're wearing them."],['03', 'Concierge by WhatsApp', 'Order via WhatsApp, pay via UPI. A real person confirms every order. No bots — just direct, personal service.']].map(([num, title, body], i) => (
             <div key={num} style={{ padding: '40px 36px', borderRight: i < 2 ? '0.5px solid rgba(17,17,17,0.1)' : 'none' }}>
               <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '40px', fontWeight: 300, color: 'rgba(17,17,17,0.1)', marginBottom: '20px', fontStyle: 'italic' }}>{num}</div>
               <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '22px', fontWeight: 400, color: 'var(--noir)', marginBottom: '12px' }}>{title}</div>
@@ -129,11 +92,7 @@ export default async function HomePage() {
           ))}
         </div>
       </section>
-
-      {/* FAQ */}
       <FaqSection />
-
-      {/* FOOTER */}
       <footer>
         <div className="footer-top">
           <div>
