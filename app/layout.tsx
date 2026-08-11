@@ -3,15 +3,16 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: "Formelle — Women's Formal Wear India | Luxury Workwear | Dressed to Lead",
-  description: "Formelle is India's premium formal wear brand for professional women. Shop structured blazer tops, trousers, and power dressing essentials. Free shipping. All sizes available.",
-  keywords: 'women formal wear India, premium workwear women, professional women clothing India',
+  description: 'Formal trousers, formalwear, and office wear for women in India. Premium, structured workwear built for the professional woman in charge.',
+  keywords: 'formal trousers for women, premium workwear women, professional women clothing India, formal wear, office wear women, office wear dresses for women, professional clothing brands India, premium formal wear women, office wear for women india, party dresses, corporate office outfits',
   openGraph: {
-    title: 'Formelle — Dressed to Lead',
-    description: 'Structured, elegant formal wear for the professional Indian woman.',
+    title: 'Formelle — Women's Formal Wear India | Dressed to Lead',
+    description: 'Formal trousers, formalwear, and office wear for women in India. Premium, structured workwear built for the professional woman in charge.',
     url: 'https://www.formellewear.com',
     siteName: 'Formelle',
     locale: 'en_IN',
     type: 'website',
+    images: [{ url: '/images/hero.png', width: 1200, height: 630 }],
   },
   robots: { index: true, follow: true },
 }
