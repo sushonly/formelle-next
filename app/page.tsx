@@ -3,7 +3,7 @@ import type { Product } from '@/lib/types'
 import Nav from '@/components/Nav'
 import ShopSection from '@/components/ShopSection'
 import TestimonialsCarousel from '@/components/TestimonialsCarousel'
-import UpcomingSection from '@/components/UpcomingSection'
+//import UpcomingSection from '@/components/UpcomingSection'
 import FaqSection from '@/components/FaqSection'
 import Link from 'next/link'
 
@@ -79,7 +79,7 @@ export default async function HomePage() {
       <TestimonialsCarousel />
 
       {/* UPCOMING */}
-      <UpcomingSection />
+ 
 
       {/* ABOUT */}
       <section id="about" aria-label="About Formelle">
