@@ -170,7 +170,7 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
           </div>
         </div>
 
-        <div className="product-info">
+        <div className="product-info-detail">
           <div className="product-tag-row">
             {product.tag && <span className="ptag">{product.tag}</span>}
             <span className="pcategory">{catLabel}</span>
