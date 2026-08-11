@@ -23,6 +23,11 @@ export default function Nav() {
           <li><a href="https://instagram.com/formellewear" target="_blank" rel="noopener noreferrer">Instagram</a></li>
           <li><a href="mailto:formellewear@outlook.com">Contact</a></li>
         </ul>
+       <button className="cart-btn" aria-label="Shopping bag">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span className="cart-count" aria-live="polite">0</span>
+        </button>
+        
         <button className="mobile-menu-btn" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
           {menuOpen ? (
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
