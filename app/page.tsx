@@ -1,7 +1,7 @@
 import { supabase } from '@/lib/supabase'
 import type { Product } from '@/lib/types'
 import Nav from '@/components/Nav'
-import BestSellersCarousel from '@/components/BestSellersCarousel'
+import BestSellersCarousel from '@/components/Bestsellerscarousel'
 import ShopSection from '@/components/ShopSection'
 import TestimonialsCarousel from '@/components/TestimonialsCarousel'
 import UpcomingSection from '@/components/UpcomingSection'
