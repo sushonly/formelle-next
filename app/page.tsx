@@ -86,11 +86,14 @@ export default async function HomePage() {
         <div>
           <span className="section-eyebrow" style={{ color: 'var(--accent-light)', marginBottom: '16px', display: 'block' }}>Our Story</span>
           <h2 className="about-headline">For the woman<br />who <em>leads</em>,<br />not just works.</h2>
-          <p className="about-body">
-            Formelle was born from a simple frustration — why is it so hard to find formal wear that feels as powerful as you do? Clothes that fit well, move with you, and say &quot;I&apos;m in charge&quot; the moment you walk in.
-            <br /><br />
-            We design for the consulting principal who has back-to-back meetings. The founder who just closed a round. The manager who&apos;s the youngest in the room, and owns it. Every piece is structured where it counts and thoughtful in the details. Designed for the women leading India.
-          </p>
+        
+         <p className="about-body">
+  Formelle was born from a simple frustration — why is it so hard to find formal wear that feels as powerful as you do? From high-waist formal trousers to structured blazer tops, every piece is designed for office wear women can actually live in — not just survive.
+  <br /><br />
+  We design for the consulting principal who has back-to-back meetings. The founder who just closed a round. The manager who&apos;s the youngest in the room, and owns it. Every piece is structured where it counts and thoughtful in the details. Formal blazer tops and formalwear built for the women leading India.
+</p>
+            
+           
           <div className="about-stats">
             <div><div className="about-stat-num">India</div><div className="about-stat-label">Delivered Nationwide</div></div>
             <div><div className="about-stat-num">All</div><div className="about-stat-label">Sizes Available</div></div>
