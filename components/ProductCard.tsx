@@ -12,7 +12,7 @@ export default function ProductCard({ product }: { product: Product }) {
       <Link href={`/product/${product.slug}`} style={{ display: 'block' }}>
         <div className="product-image-wrap">
           {heroImg ? (
-            <img src={heroImg} alt={product.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <img src={heroImg} alt={product.name} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           ) : (
             <div className="product-placeholder" aria-hidden="true">{catLabel.charAt(0)}</div>
           )}
@@ -20,11 +20,11 @@ export default function ProductCard({ product }: { product: Product }) {
             <span className="product-quick-add">Shop Now</span>
           </div>
           {product.tag && <div className="product-tag">{product.tag}</div>}
+          {product.is_bestseller && <div className="product-tag bestseller-tag">Best Seller</div>}
         </div>
         <div className="product-info">
           <div className="product-category">{catLabel}</div>
           <h3 className="product-name">{product.name}</h3>
-          <div className="product-footer"></div>
         </div>
       </Link>
     </article>
