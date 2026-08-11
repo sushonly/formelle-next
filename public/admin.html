@@ -478,8 +478,10 @@ function populateForm(p) {
   document.getElementById('fDesc').value     = p.description||'';
   document.getElementById('fFabric').value   = p.fabric||'';
   document.getElementById('fFit').value      = p.fit_notes||'';
+  document.getElementById('fBestseller').checked = p.is_bestseller || false;
   fabricTags=[...(p.fabric_tags||[])]; renderFabricTags();
   soldOutSizes=[...(p.sold_out_sizes||[])]; renderSoldOutTags();
+
   (p.care||[]).forEach(c=>addListItem('careList','care',c));
   (p.details||[]).forEach(d=>addListItem('detailsList','details',d));
   imageSlots=['','','',''];
@@ -554,19 +556,22 @@ function getListValues(containerId) { return Array.from(document.getElementById(
 
 async function saveProduct() {
   const name=document.getElementById('fName').value.trim();
+  const slug=document.getElementById('fSlug').value.trim();
   const category=document.getElementById('fCategory').value;
   const price=parseInt(document.getElementById('fPrice').value);
   const tag=document.getElementById('fTag').value.trim();
+  const isBestseller=document.getElementById('fBestseller').checked;
   const desc=document.getElementById('fDesc').value.trim();
   const fabric=document.getElementById('fFabric').value.trim();
   const fit=document.getElementById('fFit').value.trim();
   const care=getListValues('careList'); const details=getListValues('detailsList');
   const images=imageSlots.filter(Boolean);
   if(!name){showToast('Product name is required','error');return;}
+  if(!slug){showToast('Slug is required','error');return;}
   if(!category){showToast('Please select a category','error');return;}
   if(!price||price<1){showToast('Please enter a valid price','error');return;}
   if(!desc){showToast('Please add a description','error');return;}
-  const payload={name,category,price,tag,description:desc,fabric,fabric_tags:fabricTags,sold_out_sizes:soldOutSizes,fit_notes:fit,care,details,images,updated_at:new Date().toISOString()};
+  const payload={name,slug,category,price,tag,is_bestseller:isBestseller,description:desc,fabric,fabric_tags:fabricTags,sold_out_sizes:soldOutSizes,fit_notes:fit,care,details,images,updated_at:new Date().toISOString()};
   const btn=document.getElementById('saveBtn'); btn.textContent='Saving…'; btn.disabled=true;
   let error;
   if(editingId){({error}=await db.from('products').update(payload).eq('id',editingId));}
