@@ -60,7 +60,7 @@ input,select,textarea{font-family:var(--fb);}
 .btn-sm{padding:6px 14px;font-size:9px;}
 .btn-icon{padding:7px;background:transparent;border:var(--border);color:var(--charcoal);}
 .btn-icon:hover{border-color:var(--noir);}
-.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px;}
+.stats-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-bottom:28px;}
 .stat-card{background:var(--white);border:var(--border);padding:20px 24px;border-radius:var(--radius);}
 .stat-num{font-family:var(--fd);font-size:36px;font-weight:300;line-height:1;margin-bottom:4px;}
 .stat-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(44,44,42,0.5);}
@@ -90,6 +90,7 @@ input,select,textarea{font-family:var(--fb);}
 .cat-dress{background:#f0dde8;color:#7a2e55;}
 .cat-blazer{background:#d8ede0;color:#2e5c3d;}
 .cat-other{background:#e8e8e8;color:#555;}
+.bs-badge{display:inline-block;padding:3px 10px;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;border-radius:2px;background:var(--accent);color:var(--ivory);}
 .toggle{position:relative;display:inline-block;width:36px;height:20px;}
 .toggle input{opacity:0;width:0;height:0;}
 .toggle-slider{position:absolute;inset:0;background:rgba(17,17,17,0.15);border-radius:20px;cursor:pointer;transition:background var(--tr);}
@@ -148,6 +149,8 @@ input,select,textarea{font-family:var(--fb);}
 .img-slot-num{position:absolute;top:6px;left:6px;background:var(--noir);color:var(--ivory);font-size:8px;padding:2px 5px;letter-spacing:1px;}
 .upload-progress{width:100%;background:rgba(17,17,17,0.08);border-radius:2px;height:3px;overflow:hidden;margin-top:4px;display:none;}
 .upload-progress-bar{height:100%;background:var(--accent);width:0%;transition:width 0.3s ease;}
+.checkbox-row{display:flex;align-items:center;gap:10px;cursor:pointer;}
+.checkbox-row input{width:16px;height:16px;flex-shrink:0;}
 .order-card{background:var(--white);border:var(--border);border-radius:var(--radius);padding:20px 24px;margin-bottom:12px;}
 .order-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;}
 .order-id{font-family:var(--fd);font-size:18px;font-weight:400;}
@@ -195,7 +198,7 @@ input,select,textarea{font-family:var(--fb);}
       </button>
     </nav>
     <div class="sidebar-footer">
-      <a href="index.html" target="_blank">View website ↗</a><br><br>
+      <a href="/" target="_blank">View website ↗</a><br><br>
       <span id="sidebarConnStatus">Connecting…</span>
     </div>
   </aside>
@@ -216,6 +219,7 @@ input,select,textarea{font-family:var(--fb);}
         <div class="stat-card accent"><div class="stat-num" id="statActive">—</div><div class="stat-label">Active</div></div>
         <div class="stat-card"><div class="stat-num" id="statTops">—</div><div class="stat-label">Tops</div></div>
         <div class="stat-card"><div class="stat-num" id="statTrousers">—</div><div class="stat-label">Trousers</div></div>
+        <div class="stat-card accent"><div class="stat-num" id="statBestsellers">—</div><div class="stat-label">Best Sellers</div></div>
       </div>
       <div class="filter-bar">
         <div class="search-wrap">
@@ -239,12 +243,13 @@ input,select,textarea{font-family:var(--fb);}
               <th>Category</th>
               <th>Price</th>
               <th>Images</th>
+              <th>Best Seller</th>
               <th>Active</th>
               <th style="width:100px">Actions</th>
             </tr>
           </thead>
           <tbody id="productTableBody">
-            <tr class="loading-row"><td colspan="7"><div class="spinner"></div></td></tr>
+            <tr class="loading-row"><td colspan="8"><div class="spinner"></div></td></tr>
           </tbody>
         </table>
       </div>
@@ -282,11 +287,19 @@ input,select,textarea{font-family:var(--fb);}
       <div class="form-section">
         <div class="form-section-title">Basic Information</div>
         <div class="form-group"><label>Product Name *</label><input type="text" id="fName" placeholder="e.g. The Boardroom Blazer Top"></div>
+        <div class="form-group"><label>Slug *</label><input type="text" id="fSlug" placeholder="e.g. the-boardroom-blazer-top"><p class="form-hint">Lowercase, hyphens only. Used in the product URL: formellewear.com/product/[slug]</p></div>
         <div class="form-row">
           <div class="form-group"><label>Category *</label><select id="fCategory"><option value="">Select category</option><option value="top">Top</option><option value="trouser">Trouser</option><option value="dress">Dress</option><option value="blazer">Blazer</option><option value="other">Other</option></select></div>
           <div class="form-group"><label>Price (₹) *</label><input type="number" id="fPrice" placeholder="2999" min="1"></div>
         </div>
-        <div class="form-group"><label>Tag / Badge</label><input type="text" id="fTag" placeholder="e.g. New, Best Seller, Everyday Essentials"><p class="form-hint">Shown as a badge on the product card.</p></div>
+        <div class="form-group"><label>Tag / Badge</label><input type="text" id="fTag" placeholder="e.g. New, Coming Soon, Everyday Essentials"><p class="form-hint">Shown as a badge (top-left) on the product card.</p></div>
+        <div class="form-group">
+          <label class="checkbox-row">
+            <input type="checkbox" id="fBestseller">
+            <span>Mark as Best Seller</span>
+          </label>
+          <p class="form-hint">Shows a "Best Seller" badge (top-right) and includes this product in the homepage Best Sellers carousel.</p>
+        </div>
         <div class="form-group"><label>Short Description *</label><textarea id="fDesc" placeholder="1–2 sentence product description shown on the card and detail page."></textarea></div>
       </div>
       <div class="form-section">
@@ -400,10 +413,11 @@ async function loadProducts() {
 }
 
 function updateStats() {
-  document.getElementById('statTotal').textContent    = allProducts.length;
-  document.getElementById('statActive').textContent   = allProducts.filter(p=>p.is_active).length;
-  document.getElementById('statTops').textContent     = allProducts.filter(p=>p.category==='top').length;
-  document.getElementById('statTrousers').textContent = allProducts.filter(p=>p.category==='trouser').length;
+  document.getElementById('statTotal').textContent       = allProducts.length;
+  document.getElementById('statActive').textContent      = allProducts.filter(p=>p.is_active).length;
+  document.getElementById('statTops').textContent        = allProducts.filter(p=>p.category==='top').length;
+  document.getElementById('statTrousers').textContent    = allProducts.filter(p=>p.category==='trouser').length;
+  document.getElementById('statBestsellers').textContent = allProducts.filter(p=>p.is_bestseller).length;
 }
 
 function renderTable() {
@@ -411,7 +425,7 @@ function renderTable() {
   let list = allProducts;
   if (currentCat !== 'all') list = list.filter(p=>p.category===currentCat);
   if (currentSearch) { const q=currentSearch.toLowerCase(); list=list.filter(p=>p.name.toLowerCase().includes(q)); }
-  if (!list.length) { tbody.innerHTML=`<tr><td colspan="7"><div class="empty-state"><div class="empty-icon">◇</div><p>No products found</p></div></td></tr>`; return; }
+  if (!list.length) { tbody.innerHTML=`<tr><td colspan="8"><div class="empty-state"><div class="empty-icon">◇</div><p>No products found</p></div></td></tr>`; return; }
   tbody.innerHTML = list.map(p => {
     const heroImg  = (p.images||[]).filter(Boolean)[0]||'';
     const imgCount = (p.images||[]).filter(Boolean).length;
@@ -423,6 +437,7 @@ function renderTable() {
       <td><span class="cat-badge ${catClass}">${p.category}</span></td>
       <td><strong>₹${p.price.toLocaleString('en-IN')}</strong></td>
       <td><div class="img-count">${dots}</div></td>
+      <td>${p.is_bestseller?'<span class="bs-badge">Best Seller</span>':''}</td>
       <td><label class="toggle"><input type="checkbox" ${p.is_active?'checked':''} onchange="toggleActive(${p.id},this.checked)"><span class="toggle-slider"></span></label></td>
       <td><div class="action-btns">
         <button class="btn btn-sm btn-secondary btn-icon" onclick="openProductModal(${p.id})"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
@@ -461,8 +476,9 @@ function openProductModal(id=null) {
 function closeProductModal() { document.getElementById('productModal').classList.remove('open'); document.body.style.overflow=''; editingId=null; }
 
 function resetForm() {
-  ['fName','fPrice','fTag','fDesc','fFabric','fFit'].forEach(id=>document.getElementById(id).value='');
+  ['fName','fSlug','fPrice','fTag','fDesc','fFabric','fFit'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('fCategory').value='';
+  document.getElementById('fBestseller').checked=false;
   document.getElementById('fabricTagsWrap').querySelectorAll('.tag-chip').forEach(t=>t.remove());
   document.getElementById('soldOutTagsWrap').querySelectorAll('.tag-chip').forEach(t=>t.remove());
   document.getElementById('careList').innerHTML='';
@@ -472,16 +488,16 @@ function resetForm() {
 
 function populateForm(p) {
   document.getElementById('fName').value     = p.name||'';
+  document.getElementById('fSlug').value     = p.slug||'';
   document.getElementById('fCategory').value = p.category||'';
   document.getElementById('fPrice').value    = p.price||'';
   document.getElementById('fTag').value      = p.tag||'';
+  document.getElementById('fBestseller').checked = p.is_bestseller || false;
   document.getElementById('fDesc').value     = p.description||'';
   document.getElementById('fFabric').value   = p.fabric||'';
   document.getElementById('fFit').value      = p.fit_notes||'';
-  document.getElementById('fBestseller').checked = p.is_bestseller || false;
   fabricTags=[...(p.fabric_tags||[])]; renderFabricTags();
   soldOutSizes=[...(p.sold_out_sizes||[])]; renderSoldOutTags();
-
   (p.care||[]).forEach(c=>addListItem('careList','care',c));
   (p.details||[]).forEach(d=>addListItem('detailsList','details',d));
   imageSlots=['','','',''];
