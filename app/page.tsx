@@ -6,6 +6,7 @@ import TestimonialsRail from '@/components/TestimonialsRail'
 import UpcomingSection from '@/components/UpcomingSection'
 import FaqSection from '@/components/FaqSection'
 import Link from 'next/link'
+export const revalidate = 60
 
 async function getProducts(): Promise<Product[]> {
   const { data } = await supabase.from('products').select('*').eq('is_active', true).order('sort_order', { ascending: true })
