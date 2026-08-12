@@ -1,12 +1,11 @@
 import { supabase } from '@/lib/supabase'
 import type { Product } from '@/lib/types'
 import Nav from '@/components/Nav'
-import Productrail from '@/components/Productrail'
-import ShopSection from '@/components/ShopSection'
+import ProductRail from '@/components/ProductRail'
 import TestimonialsCarousel from '@/components/TestimonialsCarousel'
 import UpcomingSection from '@/components/UpcomingSection'
 import FaqSection from '@/components/FaqSection'
-import Link from 'next/link' 
+import Link from 'next/link'
 
 async function getProducts(): Promise<Product[]> {
   const { data } = await supabase.from('products').select('*').eq('is_active', true).order('sort_order', { ascending: true })
@@ -27,7 +26,7 @@ export default async function HomePage() {
           <p className="hero-sub">Formal wear designed for women who move through boardrooms and break through ceilings. Structured, elegant, and built for the woman in charge.</p>
           <p style={{ fontSize: '11px', letterSpacing: '1.5px', color: 'rgba(240,236,227,0.5)', fontStyle: 'italic', fontFamily: "'Cormorant Garamond', serif", marginTop: '-28px', marginBottom: '48px' }}>Worn by women leading rooms across India.</p>
           <div className="hero-actions">
-            <Link href="#shop" className="btn-primary">Shop Now</Link>
+            <Link href="/shop" className="btn-primary">Shop Now</Link>
             <Link href="/about" className="btn-outline">Our Story</Link>
           </div>
         </div>
@@ -45,10 +44,13 @@ export default async function HomePage() {
           </div>
         ))}
       </div>
- 
-      <Productrail eyebrow="Best Sellers" title="The pieces women keep coming back for" products={bestsellers} />
-      <Productrail eyebrow="New Arrivals" title="Just landed" products={newArrivals} />
-      <ShopSection products={products} />
+      <ProductRail eyebrow="Best Sellers" title="The pieces women keep coming back for" products={bestsellers} />
+      <ProductRail eyebrow="New Arrivals" title="Just landed" products={newArrivals} />
+      <div style={{ textAlign: 'center', padding: '8px 24px 64px' }}>
+        <Link href="/shop" className="btn-outline" style={{ borderColor: 'rgba(17,17,17,0.2)', color: 'var(--noir)' }}>
+          Shop the Full Collection
+        </Link>
+      </div>
       <TestimonialsCarousel />
       <UpcomingSection />
       <section id="about" aria-label="About Formelle">
@@ -97,9 +99,9 @@ export default async function HomePage() {
           <div>
             <div className="footer-col-title">Shop</div>
             <ul className="footer-links">
-              <li><Link href="#shop">All Products</Link></li>
-              <li><Link href="#shop">Tops — Free Size</Link></li>
-              <li><Link href="#shop">Trousers — XS to XL</Link></li>
+              <li><Link href="/shop">All Products</Link></li>
+              <li><Link href="/shop">Tops</Link></li>
+              <li><Link href="/shop">Trousers</Link></li>
             </ul>
           </div>
           <div>
