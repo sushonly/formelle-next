@@ -2,18 +2,24 @@ import { supabase } from '@/lib/supabase'
 import type { Product } from '@/lib/types'
 import Nav from '@/components/Nav'
 import ProductRail from '@/components/ProductRail'
-import TestimonialsCarousel from '@/components/TestimonialsCarousel'
+import TestimonialsRail from '@/components/TestimonialsRail'
 import UpcomingSection from '@/components/UpcomingSection'
 import FaqSection from '@/components/FaqSection'
-import Link from 'next/link' 
+import Link from 'next/link'
 
 async function getProducts(): Promise<Product[]> {
   const { data } = await supabase.from('products').select('*').eq('is_active', true).order('sort_order', { ascending: true })
   return data || []
 }
- 
+
+async function getTestimonials() {
+  const { data } = await supabase.from('testimonials').select('*').eq('is_active', true).order('sort_order', { ascending: true })
+  return data || []
+}
+
 export default async function HomePage() {
   const products = await getProducts()
+  const testimonials = await getTestimonials()
   const bestsellers = products.filter(p => p.is_bestseller)
   const newArrivals = products.filter(p => (p.tag || '').toLowerCase() === 'new')
   return (
@@ -51,7 +57,7 @@ export default async function HomePage() {
           Shop the Full Collection
         </Link>
       </div>
-      <TestimonialsCarousel />
+      <TestimonialsRail testimonials={testimonials} />
       <UpcomingSection />
       <section id="about" aria-label="About Formelle">
         <div>
