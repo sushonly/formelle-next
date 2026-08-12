@@ -5,6 +5,8 @@ import Nav from '@/components/Nav'
 import ShopSection from '@/components/ShopSection'
 import Link from 'next/link'
 
+export const revalidate = 60
+
 export const metadata: Metadata = {
   title: "Shop — Formelle | Women's Formal Wear India",
   description: 'Browse the full Formelle collection — formal trousers, tops, dresses, and blazers for women in India. Free shipping, all sizes available.',
