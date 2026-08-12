@@ -6,6 +6,7 @@ import TestimonialsRail from '@/components/TestimonialsRail'
 import UpcomingSection from '@/components/UpcomingSection'
 import FaqSection from '@/components/FaqSection'
 import Link from 'next/link'
+
 export const revalidate = 60
 
 async function getProducts(): Promise<Product[]> {
