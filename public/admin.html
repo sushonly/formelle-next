@@ -196,6 +196,10 @@ input,select,textarea{font-family:var(--fb);}
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
         Orders
       </button>
+      <button class="nav-item" onclick="showView('testimonials',this)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        Testimonials
+      </button>
     </nav>
     <div class="sidebar-footer">
       <a href="/" target="_blank">View website ↗</a><br><br>
@@ -267,7 +271,75 @@ input,select,textarea{font-family:var(--fb);}
       </div>
       <div id="ordersContainer"><div style="padding:40px;text-align:center"><div class="spinner"></div></div></div>
     </div>
+
+    <div id="view-testimonials" style="display:none">
+      <div class="topbar">
+        <div class="page-title">Testimonials</div>
+        <div class="topbar-actions">
+          <button class="btn btn-primary" onclick="openTestimonialModal()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add Testimonial
+          </button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class="prod-table">
+          <thead>
+            <tr>
+              <th style="width:56px"></th>
+              <th>Quote</th>
+              <th>Customer</th>
+              <th>Product</th>
+              <th>Active</th>
+              <th style="width:100px">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="testimonialTableBody">
+            <tr class="loading-row"><td colspan="6"><div class="spinner"></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </main>
+</div>
+
+<!-- TESTIMONIAL MODAL -->
+<div class="modal-backdrop" id="testimonialModal">
+  <div class="modal-panel">
+    <div class="modal-header">
+      <div class="modal-title" id="testimonialModalTitle">Add Testimonial</div>
+      <button class="modal-close" onclick="closeTestimonialModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-section">
+        <div class="form-section-title">Customer Photo</div>
+        <div class="img-upload-grid" style="grid-template-columns:repeat(2,1fr);max-width:280px;">
+          <div class="img-slot has-img" id="testiImgSlot" onclick="triggerTestiFileInput()" style="aspect-ratio:0.85;">
+            <div class="img-slot-overlay" id="testiImgOverlay">
+              <div><div class="img-slot-add">+</div><div class="img-slot-label">Upload</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="upload-progress" id="testiUploadProgress"><div class="upload-progress-bar" id="testiUploadProgressBar"></div></div>
+        <input type="file" id="testiFileInput" accept="image/*" style="display:none" onchange="handleTestiFileUpload(this)">
+      </div>
+      <div class="form-section">
+        <div class="form-section-title">Testimonial Details</div>
+        <div class="form-group"><label>Quote *</label><textarea id="tfQuote" placeholder="e.g. It's comfy. These days I love wide-leg trousers, and this one is the one." style="min-height:90px;"></textarea></div>
+        <div class="form-row">
+          <div class="form-group"><label>Customer Name *</label><input type="text" id="tfName" placeholder="e.g. Garima V."></div>
+          <div class="form-group"><label>Product / Context</label><input type="text" id="tfMeta" placeholder="e.g. Precision Trouser, Cocoa Brown"></div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeTestimonialModal()">Cancel</button>
+      <button class="btn btn-primary" id="testiSaveBtn" onclick="saveTestimonial()">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 11 4 16"/></svg>
+        Save Testimonial
+      </button>
+    </div>
+  </div>
 </div>
 
 <!-- PRODUCT MODAL -->
@@ -399,9 +471,11 @@ async function checkConnection() {
 function showView(view, btn) {
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   btn.classList.add('active');
-  document.getElementById('view-products').style.display = view === 'products' ? 'block' : 'none';
-  document.getElementById('view-orders').style.display   = view === 'orders'   ? 'block' : 'none';
+  document.getElementById('view-products').style.display     = view === 'products'     ? 'block' : 'none';
+  document.getElementById('view-orders').style.display       = view === 'orders'       ? 'block' : 'none';
+  document.getElementById('view-testimonials').style.display = view === 'testimonials' ? 'block' : 'none';
   if (view === 'orders') loadOrders();
+  if (view === 'testimonials') loadTestimonials();
 }
 
 async function loadProducts() {
@@ -626,6 +700,118 @@ let toastTimer;
 function showToast(msg,type='info') {
   const t=document.getElementById('toast'); t.textContent=msg; t.className=`toast ${type} show`;
   clearTimeout(toastTimer); toastTimer=setTimeout(()=>t.classList.remove('show'),3200);
+}
+
+/* ===== TESTIMONIALS ===== */
+let allTestimonials = [];
+let editingTestimonialId = null;
+let testimonialImgUrl = '';
+
+async function loadTestimonials() {
+  const { data, error } = await db.from('testimonials').select('*').order('sort_order',{ascending:true});
+  if (error) { showToast('Failed to load testimonials','error'); return; }
+  allTestimonials = data || [];
+  renderTestimonialTable();
+}
+
+function renderTestimonialTable() {
+  const tbody = document.getElementById('testimonialTableBody');
+  if (!allTestimonials.length) { tbody.innerHTML = `<tr><td colspan="6"><div class="empty-state"><div class="empty-icon">◇</div><p>No testimonials yet</p></div></td></tr>`; return; }
+  tbody.innerHTML = allTestimonials.map(t => {
+    const shortQuote = t.quote.length > 60 ? t.quote.slice(0,60)+'…' : t.quote;
+    return `<tr>
+      <td>${t.img?`<img class="prod-img" src="${t.img}" alt="${t.customer_name}">`:`<div class="prod-img-placeholder">${t.customer_name.charAt(0)}</div>`}</td>
+      <td style="max-width:280px;font-size:12px;color:rgba(44,44,42,0.75);font-style:italic;">"${shortQuote}"</td>
+      <td><div class="prod-name">${t.customer_name}</div></td>
+      <td style="font-size:12px;color:rgba(44,44,42,0.6);">${t.meta||'—'}</td>
+      <td><label class="toggle"><input type="checkbox" ${t.is_active?'checked':''} onchange="toggleTestimonialActive(${t.id},this.checked)"><span class="toggle-slider"></span></label></td>
+      <td><div class="action-btns">
+        <button class="btn btn-sm btn-secondary btn-icon" onclick="openTestimonialModal(${t.id})"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+        <button class="btn btn-sm btn-danger btn-icon" onclick="deleteTestimonial(${t.id},'${t.customer_name.replace(/'/g,"\\'")}')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg></button>
+      </div></td>
+    </tr>`;
+  }).join('');
+}
+
+async function toggleTestimonialActive(id,val) {
+  const { error } = await db.from('testimonials').update({is_active:val}).eq('id',id);
+  if (error) { showToast('Update failed','error'); return; }
+  showToast(val?'Testimonial activated':'Testimonial hidden','info');
+}
+
+async function deleteTestimonial(id,name) {
+  if (!confirm(`Delete testimonial from "${name}"?\n\nThis cannot be undone.`)) return;
+  const { error } = await db.from('testimonials').delete().eq('id',id);
+  if (error) { showToast('Delete failed','error'); return; }
+  showToast(`Testimonial from "${name}" deleted`,'info');
+  await loadTestimonials();
+}
+
+function openTestimonialModal(id=null) {
+  editingTestimonialId = id; testimonialImgUrl = '';
+  document.getElementById('testimonialModalTitle').textContent = id?'Edit Testimonial':'Add Testimonial';
+  document.getElementById('tfQuote').value=''; document.getElementById('tfName').value=''; document.getElementById('tfMeta').value='';
+  buildTestiImgSlot();
+  if (id) { const t=allTestimonials.find(x=>x.id===id); if(t){
+    document.getElementById('tfQuote').value=t.quote||'';
+    document.getElementById('tfName').value=t.customer_name||'';
+    document.getElementById('tfMeta').value=t.meta||'';
+    testimonialImgUrl=t.img||'';
+    buildTestiImgSlot();
+  }}
+  document.getElementById('testimonialModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeTestimonialModal() { document.getElementById('testimonialModal').classList.remove('open'); document.body.style.overflow=''; editingTestimonialId=null; }
+
+function buildTestiImgSlot() {
+  const slot = document.getElementById('testiImgSlot');
+  const overlay = document.getElementById('testiImgOverlay');
+  slot.querySelectorAll('img').forEach(el=>el.remove());
+  if (testimonialImgUrl) {
+    const img=document.createElement('img'); img.src=testimonialImgUrl; slot.insertBefore(img,overlay);
+    overlay.innerHTML = `<button class="img-slot-btn" onclick="event.stopPropagation();removeTestiImg()">Remove</button>`;
+  } else {
+    overlay.innerHTML = `<div><div class="img-slot-add">+</div><div class="img-slot-label">Upload</div></div>`;
+  }
+}
+
+function removeTestiImg() { testimonialImgUrl=''; buildTestiImgSlot(); }
+function triggerTestiFileInput() { document.getElementById('testiFileInput').click(); }
+
+async function handleTestiFileUpload(input) {
+  const file=input.files[0]; if(!file) return;
+  if(file.size>5*1024*1024){showToast('Image must be under 5MB','error');return;}
+  const progress=document.getElementById('testiUploadProgress'); const bar=document.getElementById('testiUploadProgressBar');
+  progress.style.display='block'; bar.style.width='30%';
+  const ext=file.name.split('.').pop(); const fileName=`testimonial-${Date.now()}.${ext}`; const path=`uploads/${fileName}`;
+  const {error:upErr}=await db.storage.from('product-images').upload(path,file);
+  bar.style.width='70%';
+  if(upErr){progress.style.display='none';showToast('Upload failed: '+upErr.message,'error');return;}
+  const {data:urlData}=db.storage.from('product-images').getPublicUrl(path);
+  bar.style.width='100%'; testimonialImgUrl=urlData.publicUrl;
+  setTimeout(()=>{progress.style.display='none';bar.style.width='0%';},400);
+  buildTestiImgSlot(); showToast('Image uploaded','success'); input.value='';
+}
+
+async function saveTestimonial() {
+  const quote=document.getElementById('tfQuote').value.trim();
+  const name=document.getElementById('tfName').value.trim();
+  const meta=document.getElementById('tfMeta').value.trim();
+  if(!quote){showToast('Quote is required','error');return;}
+  if(!name){showToast('Customer name is required','error');return;}
+  const payload={quote,customer_name:name,meta,img:testimonialImgUrl};
+  const btn=document.getElementById('testiSaveBtn'); btn.textContent='Saving…'; btn.disabled=true;
+  let error;
+  if(editingTestimonialId){({error}=await db.from('testimonials').update(payload).eq('id',editingTestimonialId));}
+  else{
+    const nextSort=(allTestimonials.length?Math.max(...allTestimonials.map(t=>t.sort_order||0)):0)+1;
+    ({error}=await db.from('testimonials').insert([{...payload,sort_order:nextSort,is_active:true}]));
+  }
+  btn.innerHTML=`<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 11 4 16"/></svg> Save Testimonial`; btn.disabled=false;
+  if(error){showToast('Save failed: '+error.message,'error');return;}
+  showToast(editingTestimonialId?'Testimonial updated!':'Testimonial added!','success'); closeTestimonialModal(); await loadTestimonials();
 }
 
 checkLogin();
