@@ -59,37 +59,22 @@ export default async function HomePage() {
         </Link>
       </div>
       <TestimonialsRail testimonials={testimonials} />
-      <section id="about" aria-label="About Formelle">
-        <div>
-          <span className="section-eyebrow" style={{ color: 'var(--accent-light)', marginBottom: '16px', display: 'block' }}>Our Story</span>
-          <h2 className="about-headline">For the woman<br />who <em>leads</em>,<br />not just works.</h2>
-          <p className="about-body">
-            Formelle was born from a simple frustration — why is it so hard to find formal wear that feels as powerful as you do? Clothes that fit well, move with you, and say &quot;I&apos;m in charge&quot; the moment you walk in.
-            <br /><br />
-            We design for the consulting principal who has back-to-back meetings. The founder who just closed a round. The manager who&apos;s the youngest in the room, and owns it. Every piece is structured where it counts and thoughtful in the details. Designed for the women leading India.
+      <section style={{ background: 'var(--noir)', padding: '80px 56px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '56px', maxWidth: '640px', margin: '0 auto 56px' }}>
+          <span style={{ fontSize: '9px', letterSpacing: '4px', textTransform: 'uppercase', color: 'var(--accent-light)', fontWeight: 500, display: 'block', marginBottom: '18px' }}>Our Philosophy</span>
+          <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(32px,4.5vw,52px)', fontWeight: 300, lineHeight: 1.15, letterSpacing: '-0.01em', color: 'var(--ivory)', marginBottom: '24px' }}>
+            Not a uniform.<br />Not a trend.
+          </h2>
+          <p style={{ fontSize: '14px', lineHeight: 1.85, color: 'rgba(240,236,227,0.6)', maxWidth: '480px', margin: '0 auto' }}>
+            We don&apos;t design for seasons. We design for the woman who&apos;s already arrived — who doesn&apos;t need to perform confidence, because she&apos;s built it. Every piece is made to be worn for years, not liked for a week.
           </p>
-          <div className="about-stats">
-            <div><div className="about-stat-num">India</div><div className="about-stat-label">Delivered Nationwide</div></div>
-            <div><div className="about-stat-num">All</div><div className="about-stat-label">Sizes Available</div></div>
-          </div>
         </div>
-        <div className="about-visual" aria-hidden="true">
-          <img src="/images/about-image.png" alt="Professional woman wearing Formelle formalwear" className="about-photo" />
-          <div className="about-overlay"></div>
-          <div className="about-tagline">&quot;Dressed to lead.&quot;</div>
-        </div>
-      </section>
-      <section style={{ background: 'var(--parchment)', padding: '72px 56px' }}>
-        <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-          <span style={{ fontSize: '8.5px', letterSpacing: '4px', textTransform: 'uppercase', color: 'var(--accent)', fontWeight: 500, display: 'block', marginBottom: '12px' }}>Why Formelle</span>
-          <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(36px,4vw,56px)', fontWeight: 300, lineHeight: 1.1, letterSpacing: '-0.02em' }}>What sets us <em style={{ fontStyle: 'italic', color: 'var(--accent)' }}>apart</em></h2>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 0, border: '0.5px solid rgba(17,17,17,0.1)' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 0, border: '0.5px solid rgba(240,236,227,0.12)', maxWidth: '1100px', margin: '0 auto' }}>
           {[['01', 'Designed for Indian women', 'Every silhouette is cut for the Indian body — proportions, drape, and fit that actually works. Not imported templates, not afterthoughts.'],['02', 'Structure without stiffness', "Pieces that hold their shape through 10-hour days. Formal enough for boardrooms. Comfortable enough to forget you're wearing them."],['03', 'Concierge by WhatsApp', 'Order via WhatsApp, pay via UPI. A real person confirms every order. No bots — just direct, personal service.']].map(([num, title, body], i) => (
-            <div key={num} style={{ padding: '40px 36px', borderRight: i < 2 ? '0.5px solid rgba(17,17,17,0.1)' : 'none' }}>
-              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '40px', fontWeight: 300, color: 'rgba(17,17,17,0.1)', marginBottom: '20px', fontStyle: 'italic' }}>{num}</div>
-              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '22px', fontWeight: 400, color: 'var(--noir)', marginBottom: '12px' }}>{title}</div>
-              <div style={{ fontSize: '12px', lineHeight: 1.8, color: 'rgba(44,44,42,0.6)', fontWeight: 300 }}>{body}</div>
+            <div key={num} style={{ padding: '40px 36px', borderRight: i < 2 ? '0.5px solid rgba(240,236,227,0.12)' : 'none' }}>
+              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '40px', fontWeight: 300, color: 'rgba(240,236,227,0.15)', marginBottom: '20px', fontStyle: 'italic' }}>{num}</div>
+              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '22px', fontWeight: 400, color: 'var(--ivory)', marginBottom: '12px' }}>{title}</div>
+              <div style={{ fontSize: '12px', lineHeight: 1.8, color: 'rgba(240,236,227,0.5)', fontWeight: 300 }}>{body}</div>
             </div>
           ))}
         </div>
