@@ -1,7 +1,7 @@
 import { supabase } from '@/lib/supabase'
 import type { Product } from '@/lib/types'
 import Nav from '@/components/Nav'
-import ProductRail from '@/components/ProductRail'
+import Productrail from '@/components/Productrail'
 import ShopSection from '@/components/ShopSection'
 import TestimonialsCarousel from '@/components/TestimonialsCarousel'
 import UpcomingSection from '@/components/UpcomingSection'
@@ -54,8 +54,8 @@ export default async function HomePage() {
           )}
         </div>
       </div>
-      <ProductRail eyebrow="Best Sellers" title="The pieces women keep coming back for" products={bestsellers} />
-      <ProductRail eyebrow="New Arrivals" title="Just landed" products={newArrivals} />
+      <Productrail eyebrow="Best Sellers" title="The pieces women keep coming back for" products={bestsellers} />
+      <Productrail eyebrow="New Arrivals" title="Just landed" products={newArrivals} />
       <ShopSection products={products} />
       <TestimonialsCarousel />
       <UpcomingSection />
