@@ -11,7 +11,7 @@ async function getProducts(): Promise<Product[]> {
   const { data } = await supabase.from('products').select('*').eq('is_active', true).order('sort_order', { ascending: true })
   return data || []
 }
-
+ 
 export default async function HomePage() {
   const products = await getProducts()
   const bestsellers = products.filter(p => p.is_bestseller)
