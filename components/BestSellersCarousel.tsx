@@ -22,16 +22,18 @@ export default function BestSellersCarousel({ products }: { products: Product[] 
       <div className="bestsellers-header">
         <div>
           <span className="section-eyebrow">Best Sellers</span>
-          <h2 className="bestsellers-title">The pieces women <em>keep coming back for</em></h2>
+          <h2 className="bestsellers-title">The pieces women keep coming back for</h2>
         </div>
-        <div className="bestsellers-arrows">
-          <button className="bs-arrow" onClick={() => scroll('left')} aria-label="Scroll left">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M15 18l-6-6 6-6"/></svg>
-          </button>
-          <button className="bs-arrow" onClick={() => scroll('right')} aria-label="Scroll right">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M9 18l6-6-6-6"/></svg>
-          </button>
-        </div>
+        {products.length > 2 && (
+          <div className="bestsellers-arrows">
+            <button className="bs-arrow" onClick={() => scroll('left')} aria-label="Scroll left">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button className="bs-arrow" onClick={() => scroll('right')} aria-label="Scroll right">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+        )}
       </div>
 
       <div className="bestsellers-track" ref={trackRef}>
@@ -46,11 +48,10 @@ export default function BestSellersCarousel({ products }: { products: Product[] 
                 ) : (
                   <div className="product-placeholder" aria-hidden="true">{catLabel.charAt(0)}</div>
                 )}
-                <div className="product-tag bestseller-tag" style={{ right: 16, left: 'auto' }}>Best Seller</div>
               </div>
               <div className="bs-info">
                 <div className="product-category">{catLabel}</div>
-                <h3 className="product-name">{p.name}</h3>
+                <h3 className="bs-name">{p.name}</h3>
               </div>
             </Link>
           )
