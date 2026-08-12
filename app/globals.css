@@ -4,7 +4,7 @@
   --font-display: 'Cormorant Garamond', serif;
   --font-body: 'Montserrat', sans-serif;
   --tr: 0.3s cubic-bezier(0.4,0,0.2,1);
-}
+} 
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior:smooth; }
 body { font-family:var(--font-body); background:var(--ivory); color:var(--noir); overflow-x:hidden; }
