@@ -14,8 +14,9 @@ async function getProducts(): Promise<Product[]> {
   return data || []
 }
 
+
 async function getTestimonials() {
-  const { data } = await supabase.from('testimonials').select('*').eq('is_active', true).order('sort_order', { ascending: true })
+  const { data } = await supabase.from('testimonials').select('*').eq('is_active', true).order('created_at', { ascending: false })
   return data || []
 }
 
