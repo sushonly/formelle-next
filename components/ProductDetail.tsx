@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import { useCart } from '@/lib/CartContext'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import type { Product } from '@/lib/types'
@@ -26,6 +27,7 @@ const CAT_LABELS: Record<string, string> = { top: 'Top', trouser: 'Trouser', dre
 const SG_CAT_MAP: Record<string, string> = { trouser: 'trousers', dress: 'dresses' }
 
 export default function ProductDetail({ product, relatedProducts }: { product: Product; relatedProducts: Product[] }) {
+  const { addItem } = useCart()
   const [activeImg, setActiveImg] = useState(0)
   const [selectedSize, setSelectedSize] = useState<string | null>(null)
   const [sizeError, setSizeError] = useState(false)
@@ -96,6 +98,14 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
 
   function addToBag() {
     if (!selectedSize) { setSizeError(true); return }
+    addItem({
+      id: product.id,
+      name: product.name,
+      slug: product.slug,
+      size: selectedSize,
+      price: product.price,
+      img: product.images?.[0] || '',
+    })
     showToast(`Added — ${product.name} / ${selectedSize}`)
   }
 
