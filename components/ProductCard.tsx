@@ -20,7 +20,6 @@ export default function ProductCard({ product }: { product: Product }) {
             <span className="product-quick-add">Shop Now</span>
           </div>
           {product.tag && <div className="product-tag">{product.tag}</div>}
-          {product.is_bestseller && <div className="product-tag bestseller-tag">Best Seller</div>}
         </div>
         <div className="product-info">
           <div className="product-category">{catLabel}</div>
