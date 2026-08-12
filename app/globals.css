@@ -40,6 +40,8 @@ nav { position:sticky; top:0; z-index:100; background:var(--ivory); border-botto
 .hero-actions { display:flex; gap:16px; flex-wrap:wrap; }
 .btn-primary { background:var(--ivory); color:var(--noir); padding:16px 40px; font-size:10px; letter-spacing:3px; font-weight:600; text-transform:uppercase; transition:all var(--tr); border:1px solid var(--ivory); }
 .btn-primary:hover { background:transparent; color:var(--ivory); }
+.btn-shop-collection { display:inline-block; background:var(--noir); color:var(--ivory); border:1px solid var(--noir); padding:16px 40px; font-size:10px; letter-spacing:3px; font-weight:600; text-transform:uppercase; transition:all var(--tr); }
+.btn-shop-collection:hover { background:var(--charcoal); border-color:var(--charcoal); }
 .btn-outline { background:transparent; color:var(--ivory); padding:16px 40px; font-size:10px; letter-spacing:3px; font-weight:500; text-transform:uppercase; border:1px solid rgba(240,236,227,0.4); transition:all var(--tr); }
 .btn-outline:hover { border-color:var(--ivory); }
 .hero-image-bg { position:absolute; inset:0; background:rgba(0,0,0,0.18); z-index:1; }
