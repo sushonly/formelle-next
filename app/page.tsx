@@ -6,7 +6,7 @@ import ShopSection from '@/components/ShopSection'
 import TestimonialsCarousel from '@/components/TestimonialsCarousel'
 import UpcomingSection from '@/components/UpcomingSection'
 import FaqSection from '@/components/FaqSection'
-import Link from 'next/link'
+import Link from 'next/link' 
 
 async function getProducts(): Promise<Product[]> {
   const { data } = await supabase.from('products').select('*').eq('is_active', true).order('sort_order', { ascending: true })
