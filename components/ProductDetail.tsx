@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useCart } from '@/lib/CartContext'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
-import type { Product } from '@/lib/types'
+import type { Product } from '@/lib/types' 
 
 const ALL_SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL']
 const WHATSAPP = '919989674894'
