@@ -3,7 +3,7 @@ import { CartProvider } from '@/lib/CartContext'
 import CartDrawer from '@/components/CartDrawer'
 import './globals.css'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = { 
   metadataBase: new URL('https://www.formellewear.com'),
   title: "Formelle — Women's Formal Wear India | Luxury Workwear | Dressed to Lead",
   description: 'Formal trousers, formalwear, and office wear for women in India. Premium, structured workwear built for the professional woman in charge.',
