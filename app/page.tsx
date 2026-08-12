@@ -54,7 +54,7 @@ export default async function HomePage() {
       <ProductRail eyebrow="Best Sellers" title="The pieces women keep coming back for" products={bestsellers} />
       <ProductRail eyebrow="New Arrivals" title="Just landed" products={newArrivals} />
       <div style={{ textAlign: 'center', padding: '8px 24px 64px' }}>
-        <Link href="/shop" className="btn-outline" style={{ borderColor: 'rgba(17,17,17,0.2)', color: 'var(--noir)' }}>
+        <Link href="/shop" className="btn-shop-collection">
           Shop the Full Collection
         </Link>
       </div>
