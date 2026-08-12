@@ -1,7 +1,7 @@
 import { supabase } from '@/lib/supabase'
 import type { Product } from '@/lib/types'
 import Nav from '@/components/Nav'
-import BestSellersCarousel from '@/components/BestSellersCarousel'
+import ProductRail from '@/components/ProductRail'
 import ShopSection from '@/components/ShopSection'
 import TestimonialsCarousel from '@/components/TestimonialsCarousel'
 import UpcomingSection from '@/components/UpcomingSection'
@@ -16,6 +16,7 @@ async function getProducts(): Promise<Product[]> {
 export default async function HomePage() {
   const products = await getProducts()
   const bestsellers = products.filter(p => p.is_bestseller)
+  const newArrivals = products.filter(p => (p.tag || '').toLowerCase() === 'new')
   return (
     <>
       <Nav />
@@ -53,8 +54,8 @@ export default async function HomePage() {
           )}
         </div>
       </div>
-      <BestSellersCarousel products={bestsellers} />
-      
+      <ProductRail eyebrow="Best Sellers" title="The pieces women keep coming back for" products={bestsellers} />
+      <ProductRail eyebrow="New Arrivals" title="Just landed" products={newArrivals} />
       <ShopSection products={products} />
       <TestimonialsCarousel />
       <UpcomingSection />
@@ -73,7 +74,7 @@ export default async function HomePage() {
           </div>
         </div>
         <div className="about-visual" aria-hidden="true">
-          <img src="/images/about-image.png" alt="Professional woman wearing Formelle formalwear" className="about-photo" /> 
+          <img src="/images/about-image.png" alt="Professional woman wearing Formelle formalwear" className="about-photo" />
           <div className="about-overlay"></div>
           <div className="about-tagline">&quot;Dressed to lead.&quot;</div>
         </div>
