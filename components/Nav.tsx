@@ -5,7 +5,7 @@ import { useCart } from '@/lib/CartContext'
 
 export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false)
-  const { itemCount } = useCart()
+  const { itemCount, openCart } = useCart()
 
   return (
     <>
@@ -26,7 +26,7 @@ export default function Nav() {
           <li><a href="mailto:formellewear@outlook.com">Contact</a></li>
         </ul>
 
-        <button className="cart-btn" aria-label="Shopping bag">
+        <button className="cart-btn" onClick={openCart} aria-label="Shopping bag">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
           <span className="cart-count" aria-live="polite">{itemCount}</span>
         </button>
