@@ -45,15 +45,7 @@ export default async function HomePage() {
           </div>
         ))}
       </div>
-      <div className="marquee-section" aria-hidden="true">
-        <div className="marquee-track">
-          {Array.from({ length: 2 }).flatMap((_, rep) =>
-            ['Power Dressing', 'For Every Size', 'Executive Fashion', 'Luxury Workwear', 'Dressed to Lead'].map((item, i) => (
-              <div key={`${rep}-${i}`} className="marquee-item">{item}</div>
-            ))
-          )}
-        </div>
-      </div>
+ 
       <Productrail eyebrow="Best Sellers" title="The pieces women keep coming back for" products={bestsellers} />
       <Productrail eyebrow="New Arrivals" title="Just landed" products={newArrivals} />
       <ShopSection products={products} />
