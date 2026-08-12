@@ -390,3 +390,19 @@ footer { background:var(--noir); padding:64px 80px 32px; }
 @media (max-width:480px) {
   .cart-sidebar { width:100%; }
 }
+
+/* ============ TESTIMONIALS RAIL ============ */
+.testi-rail-track { gap:32px; }
+.testi-card { width:calc(33.333% - 22px); min-width:260px; }
+.testi-card-image { aspect-ratio:0.85; margin-bottom:18px; background:var(--noir); }
+.testi-card-image img { object-fit:contain; }
+.testi-card-quote { font-family:var(--font-display); font-size:16px; font-style:italic; line-height:1.55; color:var(--noir); margin-bottom:12px; }
+.testi-card-name { font-size:9px; letter-spacing:1.5px; text-transform:uppercase; font-weight:600; color:var(--noir); }
+.testi-card-meta { font-size:10px; color:rgba(44,44,42,0.45); margin-top:2px; }
+
+@media (max-width:900px) {
+  .testi-card { width:70%; min-width:240px; }
+}
+@media (max-width:480px) {
+  .testi-card { width:82%; }
+}
