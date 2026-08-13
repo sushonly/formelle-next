@@ -342,7 +342,7 @@ footer { background:var(--noir); padding:64px 80px 32px; }
 }
 .rail-track::-webkit-scrollbar { display:none; }
 .rail-card {
-  flex:0 0 auto; width:calc(25% - 36px); min-width:220px;
+  flex: 0 0 calc(25% - 36px); min-width:220px;
   scroll-snap-align:start; display:block;
 }
 .rail-image-wrap { position:relative; aspect-ratio:0.65; overflow:hidden; background:linear-gradient(160deg,#ede8df,#dfd9cc); margin-bottom:20px; }
