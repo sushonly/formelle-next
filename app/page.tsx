@@ -208,54 +208,44 @@ export default async function HomePage() {
           OUR STORY
           Compact editorial section.
       ===================================================== */}
-      <section
-        className="home-story"
-        aria-label="Our Story"
-      >
-        <div className="home-story-copy">
-          <span className="home-story-eyebrow">
-            Our Story
-          </span>
+     <section className="story-section">
+  <div className="story-content">
+    <span className="story-eyebrow">OUR STORY</span>
 
-          <h2 className="home-story-title">
-            For the woman
-            <br />
-            who <em>leads,</em>
-            <br />
-            not just works.
-          </h2>
+    <h2 className="story-title">
+      For the woman
+      <br />
+      who <em>leads,</em>
+      <br />
+      not just works.
+    </h2>
 
-          <div className="home-story-text">
-            <p>
-              Formelle was born from a simple frustration —
-              finding formal wear that feels as powerful as
-              the woman wearing it.
-            </p>
+    <div className="story-copy">
+      <p>
+        Formelle was born from a simple frustration — finding formal wear
+        that feels as powerful as the woman wearing it.
+      </p>
 
-            <p>
-              So we create pieces with considered structure,
-              thoughtful fit, and the ease to move through
-              your entire day.
-            </p>
-          </div>
+      <p>
+        So we create pieces with considered structure, thoughtful fit, and
+        the ease to move through your entire day.
+      </p>
+    </div>
 
-          <Link
-            href="/about"
-            className="home-story-link"
-          >
-            Discover Our Story
-            <span>→</span>
-          </Link>
-        </div>
+    <Link href="/about" className="story-link">
+      DISCOVER OUR STORY
+      <span>→</span>
+    </Link>
+  </div>
 
-        <div className="home-story-image">
-          <img
-            src="/images/about-image.png"
-            alt="Formelle woman wearing tailored formal wear"
-            loading="lazy"
-          />
-        </div>
-      </section>
+  <div className="story-image-wrap">
+    <img
+      src="/images/your-story-image.jpg"
+      alt="Formelle woman wearing tailored workwear"
+      className="story-image"
+    />
+  </div>
+</section>
 
       {/* =====================================================
           PHILOSOPHY
