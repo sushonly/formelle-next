@@ -59,28 +59,151 @@ export default async function HomePage() {
         </Link>
       </div>
       <TestimonialsRail testimonials={testimonials} />
-      <section style={{ background: 'var(--noir)', padding: '80px 56px' }}>
-        <div style={{ textAlign: 'center', marginBottom: '56px', maxWidth: '640px', margin: '0 auto 56px' }}>
-          <span style={{ fontSize: '9px', letterSpacing: '4px', textTransform: 'uppercase', color: 'var(--accent-light)', fontWeight: 500, display: 'block', marginBottom: '18px' }}>Our Philosophy</span>
-          <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(32px,4.5vw,52px)', fontWeight: 300, lineHeight: 1.15, letterSpacing: '-0.01em', color: 'var(--ivory)', marginBottom: '24px' }}>
-            Not a uniform.<br />Not a trend.
-          </h2>
-          
-          <p style={{ fontSize: '14px', lineHeight: 1.85, color: 'rgba(240,236,227,0.6)', maxWidth: '480px', margin: '0 auto' }}>
-  We don&apos;t design for seasons. We design for the consulting principal with back-to-back meetings. The founder who just closed a round. The manager who&apos;s the youngest in the room and owns it.
-  Every piece is made to be worn for years, not liked for a week.
-</p>
+     <section
+  style={{
+    background: 'var(--noir)',
+    padding: '96px 56px 104px',
+    color: 'var(--ivory)',
+  }}
+>
+  {/* Philosophy introduction */}
+  <div
+    style={{
+      textAlign: 'center',
+      maxWidth: '680px',
+      margin: '0 auto 64px',
+    }}
+  >
+    <span
+      style={{
+        display: 'block',
+        fontSize: '9px',
+        letterSpacing: '4px',
+        textTransform: 'uppercase',
+        color: 'var(--accent-light)',
+        fontWeight: 500,
+        marginBottom: '20px',
+      }}
+    >
+      Our Philosophy
+    </span>
+
+    <h2
+      style={{
+        fontFamily: "'Cormorant Garamond', serif",
+        fontSize: 'clamp(42px, 5vw, 64px)',
+        fontWeight: 300,
+        lineHeight: 1.05,
+        letterSpacing: '-0.02em',
+        color: 'var(--ivory)',
+        margin: '0 0 28px',
+      }}
+    >
+      Not a uniform.
+      <br />
+      Not a trend.
+    </h2>
+
+    <p
+      style={{
+        maxWidth: '600px',
+        margin: '0 auto',
+        fontSize: '13px',
+        lineHeight: 1.9,
+        color: 'rgba(240,236,227,0.68)',
+        fontWeight: 300,
+      }}
+    >
+      We don&apos;t design for seasons. We design for the consultant
+      with back-to-back meetings. The founder who just closed a round.
+      The manager who&apos;s the youngest in the room and owns it.
+      Every piece is made to be worn for years, not liked for a week.
+    </p>
+  </div>
+
+  {/* Philosophy pillars */}
+  <div
+    style={{
+      display: 'grid',
+      gridTemplateColumns: 'repeat(3, 1fr)',
+      maxWidth: '1100px',
+      margin: '0 auto',
+      border: '0.5px solid rgba(240,236,227,0.14)',
+    }}
+  >
+    {[
+      [
+        '01',
+        'Designed for Indian women',
+        'Every silhouette is cut for the Indian body — proportions, drape, and fit that actually works.',
+      ],
+      [
+        '02',
+        'Structure without stiffness',
+        'Pieces that hold their shape through 10-hour days. Formal enough for boardrooms. Comfortable enough to forget you’re wearing them.',
+      ],
+      [
+        '03',
+        'Made for the way you work',
+        'A wardrobe designed to move between the office, the airport, the dinner, and everything in between.',
+      ],
+    ].map(([num, title, body], i) => (
+      <div
+        key={num}
+        style={{
+          minHeight: '310px',
+          padding: '48px 42px',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'flex-start',
+          borderRight:
+            i < 2
+              ? '0.5px solid rgba(240,236,227,0.14)'
+              : 'none',
+        }}
+      >
+        <div
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: '38px',
+            fontWeight: 300,
+            fontStyle: 'italic',
+            lineHeight: 1,
+            color: 'rgba(240,236,227,0.22)',
+            marginBottom: '42px',
+          }}
+        >
+          {num}
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 0, border: '0.5px solid rgba(240,236,227,0.12)', maxWidth: '1100px', margin: '0 auto' }}>
-          {[['01', 'Designed for Indian women', 'Every silhouette is cut for the Indian body — proportions, drape, and fit that actually works.'],['02', 'Structure without stiffness', "Pieces that hold their shape through 10-hour days. Formal enough for boardrooms. Comfortable enough to forget you're wearing them."],['03', 'Concierge by WhatsApp', 'Order via WhatsApp, pay via UPI. A real person confirms every order. No bots — just direct, personal service.']].map(([num, title, body], i) => (
-            <div key={num} style={{ padding: '40px 36px', borderRight: i < 2 ? '0.5px solid rgba(240,236,227,0.12)' : 'none' }}>
-              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '40px', fontWeight: 300, color: 'rgba(240,236,227,0.15)', marginBottom: '20px', fontStyle: 'italic' }}>{num}</div>
-              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '22px', fontWeight: 400, color: 'var(--ivory)', marginBottom: '12px' }}>{title}</div>
-              <div style={{ fontSize: '12px', lineHeight: 1.8, color: 'rgba(240,236,227,0.5)', fontWeight: 300 }}>{body}</div>
-            </div>
-          ))}
+
+        <div
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: '23px',
+            fontWeight: 400,
+            lineHeight: 1.15,
+            color: 'var(--ivory)',
+            marginBottom: '18px',
+          }}
+        >
+          {title}
         </div>
-      </section>
+
+        <div
+          style={{
+            fontSize: '12px',
+            lineHeight: 1.85,
+            color: 'rgba(240,236,227,0.58)',
+            fontWeight: 300,
+            maxWidth: '280px',
+          }}
+        >
+          {body}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
       <FaqSection />
       <footer>
         <div className="footer-top">
