@@ -159,6 +159,9 @@ footer { background:var(--noir); padding:64px 80px 32px; }
 .product-name-h1 { font-family:var(--font-display); font-size:clamp(32px,4vw,52px); font-weight:300; line-height:1.05; letter-spacing:-0.5px; margin-bottom:8px; }
 .product-price-large { font-family:var(--font-display); font-size:32px; font-weight:400; color:var(--noir); margin-bottom:24px; }
 .product-short-desc { font-size:13px; line-height:1.9; color:rgba(44,44,42,0.7); margin-bottom:28px; max-width:420px; }
+.product-price {display: flex; align-items: baseline;gap: 10px;margin-top: 14px;line-height: 1;}
+.product-price-current {font-size: 16px;font-weight: 500;color: var(--noir);}
+.product-price-original {font-size: 14px;font-weight: 300;color: rgba(44, 44, 42, 0.45);text-decoration: line-through;text-decoration-thickness: 1px;}
 
 .size-section { margin-bottom:24px; }
 .size-row-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
