@@ -33,7 +33,6 @@ export default async function HomePage() {
   const testimonials = await getTestimonials()
 
   const bestsellers = products.filter(p => p.is_bestseller)
-
   const newArrivals = products.filter(
     p => (p.tag || '').toLowerCase() === 'new'
   )
@@ -45,13 +44,11 @@ export default async function HomePage() {
       {/* =====================================================
           HERO
       ===================================================== */}
-
       <section
         className="hero"
         aria-label="Hero — Dressed to Lead"
       >
         <div className="hero-text">
-
           <span className="hero-eyebrow">
             New Collection · 2026
           </span>
@@ -80,7 +77,7 @@ export default async function HomePage() {
               fontStyle: 'italic',
               fontFamily: "'Cormorant Garamond', serif",
               marginTop: '-20px',
-              marginBottom: '34px',
+              marginBottom: '38px',
             }}
           >
             Worn by women leading rooms across India.
@@ -95,36 +92,37 @@ export default async function HomePage() {
               Our Story
             </Link>
           </div>
-
         </div>
 
         <div className="hero-image" aria-hidden="true">
-
           <img
             src="/images/hero.png"
             alt="Formelle luxury formal wear"
             className="hero-photo"
           />
 
-          <div className="hero-image-bg" />
+          <div className="hero-image-bg"></div>
 
-          <div className="hero-badge">
+          <div className="hero-badge" aria-hidden="true">
             <span>Dressed</span>
             <span>to</span>
             <span>Lead</span>
           </div>
-
         </div>
       </section>
 
-
       {/* =====================================================
-          TRUST / SERVICE STRIP
+          TRUST STRIP
       ===================================================== */}
-
-      <section
-        className="home-trust-strip"
-        aria-label="Formelle benefits"
+      <div
+        style={{
+          background: 'var(--parchment)',
+          borderTop: '0.5px solid rgba(17,17,17,0.08)',
+          borderBottom: '0.5px solid rgba(17,17,17,0.08)',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(4, 1fr)',
+        }}
+        className="trust-strip"
       >
         {[
           ['Free Shipping', 'On all orders'],
@@ -134,116 +132,70 @@ export default async function HomePage() {
         ].map(([title, sub], i) => (
           <div
             key={title}
-            className="home-trust-item"
+            style={{
+              padding: '18px 24px',
+              textAlign: 'center',
+              borderRight:
+                i < 3
+                  ? '0.5px solid rgba(17,17,17,0.08)'
+                  : 'none',
+            }}
           >
-            <div className="home-trust-title">
+            <div
+              style={{
+                fontSize: '8.5px',
+                letterSpacing: '2.5px',
+                textTransform: 'uppercase',
+                fontWeight: 600,
+                color: 'var(--noir)',
+                marginBottom: '4px',
+              }}
+            >
               {title}
             </div>
 
-            <div className="home-trust-sub">
+            <div
+              style={{
+                fontSize: '10px',
+                color: 'rgba(44,44,42,0.5)',
+                fontWeight: 300,
+              }}
+            >
               {sub}
             </div>
           </div>
         ))}
-      </section>
-
+      </div>
 
       {/* =====================================================
           BEST SELLERS
+          NOTE: ProductRail intentionally has NO prices.
       ===================================================== */}
-
       <ProductRail
         eyebrow="Best Sellers"
         title="The pieces women keep coming back for"
         products={bestsellers}
       />
 
-
-      {/* =====================================================
-          BRAND STORY
-      ===================================================== */}
-
-      <section
-        className="home-story"
-        aria-label="Our Story"
-      >
-
-        <div className="home-story-content">
-
-          <span className="section-eyebrow">
-            Our Story
-          </span>
-
-          <h2>
-            For the woman
-            <br />
-            who <em>leads,</em>
-            <br />
-            not just works.
-          </h2>
-
-          <p>
-            Formelle was born from a simple frustration —
-            why is it so hard to find formal wear that feels
-            as powerful as you do?
-          </p>
-
-          <p>
-            Clothes that fit well, move with you, and say
-            &quot;I&apos;m in charge&quot; the moment you walk in.
-          </p>
-
-          <p>
-            We design for the consulting principal with
-            back-to-back meetings. The founder who just
-            closed a round. The manager who&apos;s the youngest
-            in the room, and owns it.
-          </p>
-
-          <Link
-            href="/about"
-            className="home-story-link"
-          >
-            Discover our story
-            <span>→</span>
-          </Link>
-
-        </div>
-
-        <div className="home-story-image">
-
-          {/*
-            IMPORTANT:
-            Change this filename if your Story image has
-            a different filename in /public/images/
-          */}
-          <img
-            src="/images/about-image.png"
-            alt="Formelle woman in tailored formal wear"
-            loading="lazy"
-          />
-
-        </div>
-
-      </section>
-
-
       {/* =====================================================
           NEW ARRIVALS
+          NOTE: ProductRail intentionally has NO prices.
       ===================================================== */}
-
       <ProductRail
         eyebrow="New Arrivals"
         title="Just landed"
         products={newArrivals}
       />
 
-
       {/* =====================================================
           FULL COLLECTION CTA
       ===================================================== */}
-
-      <div className="home-collection-cta">
+      <div
+        style={{
+          textAlign: 'center',
+          padding: '4px 24px 48px',
+        }}
+      >
         <Link
           href="/shop"
           className="btn-shop-collection"
@@ -252,49 +204,87 @@ export default async function HomePage() {
         </Link>
       </div>
 
+      {/* =====================================================
+          OUR STORY
+          Compact editorial section.
+      ===================================================== */}
+      <section
+        className="home-story"
+        aria-label="Our Story"
+      >
+        <div className="home-story-copy">
+          <span className="home-story-eyebrow">
+            Our Story
+          </span>
+
+          <h2 className="home-story-title">
+            For the woman
+            <br />
+            who <em>leads,</em>
+            <br />
+            not just works.
+          </h2>
+
+          <div className="home-story-text">
+            <p>
+              Formelle was born from a simple frustration —
+              finding formal wear that feels as powerful as
+              the woman wearing it.
+            </p>
+
+            <p>
+              So we create pieces with considered structure,
+              thoughtful fit, and the ease to move through
+              your entire day.
+            </p>
+          </div>
+
+          <Link
+            href="/about"
+            className="home-story-link"
+          >
+            Discover Our Story
+            <span>→</span>
+          </Link>
+        </div>
+
+        <div className="home-story-image">
+          <img
+            src="/images/our-story.png"
+            alt="Formelle woman wearing tailored formal wear"
+            loading="lazy"
+          />
+        </div>
+      </section>
 
       {/* =====================================================
           PHILOSOPHY
       ===================================================== */}
-
       <section
-        className="philosophy-section"
-        aria-label="Our Philosophy"
+        className="home-philosophy"
+        aria-label="Formelle Philosophy"
       >
-
-        {/* Philosophy introduction */}
-
-        <div className="philosophy-intro">
-
-          <span className="philosophy-eyebrow">
+        {/* Introduction */}
+        <div className="home-philosophy-intro">
+          <span className="home-philosophy-eyebrow">
             Our Philosophy
           </span>
 
-          <h2>
+          <h2 className="home-philosophy-title">
             Not a uniform.
             <br />
             Not a trend.
           </h2>
 
           <p>
-            We don&apos;t design for seasons. We design for the
-            consultant with back-to-back meetings. The founder
-            who just closed a round. The manager who&apos;s the
-            youngest in the room and owns it.
+            We don&apos;t design for seasons. We design pieces
+            that earn their place in your wardrobe — made to
+            be worn for years, not liked for a week.
           </p>
-
-          <p>
-            Every piece is made to be worn for years,
-            not liked for a week.
-          </p>
-
         </div>
 
-
         {/* Philosophy pillars */}
-
         <div className="philosophy-grid">
-
           {[
             [
               '01',
@@ -304,7 +294,7 @@ export default async function HomePage() {
             [
               '02',
               'Structure without stiffness',
-              'Pieces that hold their shape through 10-hour days. Formal enough for boardrooms. Comfortable enough to forget you’re wearing them.',
+              'Pieces that hold their shape through long days. Formal enough for boardrooms. Comfortable enough to forget you’re wearing them.',
             ],
             [
               '03',
@@ -312,12 +302,16 @@ export default async function HomePage() {
               'A wardrobe designed to move between the office, the airport, the dinner, and everything in between.',
             ],
           ].map(([num, title, body], i) => (
-
             <div
               key={num}
               className="philosophy-card"
+              style={{
+                borderRight:
+                  i < 2
+                    ? '0.5px solid rgba(240,236,227,0.12)'
+                    : 'none',
+              }}
             >
-
               <div className="philosophy-number">
                 {num}
               </div>
@@ -329,75 +323,27 @@ export default async function HomePage() {
               <div className="philosophy-card-body">
                 {body}
               </div>
-
             </div>
-
           ))}
-
         </div>
-
       </section>
-
 
       {/* =====================================================
           TESTIMONIALS
       ===================================================== */}
-
-      {testimonials.length > 0 && (
-        <TestimonialsRail
-          testimonials={testimonials}
-        />
-      )}
-
-
-      {/* =====================================================
-          FINAL SHOP CTA
-      ===================================================== */}
-
-      <section className="home-final-cta">
-
-        <span className="section-eyebrow">
-          The Formelle Wardrobe
-        </span>
-
-        <h2>
-          Dress for where
-          <br />
-          you&apos;re going.
-        </h2>
-
-        <p>
-          Timeless tailoring. Modern silhouettes.
-          Clothes built for the way you work.
-        </p>
-
-        <Link
-          href="/shop"
-          className="btn-primary"
-        >
-          Explore the Collection
-        </Link>
-
-      </section>
-
+      <TestimonialsRail testimonials={testimonials} />
 
       {/* =====================================================
           FAQ
       ===================================================== */}
-
       <FaqSection />
-
 
       {/* =====================================================
           FOOTER
       ===================================================== */}
-
       <footer>
-
         <div className="footer-top">
-
           <div>
-
             <div className="footer-brand-name">
               Formelle
             </div>
@@ -410,18 +356,14 @@ export default async function HomePage() {
               Luxury formal wear for the professional woman.
               Pan-India delivery.
             </p>
-
           </div>
 
-
           <div>
-
             <div className="footer-col-title">
               Shop
             </div>
 
             <ul className="footer-links">
-
               <li>
                 <Link href="/shop">
                   All Products
@@ -439,34 +381,29 @@ export default async function HomePage() {
                   Trousers
                 </Link>
               </li>
-
             </ul>
-
           </div>
 
-
           <div>
-
             <div className="footer-col-title">
               Help
             </div>
 
             <ul className="footer-links">
-
               <li>
-                <Link href="#faq">
+                <Link href="/#faq">
                   FAQs
                 </Link>
               </li>
 
               <li>
-                <Link href="#faq">
+                <Link href="/#faq">
                   Shipping Info
                 </Link>
               </li>
 
               <li>
-                <Link href="#faq">
+                <Link href="/#faq">
                   Returns
                 </Link>
               </li>
@@ -476,20 +413,15 @@ export default async function HomePage() {
                   Contact
                 </a>
               </li>
-
             </ul>
-
           </div>
 
-
           <div>
-
             <div className="footer-col-title">
               Connect
             </div>
 
             <ul className="footer-links">
-
               <li>
                 <a
                   href="https://instagram.com/formellewear"
@@ -505,16 +437,11 @@ export default async function HomePage() {
                   formellewear@outlook.com
                 </a>
               </li>
-
             </ul>
-
           </div>
-
         </div>
 
-
         <div className="footer-bottom">
-
           <div className="footer-copy">
             © 2026 Formelle. All rights reserved.
           </div>
@@ -528,130 +455,102 @@ export default async function HomePage() {
               formellewear.com
             </a>
           </div>
-
         </div>
-
       </footer>
-
 
       {/* =====================================================
           PAGE-SPECIFIC STYLES
-          Keeping these in page.tsx as requested
+          No changes to global.css required for these sections.
       ===================================================== */}
-
       <style>{`
-
-        /* ===================================================
-           TRUST STRIP
-        =================================================== */
-
-        .home-trust-strip {
-          background: var(--parchment);
-          border-top: 0.5px solid rgba(17,17,17,0.08);
-          border-bottom: 0.5px solid rgba(17,17,17,0.08);
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-        }
-
-        .home-trust-item {
-          padding: 18px 20px;
-          text-align: center;
-          border-right: 0.5px solid rgba(17,17,17,0.08);
-        }
-
-        .home-trust-item:last-child {
-          border-right: none;
-        }
-
-        .home-trust-title {
-          font-size: 8.5px;
-          letter-spacing: 2.3px;
-          text-transform: uppercase;
-          font-weight: 600;
-          color: var(--noir);
-          margin-bottom: 4px;
-        }
-
-        .home-trust-sub {
-          font-size: 10px;
-          color: rgba(44,44,42,0.5);
-          font-weight: 300;
-        }
-
-
-        /* ===================================================
-           STORY SECTION
-        =================================================== */
+        /* -----------------------------------------------
+           STORY
+        ------------------------------------------------ */
 
         .home-story {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          min-height: 500px;
+          max-height: 540px;
           background: var(--noir);
           color: var(--ivory);
-          display: grid;
-          grid-template-columns: 0.92fr 1.08fr;
-          min-height: 620px;
-          width: 100%;
           overflow: hidden;
         }
 
-        .home-story-content {
+        .home-story-copy {
           display: flex;
           flex-direction: column;
           justify-content: center;
-          padding: 72px 7vw;
+          padding: 58px 7vw;
           box-sizing: border-box;
         }
 
-        .home-story-content .section-eyebrow {
+        .home-story-eyebrow {
+          display: block;
+          font-size: 9px;
+          letter-spacing: 4px;
+          text-transform: uppercase;
           color: var(--accent-light);
-          margin-bottom: 22px;
+          font-weight: 500;
+          margin-bottom: 20px;
         }
 
-        .home-story-content h2 {
-          font-family: "Cormorant Garamond", serif;
-          font-size: clamp(44px, 5vw, 68px);
+        .home-story-title {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: clamp(42px, 4.2vw, 62px);
           font-weight: 300;
           line-height: 0.98;
           letter-spacing: -0.025em;
-          margin: 0 0 32px;
+          margin: 0 0 28px;
           color: var(--ivory);
         }
 
-        .home-story-content h2 em {
+        .home-story-title em {
           color: var(--accent-light);
-          font-weight: 300;
+          font-style: italic;
         }
 
-        .home-story-content p {
-          max-width: 500px;
-          font-size: 13px;
-          line-height: 1.8;
-          color: rgba(240,236,227,0.63);
+        .home-story-text {
+          max-width: 510px;
+        }
+
+        .home-story-text p {
+          font-size: 12.5px;
+          line-height: 1.75;
           font-weight: 300;
-          margin: 0 0 16px;
+          color: rgba(240,236,227,0.64);
+          margin: 0 0 12px;
         }
 
         .home-story-link {
           display: inline-flex;
           align-items: center;
-          gap: 14px;
+          gap: 12px;
           width: fit-content;
-          margin-top: 20px;
+          margin-top: 12px;
+          padding-bottom: 7px;
+          border-bottom: 0.5px solid rgba(240,236,227,0.45);
           color: var(--ivory);
           text-decoration: none;
-          font-size: 9px;
-          letter-spacing: 2.5px;
           text-transform: uppercase;
-          border-bottom: 1px solid rgba(240,236,227,0.4);
-          padding-bottom: 8px;
+          font-size: 9px;
+          letter-spacing: 3px;
+          transition: opacity 0.2s ease;
+        }
+
+        .home-story-link:hover {
+          opacity: 0.65;
         }
 
         .home-story-link span {
           font-size: 15px;
           line-height: 1;
+          letter-spacing: 0;
         }
 
         .home-story-image {
-          min-height: 620px;
+          min-height: 500px;
+          max-height: 540px;
           overflow: hidden;
         }
 
@@ -660,91 +559,74 @@ export default async function HomePage() {
           height: 100%;
           display: block;
           object-fit: cover;
+          object-position: center 42%;
         }
 
 
-        /* ===================================================
-           COLLECTION CTA
-        =================================================== */
-
-        .home-collection-cta {
-          text-align: center;
-          padding: 36px 24px 54px;
-          background: var(--parchment);
-        }
-
-
-        /* ===================================================
+        /* -----------------------------------------------
            PHILOSOPHY
-        =================================================== */
+        ------------------------------------------------ */
 
-        .philosophy-section {
+        .home-philosophy {
           background: var(--noir);
           color: var(--ivory);
-          padding: 82px 56px 88px;
-          width: 100%;
-          box-sizing: border-box;
-          overflow: hidden;
+          padding: 72px 56px 76px;
         }
 
-        .philosophy-intro {
+        .home-philosophy-intro {
           text-align: center;
-          max-width: 660px;
-          margin: 0 auto 52px;
+          max-width: 650px;
+          margin: 0 auto 46px;
         }
 
-        .philosophy-eyebrow {
+        .home-philosophy-eyebrow {
           display: block;
           font-size: 9px;
           letter-spacing: 4px;
           text-transform: uppercase;
           color: var(--accent-light);
           font-weight: 500;
-          margin-bottom: 18px;
+          margin-bottom: 16px;
         }
 
-        .philosophy-intro h2 {
-          font-family: "Cormorant Garamond", serif;
-          font-size: clamp(42px, 5vw, 64px);
+        .home-philosophy-title {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: clamp(40px, 4.5vw, 60px);
           font-weight: 300;
           line-height: 1;
           letter-spacing: -0.02em;
           color: var(--ivory);
-          margin: 0 0 24px;
+          margin: 0 0 22px;
         }
 
-        .philosophy-intro p {
-          max-width: 600px;
-          margin: 0 auto 8px;
-          font-size: 13px;
+        .home-philosophy-intro p {
+          max-width: 570px;
+          margin: 0 auto;
+          font-size: 12.5px;
           line-height: 1.8;
-          color: rgba(240,236,227,0.65);
+          color: rgba(240,236,227,0.62);
           font-weight: 300;
         }
 
         .philosophy-grid {
           display: grid;
           grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 0;
+          border: 0.5px solid rgba(240,236,227,0.12);
           max-width: 1100px;
           width: 100%;
           margin: 0 auto;
-          border: 0.5px solid rgba(240,236,227,0.12);
           box-sizing: border-box;
         }
 
         .philosophy-card {
+          padding: 34px 36px 38px;
           min-width: 0;
-          padding: 38px 34px;
           box-sizing: border-box;
-          border-right: 0.5px solid rgba(240,236,227,0.12);
-        }
-
-        .philosophy-card:last-child {
-          border-right: none;
         }
 
         .philosophy-number {
-          font-family: "Cormorant Garamond", serif;
+          font-family: 'Cormorant Garamond', serif;
           font-size: 36px;
           font-weight: 300;
           font-style: italic;
@@ -754,7 +636,7 @@ export default async function HomePage() {
         }
 
         .philosophy-card-title {
-          font-family: "Cormorant Garamond", serif;
+          font-family: 'Cormorant Garamond', serif;
           font-size: 23px;
           font-weight: 400;
           line-height: 1.12;
@@ -771,157 +653,93 @@ export default async function HomePage() {
         }
 
 
-        /* ===================================================
-           FINAL CTA
-        =================================================== */
-
-        .home-final-cta {
-          text-align: center;
-          padding: 76px 24px 80px;
-          background: var(--parchment);
-        }
-
-        .home-final-cta .section-eyebrow {
-          display: block;
-          margin-bottom: 18px;
-        }
-
-        .home-final-cta h2 {
-          font-family: "Cormorant Garamond", serif;
-          font-size: clamp(44px, 5vw, 64px);
-          font-weight: 300;
-          line-height: 1;
-          letter-spacing: -0.025em;
-          color: var(--noir);
-          margin: 0 0 18px;
-        }
-
-        .home-final-cta p {
-          max-width: 480px;
-          margin: 0 auto 30px;
-          font-size: 13px;
-          line-height: 1.7;
-          color: rgba(44,44,42,0.58);
-          font-weight: 300;
-        }
-
-
-        /* ===================================================
-           TABLET
-        =================================================== */
-
-        @media (max-width: 900px) {
-
-          .home-story {
-            grid-template-columns: 1fr;
-          }
-
-          .home-story-content {
-            padding: 64px 40px 54px;
-            order: 1;
-          }
-
-          .home-story-image {
-            min-height: 520px;
-            order: 2;
-          }
-
-          .philosophy-section {
-            padding-left: 32px;
-            padding-right: 32px;
-          }
-
-        }
-
-
-        /* ===================================================
+        /* -----------------------------------------------
            MOBILE
-        =================================================== */
+        ------------------------------------------------ */
 
         @media (max-width: 768px) {
 
-          .home-trust-strip {
-            grid-template-columns: repeat(2, 1fr);
+          /* Trust strip */
+          .trust-strip {
+            grid-template-columns: repeat(2, 1fr) !important;
           }
 
-          .home-trust-item {
-            padding: 15px 10px;
+          .trust-strip > div {
+            padding: 14px 10px !important;
           }
 
-          .home-trust-item:nth-child(2) {
-            border-right: none;
+          .trust-strip > div:nth-child(2) {
+            border-right: none !important;
           }
 
-          .home-trust-item:nth-child(1),
-          .home-trust-item:nth-child(2) {
+          .trust-strip > div:nth-child(1),
+          .trust-strip > div:nth-child(2) {
             border-bottom: 0.5px solid rgba(17,17,17,0.08);
           }
 
-          .home-trust-title {
-            font-size: 7.5px;
-            letter-spacing: 1.8px;
-          }
 
-          .home-trust-sub {
-            font-size: 9px;
-          }
-
-
+          /* Story */
           .home-story {
+            grid-template-columns: 1fr;
             min-height: 0;
+            max-height: none;
           }
 
-          .home-story-content {
-            padding: 58px 24px 48px;
+          .home-story-copy {
+            padding: 52px 24px 46px;
           }
 
-          .home-story-content h2 {
-            font-size: clamp(42px, 12vw, 58px);
+          .home-story-eyebrow {
+            margin-bottom: 16px;
+          }
+
+          .home-story-title {
+            font-size: clamp(42px, 12vw, 56px);
+            line-height: 0.98;
             margin-bottom: 24px;
           }
 
-          .home-story-content p {
+          .home-story-text p {
             font-size: 12px;
             line-height: 1.75;
           }
 
           .home-story-image {
-            min-height: 440px;
-            height: 440px;
+            height: 390px;
+            min-height: 390px;
+            max-height: 390px;
+          }
+
+          .home-story-image img {
+            object-position: center 38%;
           }
 
 
-          .home-collection-cta {
-            padding: 30px 20px 42px;
+          /* Philosophy */
+          .home-philosophy {
+            padding: 58px 20px 62px;
           }
 
-
-          .philosophy-section {
-            padding: 58px 16px 64px;
+          .home-philosophy-intro {
+            margin-bottom: 38px;
           }
 
-          .philosophy-intro {
-            margin-bottom: 40px;
+          .home-philosophy-title {
+            font-size: 44px;
           }
 
-          .philosophy-intro h2 {
-            font-size: 46px;
-            margin-bottom: 20px;
-          }
-
-          .philosophy-intro p {
+          .home-philosophy-intro p {
             font-size: 12px;
             line-height: 1.75;
           }
 
           .philosophy-grid {
             grid-template-columns: 1fr;
-            width: 100%;
           }
 
           .philosophy-card {
-            padding: 32px 22px 36px;
-            border-right: none;
+            padding: 32px 24px 34px;
+            border-right: none !important;
             border-bottom: 0.5px solid rgba(240,236,227,0.12);
           }
 
@@ -930,46 +748,19 @@ export default async function HomePage() {
           }
 
           .philosophy-number {
-            margin-bottom: 30px;
-          }
-
-
-          .home-final-cta {
-            padding: 60px 20px 64px;
-          }
-
-          .home-final-cta h2 {
-            font-size: 48px;
-          }
-
-        }
-
-
-        /* ===================================================
-           SMALL MOBILE
-        =================================================== */
-
-        @media (max-width: 480px) {
-
-          .home-story-content {
-            padding: 52px 20px 44px;
-          }
-
-          .home-story-image {
-            height: 390px;
-            min-height: 390px;
+            margin-bottom: 28px;
           }
 
           .philosophy-card-title {
-            font-size: 22px;
+            font-size: 25px;
+            max-width: 300px;
           }
 
           .philosophy-card-body {
-            font-size: 11.5px;
+            max-width: 100%;
+            font-size: 12px;
           }
-
         }
-
       `}</style>
     </>
   )
