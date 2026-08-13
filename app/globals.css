@@ -89,6 +89,7 @@ nav { position:sticky; top:0; z-index:100; background:var(--ivory); border-botto
 .testi-arrow.prev { left:12px; }
 .testi-arrow.next { right:12px; }
 
+
 /* ============ UPCOMING SECTION ============ */
 .upcoming-section { background:var(--noir); padding:80px 56px; position:relative; overflow:hidden; }
 .upcoming-swatches { display:flex; gap:10px; align-items:center; margin-bottom:40px; flex-wrap:wrap; }
@@ -412,10 +413,6 @@ footer { background:var(--noir); padding:64px 80px 32px; }
   .testi-card { width:82%; }
 }
 
-/* =========================================================
-   FORMELLE HOME — FINAL STORY + PHILOSOPHY
-   Keep existing brand fonts / variables unchanged.
-   ========================================================= */
 
 /* =========================================================
    OUR STORY
