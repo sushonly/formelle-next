@@ -411,52 +411,164 @@ footer { background:var(--noir); padding:64px 80px 32px; }
 @media (max-width:480px) {
   .testi-card { width:82%; }
 }
-{/* =====================================================
-    OUR STORY
-===================================================== */}
-<section className="home-story">
 
-  <div className="home-story-copy">
+/* =========================================================
+   FORMELLE — OUR STORY
+   ========================================================= */
 
-    <span className="home-story-eyebrow">
-      Our Story
-    </span>
+.story-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: #111111;
+  color: #f5f0e8;
+  width: 100%;
+  min-height: 520px;
+  overflow: hidden;
+}
 
-    <h2 className="home-story-title">
-      For the woman
-      <br />
-      who <em>leads,</em>
-      <br />
-      not just works.
-    </h2>
+.story-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 72px 8vw;
+}
 
-    <div className="home-story-text">
-      <p>
-        Formelle was born from a simple frustration — finding formal wear
-        that feels as powerful as the woman wearing it.
-      </p>
+.story-eyebrow {
+  display: block;
+  margin-bottom: 28px;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.32em;
+  color: #c7a77b;
+  font-weight: 500;
+}
 
-      <p>
-        So we create pieces with considered structure, thoughtful fit, and
-        the ease to move through your entire day.
-      </p>
-    </div>
+.story-title {
+  margin: 0;
+  max-width: 620px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(48px, 4.5vw, 72px);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+}
 
-    <Link
-      href="/about"
-      className="home-story-link"
-    >
-      Discover Our Story
-      <span>→</span>
-    </Link>
+.story-title em {
+  color: #c7a77b;
+  font-style: italic;
+}
 
-  </div>
+.story-copy {
+  max-width: 610px;
+  margin-top: 34px;
+}
 
-  <div className="home-story-image">
-    <img
-      src="/images/about-image.png"
-      alt="Formelle woman wearing tailored workwear"
-    />
-  </div>
+.story-copy p {
+  margin: 0 0 18px;
+  color: rgba(245, 240, 232, 0.65);
+  font-size: 15px;
+  line-height: 1.75;
+}
 
-</section>
+.story-copy p:last-child {
+  margin-bottom: 0;
+}
+
+.story-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  width: fit-content;
+  margin-top: 30px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(245, 240, 232, 0.45);
+  color: #f5f0e8;
+  text-decoration: none;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  transition:
+    gap 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.story-link span {
+  font-size: 18px;
+  line-height: 0;
+  letter-spacing: 0;
+}
+
+.story-link:hover {
+  gap: 25px;
+  border-color: #c7a77b;
+}
+
+.story-image-wrap {
+  width: 100%;
+  height: 520px;
+  overflow: hidden;
+  background: #1a1a1a;
+}
+
+.story-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  .story-section {
+    grid-template-columns: 1fr;
+  }
+
+  .story-content {
+    padding: 64px 8vw;
+  }
+
+  .story-image-wrap {
+    height: 520px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .story-section {
+    display: block;
+  }
+
+  .story-content {
+    padding: 56px 24px 48px;
+  }
+
+  .story-eyebrow {
+    margin-bottom: 22px;
+  }
+
+  .story-title {
+    font-size: clamp(42px, 12vw, 58px);
+  }
+
+  .story-copy {
+    margin-top: 28px;
+  }
+
+  .story-copy p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .story-link {
+    margin-top: 26px;
+  }
+
+  .story-image-wrap {
+    height: auto;
+    aspect-ratio: 4 / 5;
+  }
+
+  .story-image {
+    object-fit: contain;
+  }
+}
