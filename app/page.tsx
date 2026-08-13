@@ -250,7 +250,7 @@ export default async function HomePage() {
 
         <div className="home-story-image">
           <img
-            src="/images/our-story.png"
+            src="/images/about-image.png"
             alt="Formelle woman wearing tailored formal wear"
             loading="lazy"
           />
