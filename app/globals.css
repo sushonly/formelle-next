@@ -659,48 +659,6 @@ footer { background:var(--noir); padding:64px 80px 32px; }
 }
 
 
-/* =========================================================
-   TESTIMONIALS — COMPACT
-   ========================================================= */
-
-.testi-carousel {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-
-  position: relative;
-
-  border-top: 0.5px solid rgba(17, 17, 17, 0.10);
-  border-bottom: 0.5px solid rgba(17, 17, 17, 0.10);
-
-  overflow: hidden;
-}
-
-.testi-slide {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 380px;
-}
-
-.testi-photo-wrap {
-  min-height: 380px;
-  overflow: hidden;
-
-  background: var(--noir);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.testi-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  padding: 42px 54px;
-}
-
 
 /* =========================================================
    REMOVE OLD / CONFLICTING PHILOSOPHY LAYOUTS
