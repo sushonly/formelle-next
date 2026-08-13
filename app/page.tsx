@@ -240,7 +240,7 @@ export default async function HomePage() {
 
   <div className="story-image-wrap">
     <img
-      src="/images/your-story-image.jpg"
+      src="/images/about-image.png"
       alt="Formelle woman wearing tailored workwear"
       className="story-image"
     />
