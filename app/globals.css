@@ -411,3 +411,75 @@ footer { background:var(--noir); padding:64px 80px 32px; }
 @media (max-width:480px) {
   .testi-card { width:82%; }
 }
+/* =========================================================
+   OUR STORY — SHOW FULL IMAGE
+   ========================================================= */
+
+.story-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--noir);
+  overflow: hidden;
+  height: 680px;
+}
+
+.story-content {
+  padding: 64px 7vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--noir);
+}
+
+.story-image {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #1a1918;
+}
+
+.story-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  object-position: center;
+}
+
+
+/* Tablet */
+@media (max-width: 900px) {
+  .story-section {
+    height: 560px;
+  }
+
+  .story-content {
+    padding: 48px 40px;
+  }
+}
+
+
+/* Mobile */
+@media (max-width: 640px) {
+  .story-section {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .story-content {
+    padding: 52px 28px 44px;
+  }
+
+  .story-image {
+    height: auto;
+  }
+
+  .story-image img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+}
