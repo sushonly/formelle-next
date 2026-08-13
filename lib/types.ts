@@ -17,5 +17,4 @@ export interface Product {
   is_active: boolean
   is_bestseller?: boolean
   sort_order?: number
-  original_price?: number
 }
