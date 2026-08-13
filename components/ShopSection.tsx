@@ -35,7 +35,13 @@ export default function ShopSection({ products }: { products: Product[] }) {
         </button>
       </div>
       <div className="product-grid" aria-live="polite">
-        {filtered.map(p => <ProductCard key={p.id} product={p} />)}
+        {filtered.map(p => (<ProductCard
+    key={p.id}
+    product={p}
+    showPrice
+  />
+))}
+        
       </div>
     </section>
   )
