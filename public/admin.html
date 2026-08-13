@@ -363,6 +363,7 @@ input,select,textarea{font-family:var(--fb);}
         <div class="form-row">
           <div class="form-group"><label>Category *</label><select id="fCategory"><option value="">Select category</option><option value="top">Top</option><option value="trouser">Trouser</option><option value="dress">Dress</option><option value="blazer">Blazer</option><option value="other">Other</option></select></div>
           <div class="form-group"><label>Price (₹) *</label><input type="number" id="fPrice" placeholder="2999" min="1"></div>
+          <div class="form-group"><label for="fOriginalPrice">Original Price <span>(optional)</span></label><input type="number"  id="fOriginalPrice" placeholder="2999" min="1" ></div>
         </div>
         <div class="form-group"><label>Tag / Badge</label><input type="text" id="fTag" placeholder="e.g. New, Coming Soon, Everyday Essentials"><p class="form-hint">Shown as a badge (top-left) on the product card.</p></div>
         <div class="form-group">
@@ -510,6 +511,15 @@ function renderTable() {
       <td><div class="prod-name">${p.name}</div><div class="prod-sku">ID #${p.id}</div></td>
       <td><span class="cat-badge ${catClass}">${p.category}</span></td>
       <td><strong>₹${p.price.toLocaleString('en-IN')}</strong></td>
+      <td>${p.original_price && p.original_price > p.price? `
+        <span style="text-decoration:line-through;color:rgba(44,44,42,0.4);font-size:11px;">
+          ₹${p.original_price.toLocaleString('en-IN')}
+        </span>
+        <br>` : '' }
+  <strong>
+    ₹${p.price.toLocaleString('en-IN')}
+  </strong>
+</td>
       <td><div class="img-count">${dots}</div></td>
       <td>${p.is_bestseller?'<span class="bs-badge">Best Seller</span>':''}</td>
       <td><label class="toggle"><input type="checkbox" ${p.is_active?'checked':''} onchange="toggleActive(${p.id},this.checked)"><span class="toggle-slider"></span></label></td>
@@ -550,7 +560,7 @@ function openProductModal(id=null) {
 function closeProductModal() { document.getElementById('productModal').classList.remove('open'); document.body.style.overflow=''; editingId=null; }
 
 function resetForm() {
-  ['fName','fSlug','fPrice','fTag','fDesc','fFabric','fFit'].forEach(id=>document.getElementById(id).value='');
+  ['fName','fSlug','fPrice', 'fOriginalPrice','fTag','fDesc','fFabric','fFit'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('fCategory').value='';
   document.getElementById('fBestseller').checked=false;
   document.getElementById('fabricTagsWrap').querySelectorAll('.tag-chip').forEach(t=>t.remove());
@@ -565,6 +575,7 @@ function populateForm(p) {
   document.getElementById('fSlug').value     = p.slug||'';
   document.getElementById('fCategory').value = p.category||'';
   document.getElementById('fPrice').value    = p.price||'';
+  document.getElementById('fOriginalPrice').value = p.original_price || '';
   document.getElementById('fTag').value      = p.tag||'';
   document.getElementById('fBestseller').checked = p.is_bestseller || false;
   document.getElementById('fDesc').value     = p.description||'';
@@ -649,6 +660,8 @@ async function saveProduct() {
   const slug=document.getElementById('fSlug').value.trim();
   const category=document.getElementById('fCategory').value;
   const price=parseInt(document.getElementById('fPrice').value);
+  const originalPriceValue = document.getElementById('fOriginalPrice').value.trim();
+  const original_price = originalPriceValue ? parseInt(originalPriceValue) : null;
   const tag=document.getElementById('fTag').value.trim();
   const isBestseller=document.getElementById('fBestseller').checked;
   const desc=document.getElementById('fDesc').value.trim();
@@ -660,8 +673,9 @@ async function saveProduct() {
   if(!slug){showToast('Slug is required','error');return;}
   if(!category){showToast('Please select a category','error');return;}
   if(!price||price<1){showToast('Please enter a valid price','error');return;}
+  if ( original_price !== null &&  original_price <= price) { showToast('Original price must be higher than the selling price','error');return;}
   if(!desc){showToast('Please add a description','error');return;}
-  const payload={name,slug,category,price,tag,is_bestseller:isBestseller,description:desc,fabric,fabric_tags:fabricTags,sold_out_sizes:soldOutSizes,fit_notes:fit,care,details,images,updated_at:new Date().toISOString()};
+  const payload={name,slug,category,price,original_price,tag,is_bestseller:isBestseller,description:desc,fabric,fabric_tags:fabricTags,sold_out_sizes:soldOutSizes,fit_notes:fit,care,details,images,updated_at:new Date().toISOString()};
   const btn=document.getElementById('saveBtn'); btn.textContent='Saving…'; btn.disabled=true;
   let error;
   if(editingId){({error}=await db.from('products').update(payload).eq('id',editingId));}
