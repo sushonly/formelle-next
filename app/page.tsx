@@ -218,7 +218,7 @@ export default async function HomePage() {
             a different filename in /public/images/
           */}
           <img
-            src="/images/story.png"
+            src="/images/about-image.png"
             alt="Formelle woman in tailored formal wear"
             loading="lazy"
           />
