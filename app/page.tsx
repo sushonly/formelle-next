@@ -65,12 +65,14 @@ export default async function HomePage() {
           <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(32px,4.5vw,52px)', fontWeight: 300, lineHeight: 1.15, letterSpacing: '-0.01em', color: 'var(--ivory)', marginBottom: '24px' }}>
             Not a uniform.<br />Not a trend.
           </h2>
+          
           <p style={{ fontSize: '14px', lineHeight: 1.85, color: 'rgba(240,236,227,0.6)', maxWidth: '480px', margin: '0 auto' }}>
-            We don&apos;t design for seasons. We design for the woman who&apos;s already arrived — who doesn&apos;t need to perform confidence, because she&apos;s built it. Every piece is made to be worn for years, not liked for a week.
-          </p>
+  We don&apos;t design for seasons. We design for the consulting principal with back-to-back meetings. The founder who just closed a round. The manager who&apos;s the youngest in the room and owns it.
+  Every piece is made to be worn for years, not liked for a week.
+</p>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 0, border: '0.5px solid rgba(240,236,227,0.12)', maxWidth: '1100px', margin: '0 auto' }}>
-          {[['01', 'Designed for Indian women', 'Every silhouette is cut for the Indian body — proportions, drape, and fit that actually works. Not imported templates, not afterthoughts.'],['02', 'Structure without stiffness', "Pieces that hold their shape through 10-hour days. Formal enough for boardrooms. Comfortable enough to forget you're wearing them."],['03', 'Concierge by WhatsApp', 'Order via WhatsApp, pay via UPI. A real person confirms every order. No bots — just direct, personal service.']].map(([num, title, body], i) => (
+          {[['01', 'Designed for Indian women', 'Every silhouette is cut for the Indian body — proportions, drape, and fit that actually works.'],['02', 'Structure without stiffness', "Pieces that hold their shape through 10-hour days. Formal enough for boardrooms. Comfortable enough to forget you're wearing them."],['03', 'Concierge by WhatsApp', 'Order via WhatsApp, pay via UPI. A real person confirms every order. No bots — just direct, personal service.']].map(([num, title, body], i) => (
             <div key={num} style={{ padding: '40px 36px', borderRight: i < 2 ? '0.5px solid rgba(240,236,227,0.12)' : 'none' }}>
               <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '40px', fontWeight: 300, color: 'rgba(240,236,227,0.15)', marginBottom: '20px', fontStyle: 'italic' }}>{num}</div>
               <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '22px', fontWeight: 400, color: 'var(--ivory)', marginBottom: '12px' }}>{title}</div>
