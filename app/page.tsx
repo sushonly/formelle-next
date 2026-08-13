@@ -32,7 +32,10 @@ export default async function HomePage() {
   const products = await getProducts()
   const testimonials = await getTestimonials()
 
-  const bestsellers = products.filter(p => p.is_bestseller)
+  const bestsellers = products.filter(
+    p => p.is_bestseller
+  )
+
   const newArrivals = products.filter(
     p => (p.tag || '').toLowerCase() === 'new'
   )
@@ -44,11 +47,13 @@ export default async function HomePage() {
       {/* =====================================================
           HERO
       ===================================================== */}
+
       <section
         className="hero"
         aria-label="Hero — Dressed to Lead"
       >
         <div className="hero-text">
+
           <span className="hero-eyebrow">
             New Collection · 2026
           </span>
@@ -84,17 +89,29 @@ export default async function HomePage() {
           </p>
 
           <div className="hero-actions">
-            <Link href="/shop" className="btn-primary">
+
+            <Link
+              href="/shop"
+              className="btn-primary"
+            >
               Shop Now
             </Link>
 
-            <Link href="/about" className="btn-outline">
+            <Link
+              href="/about"
+              className="btn-outline"
+            >
               Our Story
             </Link>
+
           </div>
+
         </div>
 
-        <div className="hero-image" aria-hidden="true">
+        <div
+          className="hero-image"
+          aria-hidden="true"
+        >
           <img
             src="/images/hero.png"
             alt="Formelle luxury formal wear"
@@ -103,18 +120,25 @@ export default async function HomePage() {
 
           <div className="hero-image-bg"></div>
 
-          <div className="hero-badge" aria-hidden="true">
+          <div
+            className="hero-badge"
+            aria-hidden="true"
+          >
             <span>Dressed</span>
             <span>to</span>
             <span>Lead</span>
           </div>
+
         </div>
       </section>
+
 
       {/* =====================================================
           TRUST STRIP
       ===================================================== */}
+
       <div
+        className="trust-strip"
         style={{
           background: 'var(--parchment)',
           borderTop: '0.5px solid rgba(17,17,17,0.08)',
@@ -122,14 +146,15 @@ export default async function HomePage() {
           display: 'grid',
           gridTemplateColumns: 'repeat(4, 1fr)',
         }}
-        className="trust-strip"
       >
+
         {[
           ['Free Shipping', 'On all orders'],
           ['Made in India', 'For Indian women'],
           ['Easy Exchange', 'Within 7 days'],
           ['Concierge Order', 'Via WhatsApp'],
         ].map(([title, sub], i) => (
+
           <div
             key={title}
             style={{
@@ -141,6 +166,7 @@ export default async function HomePage() {
                   : 'none',
             }}
           >
+
             <div
               style={{
                 fontSize: '8.5px',
@@ -163,104 +189,127 @@ export default async function HomePage() {
             >
               {sub}
             </div>
+
           </div>
+
         ))}
+
       </div>
+
 
       {/* =====================================================
           BEST SELLERS
-          NOTE: ProductRail intentionally has NO prices.
       ===================================================== */}
+
       <ProductRail
         eyebrow="Best Sellers"
         title="The pieces women keep coming back for"
         products={bestsellers}
       />
 
+
       {/* =====================================================
           NEW ARRIVALS
-          NOTE: ProductRail intentionally has NO prices.
       ===================================================== */}
+
       <ProductRail
         eyebrow="New Arrivals"
         title="Just landed"
         products={newArrivals}
       />
 
+
       {/* =====================================================
           FULL COLLECTION CTA
       ===================================================== */}
-      <div
-        style={{
-          textAlign: 'center',
-          padding: '4px 24px 48px',
-        }}
-      >
+
+      <div className="collection-cta">
+
         <Link
           href="/shop"
           className="btn-shop-collection"
         >
           Shop the Full Collection
         </Link>
+
       </div>
+
 
       {/* =====================================================
           OUR STORY
-          Compact editorial section.
       ===================================================== */}
-    <section className="home-story">
 
-  <div className="home-story-copy">
+      <section
+        className="home-story"
+        aria-label="Our Story"
+      >
 
-    <span className="home-story-eyebrow">
-      Our Story
-    </span>
+        <div className="home-story-copy">
 
-    <h2 className="home-story-title">
-      For the woman
-      <br />
-      who <em>leads,</em>
-      <br />
-      not just works.
-    </h2>
+          <span className="home-story-eyebrow">
+            Our Story
+          </span>
 
-    <div className="home-story-text">
-      <p>
-        Formelle was born from a simple frustration — finding formal wear
-        that feels as powerful as the woman wearing it.
-      </p>
+          <h2 className="home-story-title">
+            For the woman
+            <br />
+            who <em>leads,</em>
+            <br />
+            not just works.
+          </h2>
 
-      <p>
-        So we create pieces with considered structure, thoughtful fit,
-        and the ease to move through your entire day.
-      </p>
-    </div>
+          <div className="home-story-text">
 
-    <Link href="/about" className="home-story-link">
-      Discover Our Story
-      <span>→</span>
-    </Link>
+            <p>
+              Formelle was born from a simple frustration —
+              finding formal wear that feels as powerful as
+              the woman wearing it.
+            </p>
 
-  </div>
+            <p>
+              So we create pieces with considered structure,
+              thoughtful fit, and the ease to move through
+              your entire day.
+            </p>
 
-  <div className="home-story-image">
-    <img
-      src="/images/about-image.png"
-      alt="Formelle woman wearing tailored workwear"
-    />
-  </div>
+          </div>
 
-</section>
+          <Link
+            href="/about"
+            className="home-story-link"
+          >
+            Discover Our Story
+            <span aria-hidden="true">
+              →
+            </span>
+          </Link>
+
+        </div>
+
+
+        <div className="home-story-image">
+
+          <img
+            src="/images/about-image.png"
+            alt="Formelle woman wearing tailored workwear"
+          />
+
+        </div>
+
+      </section>
+
 
       {/* =====================================================
-          PHILOSOPHY
+          OUR PHILOSOPHY
       ===================================================== */}
+
       <section
         className="home-philosophy"
         aria-label="Formelle Philosophy"
       >
-        {/* Introduction */}
+
         <div className="home-philosophy-intro">
+
           <span className="home-philosophy-eyebrow">
             Our Philosophy
           </span>
@@ -276,69 +325,106 @@ export default async function HomePage() {
             that earn their place in your wardrobe — made to
             be worn for years, not liked for a week.
           </p>
+
         </div>
 
-        {/* Philosophy pillars */}
+
         <div className="philosophy-grid">
-          {[
-            [
-              '01',
-              'Designed for Indian women',
-              'Every silhouette is cut for the Indian body — proportions, drape, and fit that actually works.',
-            ],
-            [
-              '02',
-              'Structure without stiffness',
-              'Pieces that hold their shape through long days. Formal enough for boardrooms. Comfortable enough to forget you’re wearing them.',
-            ],
-            [
-              '03',
-              'Made for the way you work',
-              'A wardrobe designed to move between the office, the airport, the dinner, and everything in between.',
-            ],
-          ].map(([num, title, body], i) => (
-            <div
-              key={num}
-              className="philosophy-card"
-              style={{
-                borderRight:
-                  i < 2
-                    ? '0.5px solid rgba(240,236,227,0.12)'
-                    : 'none',
-              }}
-            >
-              <div className="philosophy-number">
-                {num}
-              </div>
 
-              <div className="philosophy-card-title">
-                {title}
-              </div>
+          <article className="philosophy-card">
 
-              <div className="philosophy-card-body">
-                {body}
-              </div>
+            <div className="philosophy-number">
+              01
             </div>
-          ))}
+
+            <h3 className="philosophy-card-title">
+              Designed for Indian women
+            </h3>
+
+            <p className="philosophy-card-body">
+              Every silhouette is cut for the Indian body —
+              proportions, drape, and fit that actually works.
+            </p>
+
+          </article>
+
+
+          <article className="philosophy-card">
+
+            <div className="philosophy-number">
+              02
+            </div>
+
+            <h3 className="philosophy-card-title">
+              Structure without stiffness
+            </h3>
+
+            <p className="philosophy-card-body">
+              Pieces that hold their shape through long days.
+              Formal enough for boardrooms. Comfortable enough
+              to forget you&apos;re wearing them.
+            </p>
+
+          </article>
+
+
+          <article className="philosophy-card">
+
+            <div className="philosophy-number">
+              03
+            </div>
+
+            <h3 className="philosophy-card-title">
+              Made for the way you work
+            </h3>
+
+            <p className="philosophy-card-body">
+              A wardrobe designed to move between the office,
+              the airport, the dinner, and everything in between.
+            </p>
+
+          </article>
+
         </div>
+
       </section>
+
 
       {/* =====================================================
           TESTIMONIALS
       ===================================================== */}
-      <TestimonialsRail testimonials={testimonials} />
+
+      <section
+        className="home-testimonials"
+        aria-label="Customer Testimonials"
+      >
+
+        <TestimonialsRail
+          testimonials={testimonials}
+        />
+
+      </section>
+
 
       {/* =====================================================
           FAQ
       ===================================================== */}
+
       <FaqSection />
+
 
       {/* =====================================================
           FOOTER
       ===================================================== */}
+
       <footer>
+
         <div className="footer-top">
+
+          {/* BRAND */}
+
           <div>
+
             <div className="footer-brand-name">
               Formelle
             </div>
@@ -351,14 +437,20 @@ export default async function HomePage() {
               Luxury formal wear for the professional woman.
               Pan-India delivery.
             </p>
+
           </div>
 
+
+          {/* SHOP */}
+
           <div>
+
             <div className="footer-col-title">
               Shop
             </div>
 
             <ul className="footer-links">
+
               <li>
                 <Link href="/shop">
                   All Products
@@ -376,15 +468,22 @@ export default async function HomePage() {
                   Trousers
                 </Link>
               </li>
+
             </ul>
+
           </div>
 
+
+          {/* HELP */}
+
           <div>
+
             <div className="footer-col-title">
               Help
             </div>
 
             <ul className="footer-links">
+
               <li>
                 <Link href="/#faq">
                   FAQs
@@ -408,15 +507,22 @@ export default async function HomePage() {
                   Contact
                 </a>
               </li>
+
             </ul>
+
           </div>
 
+
+          {/* CONNECT */}
+
           <div>
+
             <div className="footer-col-title">
               Connect
             </div>
 
             <ul className="footer-links">
+
               <li>
                 <a
                   href="https://instagram.com/formellewear"
@@ -432,11 +538,16 @@ export default async function HomePage() {
                   formellewear@outlook.com
                 </a>
               </li>
+
             </ul>
+
           </div>
+
         </div>
 
+
         <div className="footer-bottom">
+
           <div className="footer-copy">
             © 2026 Formelle. All rights reserved.
           </div>
@@ -450,9 +561,11 @@ export default async function HomePage() {
               formellewear.com
             </a>
           </div>
+
         </div>
+
       </footer>
+
     </>
-    )
+  )
 }
-     
