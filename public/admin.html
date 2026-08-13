@@ -510,16 +510,16 @@ function renderTable() {
       <td>${heroImg?`<img class="prod-img" src="${heroImg}" alt="${p.name}">`:`<div class="prod-img-placeholder">${p.name.charAt(0)}</div>`}</td>
       <td><div class="prod-name">${p.name}</div><div class="prod-sku">ID #${p.id}</div></td>
       <td><span class="cat-badge ${catClass}">${p.category}</span></td>
-      <td><strong>₹${p.price.toLocaleString('en-IN')}</strong></td>
-      <td>${p.original_price && p.original_price > p.price? `
-        <span style="text-decoration:line-through;color:rgba(44,44,42,0.4);font-size:11px;">
-          ₹${p.original_price.toLocaleString('en-IN')}
-        </span>
-        <br>` : '' }
-  <strong>
-    ₹${p.price.toLocaleString('en-IN')}
-  </strong>
-</td>
+     <td>
+    ${p.original_price && p.original_price > p.price ? `
+      <div style="font-size:11px; color:rgba(44,44,42,0.4); text-decoration:line-through; margin-bottom:3px;">
+        ₹${p.original_price.toLocaleString('en-IN')}
+      </div>
+    ` : ''}
+    <strong style="font-size:16px;">
+      ₹${p.price.toLocaleString('en-IN')}
+    </strong>
+  </td> 
       <td><div class="img-count">${dots}</div></td>
       <td>${p.is_bestseller?'<span class="bs-badge">Best Seller</span>':''}</td>
       <td><label class="toggle"><input type="checkbox" ${p.is_active?'checked':''} onchange="toggleActive(${p.id},this.checked)"><span class="toggle-slider"></span></label></td>
