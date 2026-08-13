@@ -208,11 +208,15 @@ export default async function HomePage() {
           OUR STORY
           Compact editorial section.
       ===================================================== */}
-     <section className="story-section">
-  <div className="story-content">
-    <span className="story-eyebrow">OUR STORY</span>
+    <section className="home-story">
 
-    <h2 className="story-title">
+  <div className="home-story-copy">
+
+    <span className="home-story-eyebrow">
+      Our Story
+    </span>
+
+    <h2 className="home-story-title">
       For the woman
       <br />
       who <em>leads,</em>
@@ -220,31 +224,32 @@ export default async function HomePage() {
       not just works.
     </h2>
 
-    <div className="story-copy">
+    <div className="home-story-text">
       <p>
         Formelle was born from a simple frustration — finding formal wear
         that feels as powerful as the woman wearing it.
       </p>
 
       <p>
-        So we create pieces with considered structure, thoughtful fit, and
-        the ease to move through your entire day.
+        So we create pieces with considered structure, thoughtful fit,
+        and the ease to move through your entire day.
       </p>
     </div>
 
-    <Link href="/about" className="story-link">
-      DISCOVER OUR STORY
+    <Link href="/about" className="home-story-link">
+      Discover Our Story
       <span>→</span>
     </Link>
+
   </div>
 
-  <div className="story-image-wrap">
+  <div className="home-story-image">
     <img
       src="/images/about-image.png"
       alt="Formelle woman wearing tailored workwear"
-      className="story-image"
     />
   </div>
+
 </section>
 
       {/* =====================================================
@@ -447,311 +452,7 @@ export default async function HomePage() {
           </div>
         </div>
       </footer>
-
-      {/* =====================================================
-          PAGE-SPECIFIC STYLES
-          No changes to global.css required for these sections.
-      ===================================================== */}
-      <style>{`
-        /* -----------------------------------------------
-           STORY
-        ------------------------------------------------ */
-
-        .home-story {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          min-height: 500px;
-          max-height: 540px;
-          background: var(--noir);
-          color: var(--ivory);
-          overflow: hidden;
-        }
-
-        .home-story-copy {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          padding: 58px 7vw;
-          box-sizing: border-box;
-        }
-
-        .home-story-eyebrow {
-          display: block;
-          font-size: 9px;
-          letter-spacing: 4px;
-          text-transform: uppercase;
-          color: var(--accent-light);
-          font-weight: 500;
-          margin-bottom: 20px;
-        }
-
-        .home-story-title {
-          font-family: 'Cormorant Garamond', serif;
-          font-size: clamp(42px, 4.2vw, 62px);
-          font-weight: 300;
-          line-height: 0.98;
-          letter-spacing: -0.025em;
-          margin: 0 0 28px;
-          color: var(--ivory);
-        }
-
-        .home-story-title em {
-          color: var(--accent-light);
-          font-style: italic;
-        }
-
-        .home-story-text {
-          max-width: 510px;
-        }
-
-        .home-story-text p {
-          font-size: 12.5px;
-          line-height: 1.75;
-          font-weight: 300;
-          color: rgba(240,236,227,0.64);
-          margin: 0 0 12px;
-        }
-
-        .home-story-link {
-          display: inline-flex;
-          align-items: center;
-          gap: 12px;
-          width: fit-content;
-          margin-top: 12px;
-          padding-bottom: 7px;
-          border-bottom: 0.5px solid rgba(240,236,227,0.45);
-          color: var(--ivory);
-          text-decoration: none;
-          text-transform: uppercase;
-          font-size: 9px;
-          letter-spacing: 3px;
-          transition: opacity 0.2s ease;
-        }
-
-        .home-story-link:hover {
-          opacity: 0.65;
-        }
-
-        .home-story-link span {
-          font-size: 15px;
-          line-height: 1;
-          letter-spacing: 0;
-        }
-
-        .home-story-image {
-          min-height: 500px;
-          max-height: 540px;
-          overflow: hidden;
-        }
-
-        .home-story-image img {
-          width: 100%;
-          height: 100%;
-          display: block;
-          object-fit: cover;
-          object-position: center 42%;
-        }
-
-
-        /* -----------------------------------------------
-           PHILOSOPHY
-        ------------------------------------------------ */
-
-        .home-philosophy {
-          background: var(--noir);
-          color: var(--ivory);
-          padding: 72px 56px 76px;
-        }
-
-        .home-philosophy-intro {
-          text-align: center;
-          max-width: 650px;
-          margin: 0 auto 46px;
-        }
-
-        .home-philosophy-eyebrow {
-          display: block;
-          font-size: 9px;
-          letter-spacing: 4px;
-          text-transform: uppercase;
-          color: var(--accent-light);
-          font-weight: 500;
-          margin-bottom: 16px;
-        }
-
-        .home-philosophy-title {
-          font-family: 'Cormorant Garamond', serif;
-          font-size: clamp(40px, 4.5vw, 60px);
-          font-weight: 300;
-          line-height: 1;
-          letter-spacing: -0.02em;
-          color: var(--ivory);
-          margin: 0 0 22px;
-        }
-
-        .home-philosophy-intro p {
-          max-width: 570px;
-          margin: 0 auto;
-          font-size: 12.5px;
-          line-height: 1.8;
-          color: rgba(240,236,227,0.62);
-          font-weight: 300;
-        }
-
-        .philosophy-grid {
-          display: grid;
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-          gap: 0;
-          border: 0.5px solid rgba(240,236,227,0.12);
-          max-width: 1100px;
-          width: 100%;
-          margin: 0 auto;
-          box-sizing: border-box;
-        }
-
-        .philosophy-card {
-          padding: 34px 36px 38px;
-          min-width: 0;
-          box-sizing: border-box;
-        }
-
-        .philosophy-number {
-          font-family: 'Cormorant Garamond', serif;
-          font-size: 36px;
-          font-weight: 300;
-          font-style: italic;
-          line-height: 1;
-          color: rgba(240,236,227,0.22);
-          margin-bottom: 38px;
-        }
-
-        .philosophy-card-title {
-          font-family: 'Cormorant Garamond', serif;
-          font-size: 23px;
-          font-weight: 400;
-          line-height: 1.12;
-          color: var(--ivory);
-          margin-bottom: 16px;
-        }
-
-        .philosophy-card-body {
-          font-size: 12px;
-          line-height: 1.8;
-          color: rgba(240,236,227,0.56);
-          font-weight: 300;
-          max-width: 280px;
-        }
-
-
-        /* -----------------------------------------------
-           MOBILE
-        ------------------------------------------------ */
-
-        @media (max-width: 768px) {
-
-          /* Trust strip */
-          .trust-strip {
-            grid-template-columns: repeat(2, 1fr) !important;
-          }
-
-          .trust-strip > div {
-            padding: 14px 10px !important;
-          }
-
-          .trust-strip > div:nth-child(2) {
-            border-right: none !important;
-          }
-
-          .trust-strip > div:nth-child(1),
-          .trust-strip > div:nth-child(2) {
-            border-bottom: 0.5px solid rgba(17,17,17,0.08);
-          }
-
-
-          /* Story */
-          .home-story {
-            grid-template-columns: 1fr;
-            min-height: 0;
-            max-height: none;
-          }
-
-          .home-story-copy {
-            padding: 52px 24px 46px;
-          }
-
-          .home-story-eyebrow {
-            margin-bottom: 16px;
-          }
-
-          .home-story-title {
-            font-size: clamp(42px, 12vw, 56px);
-            line-height: 0.98;
-            margin-bottom: 24px;
-          }
-
-          .home-story-text p {
-            font-size: 12px;
-            line-height: 1.75;
-          }
-
-          .home-story-image {
-            height: 390px;
-            min-height: 390px;
-            max-height: 390px;
-          }
-
-          .home-story-image img {
-            object-position: center 38%;
-          }
-
-
-          /* Philosophy */
-          .home-philosophy {
-            padding: 58px 20px 62px;
-          }
-
-          .home-philosophy-intro {
-            margin-bottom: 38px;
-          }
-
-          .home-philosophy-title {
-            font-size: 44px;
-          }
-
-          .home-philosophy-intro p {
-            font-size: 12px;
-            line-height: 1.75;
-          }
-
-          .philosophy-grid {
-            grid-template-columns: 1fr;
-          }
-
-          .philosophy-card {
-            padding: 32px 24px 34px;
-            border-right: none !important;
-            border-bottom: 0.5px solid rgba(240,236,227,0.12);
-          }
-
-          .philosophy-card:last-child {
-            border-bottom: none;
-          }
-
-          .philosophy-number {
-            margin-bottom: 28px;
-          }
-
-          .philosophy-card-title {
-            font-size: 25px;
-            max-width: 300px;
-          }
-
-          .philosophy-card-body {
-            max-width: 100%;
-            font-size: 12px;
-          }
-        }
-      `}</style>
     </>
-  )
+    )
 }
+     
