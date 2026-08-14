@@ -222,18 +222,12 @@ export default async function HomePage() {
       {/* =====================================================
           FULL COLLECTION CTA
       ===================================================== */}
-
-      <div className="collection-cta">
-
-        <Link
-          href="/shop"
-          className="btn-shop-collection"
-        >
+      
+   <div style={{ textAlign: 'center', padding: '8px 24px 64px' }}>
+        <Link href="/shop" className="btn-shop-collection">
           Shop the Full Collection
         </Link>
-
       </div>
-
 
       {/* =====================================================
           OUR STORY
