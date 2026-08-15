@@ -4,7 +4,7 @@ import Nav from '@/components/Nav'
 import ProductRail from '@/components/ProductRail'
 import TestimonialsRail from '@/components/TestimonialsRail'
 import FaqSection from '@/components/FaqSection'
-import Link from 'next/link'
+import Link from 'next/link' 
 
 export const revalidate = 60
 
