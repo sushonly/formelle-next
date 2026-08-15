@@ -8,7 +8,7 @@ import Link from 'next/link'
 
 export const revalidate = 60
 
-async function getProducts(): Promise<Product[]> {
+async function getProducts(): Promise<Product[]> { 
   const { data } = await supabase
     .from('products')
     .select('*')
