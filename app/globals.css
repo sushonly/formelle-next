@@ -510,12 +510,12 @@ footer { background:var(--noir); padding:64px 80px 32px; }
 .rail-arrow:hover { background:var(--noir); color:var(--ivory); border-color:var(--noir); }
 
 .rail-track {
-  display:flex; gap:48px; overflow-x:auto; scroll-snap-type:x mandatory;
+  display:flex; gap:2px; overflow-x:auto; scroll-snap-type:x mandatory;
   -webkit-overflow-scrolling:touch; scrollbar-width:none;
 }
 .rail-track::-webkit-scrollbar { display:none; }
 .rail-card {
-  flex:0 0 auto; width:calc(25% - 36px); min-width:220px;
+  flex:0 0 auto; width:calc(25% - 1.5px); min-width:220px;
   scroll-snap-align:start; display:block;
 }
 .rail-image-wrap { position:relative; aspect-ratio:0.62; overflow:hidden; background:linear-gradient(160deg,#ede8df,#dfd9cc); margin-bottom:20px; }
@@ -525,7 +525,7 @@ footer { background:var(--noir); padding:64px 80px 32px; }
 
 @media (max-width:900px) {
   .rail-section { padding:48px 24px 56px; }
-  .rail-track { gap:24px; }
+  .rail-track { gap:2px; }
   .rail-card { width:60%; min-width:200px; }
   .rail-arrow { display:none; }
 }
