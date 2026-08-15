@@ -146,7 +146,7 @@ export default async function HomePage() {
               Every silhouette is cut for the Indian body — proportions, drape, and fit that actually works.
             </p>
             <div className="philosophy-card-image" aria-hidden="true">
-              {/* Placeholder — swap with a real fabric/detail crop from an existing product photo */}
+               <img src="/images/image1.png" alt="Fabrics for indian body proportion"/>
             </div>
           </article>
 
@@ -157,7 +157,7 @@ export default async function HomePage() {
               Pieces that hold their shape through long days. Formal enough for boardrooms. Comfortable enough to forget you&apos;re wearing them.
             </p>
             <div className="philosophy-card-image" aria-hidden="true">
-              {/* Placeholder — swap with a real fabric/detail crop from an existing product photo */}
+              <img src="/images/imag2.png" alt="Workwear for long day"/>
             </div>
           </article>
 
@@ -168,7 +168,7 @@ export default async function HomePage() {
               A wardrobe designed to move between the office, the airport, the dinner, and everything in between.
             </p>
             <div className="philosophy-card-image" aria-hidden="true">
-              {/* Placeholder — swap with a real fabric/detail crop from an existing product photo */}
+                <img src="/images/image3.png" alt="Workwear for whole day"/>
             </div>
           </article>
         </div>
