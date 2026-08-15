@@ -4,11 +4,11 @@ import Nav from '@/components/Nav'
 import ProductRail from '@/components/ProductRail'
 import TestimonialsRail from '@/components/TestimonialsRail'
 import FaqSection from '@/components/FaqSection'
-import Link from 'next/link' 
+import Link from 'next/link'
 
 export const revalidate = 60
 
-async function getProducts(): Promise<Product[]> { 
+async function getProducts(): Promise<Product[]> {
   const { data } = await supabase
     .from('products')
     .select('*')
@@ -114,6 +114,22 @@ export default async function HomePage() {
               So we create pieces with considered structure, thoughtful fit, and the ease to move through your entire day.
             </p>
           </div>
+
+          <div className="story-points">
+            <div className="story-point">
+              <h3 className="story-point-title">Designed for Indian women</h3>
+              <p className="story-point-body">Every silhouette is cut for the Indian body — proportions, drape, and fit that actually works.</p>
+            </div>
+            <div className="story-point">
+              <h3 className="story-point-title">Structure without stiffness</h3>
+              <p className="story-point-body">Pieces that hold their shape through long days. Formal enough for boardrooms, comfortable enough to forget you&apos;re wearing them.</p>
+            </div>
+            <div className="story-point">
+              <h3 className="story-point-title">Made for the way you work</h3>
+              <p className="story-point-body">A wardrobe designed to move between the office, the airport, the dinner, and everything in between.</p>
+            </div>
+          </div>
+
           <Link href="/about" className="home-story-link">
             Discover Our Story
             <span aria-hidden="true">→</span>
@@ -121,56 +137,6 @@ export default async function HomePage() {
         </div>
         <div className="home-story-image">
           <img src="/images/about-image.png" alt="Formelle woman wearing tailored workwear" />
-        </div>
-      </section>
-
-      {/* =====================================================
-          OUR PHILOSOPHY — THE FORMELLE STANDARD
-      ===================================================== */}
-      <section className="home-philosophy" aria-label="Formelle Philosophy">
-        <div className="home-philosophy-intro">
-          <span className="home-philosophy-eyebrow">The Formelle Standard</span>
-          <h2 className="home-philosophy-title">
-            Not a uniform.<br />Not a trend.
-          </h2>
-          <p>
-            We don&apos;t design for seasons. We design pieces that earn their place in your wardrobe — made to be worn for years, not liked for a week.
-          </p>
-        </div>
-
-        <div className="philosophy-grid">
-          <article className="philosophy-card">
-            <div className="philosophy-number">01</div>
-            <h3 className="philosophy-card-title">Designed for Indian women</h3>
-            <p className="philosophy-card-body">
-              Every silhouette is cut for the Indian body — proportions, drape, and fit that actually works.
-            </p>
-            <div className="philosophy-card-image" aria-hidden="true">
-               <img src="/images/image1.png" alt="Fabrics for indian body proportion"/>
-            </div>
-          </article>
-
-          <article className="philosophy-card">
-            <div className="philosophy-number">02</div>
-            <h3 className="philosophy-card-title">Structure without stiffness</h3>
-            <p className="philosophy-card-body">
-              Pieces that hold their shape through long days. Formal enough for boardrooms. Comfortable enough to forget you&apos;re wearing them.
-            </p>
-            <div className="philosophy-card-image" aria-hidden="true">
-              <img src="/images/imag2.png" alt="Workwear for long day"/>
-            </div>
-          </article>
-
-          <article className="philosophy-card">
-            <div className="philosophy-number">03</div>
-            <h3 className="philosophy-card-title">Made for the way you work</h3>
-            <p className="philosophy-card-body">
-              A wardrobe designed to move between the office, the airport, the dinner, and everything in between.
-            </p>
-            <div className="philosophy-card-image" aria-hidden="true">
-                <img src="/images/image3.png" alt="Workwear for whole day"/> 
-            </div>
-          </article>
         </div>
       </section>
 
