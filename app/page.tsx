@@ -106,14 +106,6 @@ export default async function HomePage() {
           <h2 className="home-story-title">
             For the woman<br />who <em>leads,</em><br />not just works.
           </h2>
-          <div className="home-story-text">
-            <p>
-              Formelle was born from a simple frustration — finding formal wear that feels as powerful as the woman wearing it.
-            </p>
-            <p>
-              So we create pieces with considered structure, thoughtful fit, and the ease to move through your entire day.
-            </p>
-          </div>
 
           <div className="story-points">
             <div className="story-point">
