@@ -168,7 +168,7 @@ export default async function HomePage() {
               A wardrobe designed to move between the office, the airport, the dinner, and everything in between.
             </p>
             <div className="philosophy-card-image" aria-hidden="true">
-                <img src="/images/image3.png" alt="Workwear for whole day"/>
+                <img src="/images/image3.png" alt="Workwear for whole day"/> 
             </div>
           </article>
         </div>
