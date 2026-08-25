@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
 import { CartProvider } from '@/lib/CartContext'
 import CartDrawer from '@/components/CartDrawer'
+import Script from 'next/script'
 import './globals.css'
 
-export const metadata: Metadata = { 
+export const metadata: Metadata = {
   metadataBase: new URL('https://www.formellewear.com'),
   title: "Formelle — Women's Formal Wear India | Luxury Workwear | Dressed to Lead",
   description: 'Formal trousers, formalwear, and office wear for women in India. Premium, structured workwear built for the professional woman in charge.',
@@ -33,6 +34,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+        {/* Google Analytics */}
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-KZZHYERXN7" strategy="afterInteractive" />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-KZZHYERXN7');
+          `}
+        </Script>
       </head>
       <body>
         <CartProvider>
