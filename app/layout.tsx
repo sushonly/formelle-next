@@ -6,7 +6,7 @@ import './globals.css'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.formellewear.com'),
-  title: "Formelle — Women's Formal Wear India | Luxury Workwear | Dressed to Lead",
+  title: "Formelle — Women's Formal Wear India | Premium Workwear | Dressed to Lead",
   description: 'Formal trousers, formalwear, and office wear for women in India. Premium, structured workwear built for the professional woman in charge.',
   keywords: 'formal trousers for women, premium workwear women, professional women clothing India, formal wear, office wear women, office wear dresses for women, professional clothing brands India, premium formal wear women, office wear for women india, party dresses, corporate office outfits',
   openGraph: {
