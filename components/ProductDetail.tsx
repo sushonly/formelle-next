@@ -215,7 +215,18 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
             <span className="pcategory">{catLabel}</span>
           </div>
           <h1 className="product-name-h1">{product.name}</h1>
-          <div className="product-price-large">₹{price}</div>
+         <div className="product-price-large">
+  {product.original_price && product.original_price > product.price ? (
+    <>
+      <span style={{ fontSize: '20px', color: 'rgba(44,44,42,0.4)', textDecoration: 'line-through', marginRight: '12px' }}>
+        ₹{product.original_price.toLocaleString('en-IN')}
+      </span>
+      <span style={{ color: '#c0392b' }}>₹{price}</span>
+    </>
+  ) : (
+    <span>₹{price}</span>
+  )}
+</div>
           <p className="product-short-desc">{product.description}</p>
 
           <div className="size-section">
