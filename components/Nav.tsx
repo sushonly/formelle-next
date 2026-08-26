@@ -5,7 +5,7 @@ import { useCart } from '@/lib/CartContext'
 
 export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false)
-  const { itemCount, openCart } = useCart()
+  const { itemCount, openCart } = useCart() 
 
   return (
     <>
