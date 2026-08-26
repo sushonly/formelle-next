@@ -3,7 +3,7 @@ import type { Product } from '@/lib/types'
 
 const CAT_LABELS: Record<string, string> = {
   top: 'Top',
-  trouser: 'Trouser',
+  trouser: 'Trouser', 
   dress: 'Dress',
   blazer: 'Blazer',
 }
