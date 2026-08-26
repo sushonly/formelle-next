@@ -234,7 +234,7 @@ footer { background:var(--noir); padding:64px 80px 32px; }
 .product-price { display:flex; align-items:baseline; gap:8px; margin-top:6px; }
 .product-price-original { font-size:12px; color:rgba(17,17,17,0.4); text-decoration:line-through; }
 .product-price-current { font-size:14px; color:var(--noir); font-weight:500; }
-.product-price-row .product-price-original + .product-price-current { color:#c0392b; }
+.product-price-original + .product-price-current { color:#c0392b; font-weight:600; }
 
 .size-section { margin-bottom:24px; }
 .size-row-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
