@@ -149,7 +149,8 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
       // the order still reaches the customer's WhatsApp message either way
     }
 
-    const msg = `Hi Formelle! I'd like to place an order:\n\n*ORDER DETAILS*\n- ${product.name} (${selectedSize}) = Rs.${price}\n\n*Total: Rs.${price}*\n\n*DELIVERY ADDRESS*\nName: ${firstName} ${lastName}\nPhone: ${phone}${email ? '\nEmail: ' + email : ''}\nAddress: ${address1}${address2 ? ', ' + address2 : ''}\n${city}, ${state} - ${pincode}\n\nPlease share your UPI ID to complete payment. Thank you!`
+
+   const msg = `Hi Formelle, I'd like to place an order.\n\n*ORDER DETAILS*\n- ${product.name} (${selectedSize}) = Rs.${price}\n\n*Total: Rs.${price}*\n\n*DELIVERY ADDRESS*\n${firstName} ${lastName}\n${phone}${email ? '\n' + email : ''}\n${address1}${address2 ? ', ' + address2 : ''}\n${city}, ${state} - ${pincode}\n\n*Pay via UPI to:* sushonly@okicici\nWe'll confirm your order once payment is received. Thank you.`
     window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank')
     setCheckoutOpen(false)
     showToast('Order saved — WhatsApp opened, please send your order')
