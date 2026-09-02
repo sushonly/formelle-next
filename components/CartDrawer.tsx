@@ -59,8 +59,7 @@ export default function CartDrawer() {
     } catch {}
 
     const lines = items.map(i => `- ${i.name} (${i.size}) x${i.qty} = Rs.${(i.price * i.qty).toLocaleString('en-IN')}`).join('\n')
-    const msg = `Hi Formelle! I'd like to place an order:\n\n*ORDER DETAILS*\n${lines}\n\n*Total: Rs.${subtotal.toLocaleString('en-IN')}*\n\n*DELIVERY ADDRESS*\nName: ${firstName} ${lastName}\nPhone: ${phone}${email ? '\nEmail: ' + email : ''}\nAddress: ${address1}${address2 ? ', ' + address2 : ''}\n${city}, ${state} - ${pincode}\n\nPlease share your UPI ID to complete payment. Thank you!`
-
+const msg = `Hi Formelle! I'd like to place an order:\n\n*ORDER DETAILS*\n${lines}\n\n*Total: Rs.${subtotal.toLocaleString('en-IN')}*\n\n*DELIVERY ADDRESS*\nName: ${firstName} ${lastName}\nPhone: ${phone}${email ? '\nEmail: ' + email : ''}\nAddress: ${address1}${address2 ? ', ' + address2 : ''}\n${city}, ${state} - ${pincode}\n\nPlease share your UPI ID to complete payment. Thank you!`
     window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank')
     setSubmitting(false)
     clearCart()

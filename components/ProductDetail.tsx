@@ -149,7 +149,8 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
       // the order still reaches the customer's WhatsApp message either way
     }
 
-    const msg = `Hi Formelle! I'd like to place an order:\n\n*ORDER DETAILS*\n- ${product.name} (${selectedSize}) = Rs.${price}\n\n*Total: Rs.${price}*\n\n*DELIVERY ADDRESS*\nName: ${firstName} ${lastName}\nPhone: ${phone}${email ? '\nEmail: ' + email : ''}\nAddress: ${address1}${address2 ? ', ' + address2 : ''}\n${city}, ${state} - ${pincode}\n\nPlease share your UPI ID to complete payment. Thank you!`
+
+   const msg = `Hi Formelle, I'd like to place an order.\n\n*ORDER DETAILS*\n- ${product.name} (${selectedSize}) = Rs.${price}\n\n*Total: Rs.${price}*\n\n*DELIVERY ADDRESS*\n${firstName} ${lastName}\n${phone}${email ? '\n' + email : ''}\n${address1}${address2 ? ', ' + address2 : ''}\n${city}, ${state} - ${pincode}\n\n*Pay via UPI to:* sushonly@okicici\nWe'll confirm your order once payment is received. Thank you.`
     window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank')
     setCheckoutOpen(false)
     showToast('Order saved — WhatsApp opened, please send your order')
@@ -215,7 +216,18 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
             <span className="pcategory">{catLabel}</span>
           </div>
           <h1 className="product-name-h1">{product.name}</h1>
-          <div className="product-price-large">₹{price}</div>
+         <div className="product-price-large">
+  {product.original_price && product.original_price > product.price ? (
+    <>
+      <span style={{ fontSize: '20px', color: 'rgba(44,44,42,0.4)', textDecoration: 'line-through', marginRight: '12px' }}>
+        ₹{product.original_price.toLocaleString('en-IN')}
+      </span>
+      <span style={{ color: '#c0392b' }}>₹{price}</span>
+    </>
+  ) : (
+    <span>₹{price}</span>
+  )}
+</div>
           <p className="product-short-desc">{product.description}</p>
 
           <div className="size-section">
