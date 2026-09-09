@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation'
 import Nav from '@/components/Nav'
 import LookDetail from '@/components/LookDetail'
 
-export const revalidate = 60 
+export const revalidate = 60
 
 export async function generateStaticParams() {
   const looks = await getAllLooks()
