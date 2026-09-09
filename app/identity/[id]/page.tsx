@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Nav from '@/components/Nav'
 import IdentityEdit from '@/components/IdentityEdit'
-
+ 
 export const revalidate = 60
 
 // Pre-render all six identity pages at build time
