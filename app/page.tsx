@@ -89,7 +89,6 @@ export default async function HomePage() {
 ===================================================== */}
 <section className="identity-section" aria-label="Explore Formelle identities">
   <div className="identity-header">
-    <span className="identity-eyebrow">The Formelle Edit</span>
 
     <h2 className="identity-title">
       How do you want<br />
