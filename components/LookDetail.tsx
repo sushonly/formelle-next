@@ -9,7 +9,7 @@ const SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL']
 
 export default function LookDetail({ look }: { look: Look }) {
   const { addItem, openCart } = useCart()
-
+ 
   // All pieces start selected — she came for the whole outfit
   const [keep, setKeep] = useState<Record<number, boolean>>(
     () => Object.fromEntries(look.products.map(p => [p.id, true]))
