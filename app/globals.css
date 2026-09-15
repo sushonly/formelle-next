@@ -134,6 +134,33 @@ nav { position:sticky; top:0; z-index:100; background:var(--ivory); border-botto
 .home-story-link { display:inline-flex; align-items:center; gap:14px; width:fit-content; margin-top:18px; padding-bottom:8px; border-bottom:1px solid rgba(240, 236, 227, 0.35); color:var(--ivory); font-family:var(--font-body); font-size:9px; line-height:1; letter-spacing:3px; text-transform:uppercase; text-decoration:none; }
 .home-story-link span { font-family:var(--font-body); font-size:16px; line-height:1; }
 
+/* ============ PHILOSOPHY INTRO ============ */
+
+.philosophy-intro {
+  max-width: 480px;
+  margin: 0 0 28px;
+  padding-bottom: 24px;
+  border-bottom: 0.5px solid rgba(240,236,227,0.12);
+}
+
+.philosophy-intro-title {
+  font-family: var(--font-display);
+  font-size: 21px;
+  line-height: 1.2;
+  font-weight: 400;
+  color: var(--ivory);
+  margin: 0 0 10px;
+}
+
+.philosophy-intro-body {
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  line-height: 1.7;
+  font-weight: 300;
+  color: rgba(240,236,227,0.55);
+  margin: 0;
+}
+
 .story-points { display:flex; flex-direction:column; gap:18px; max-width:480px; margin-top:8px; margin-bottom:32px; }
 .story-point { padding-top:18px; border-top:0.5px solid rgba(240,236,227,0.12); }
 .story-point:first-child { border-top:none; padding-top:0; }
