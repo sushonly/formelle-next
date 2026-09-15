@@ -183,17 +183,7 @@ nav { position:sticky; top:0; z-index:100; background:var(--ivory); border-botto
   text-align: center;
 }
 
-.identity-eyebrow {
-  display: block;
-  margin-bottom: 14px;
-  font-family: var(--font-body);
-  font-size: 8px;
-  line-height: 1;
-  letter-spacing: 3.5px;
-  text-transform: uppercase;
-  color: var(--accent);
-  font-weight: 500;
-}
+
 
 .identity-title {
   margin: 0;
