@@ -16,7 +16,7 @@ export interface Identity {
 
 export interface Look {
   id: number
-  name: string
+name?: string | null
   slug: string
   description?: string
   why_it_works?: string
