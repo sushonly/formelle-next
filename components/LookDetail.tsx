@@ -69,7 +69,7 @@ export default function LookDetail({ look }: { look: Look }) {
         <div className="look-detail-visual">
           <div className="look-detail-img">
             {hero ? (
-              <img src={hero} alt={look.name} />
+              <img src={hero} alt={lookTitle(look)} />
             ) : (
               <div className="look-detail-stack">
                 {look.products.map(p => (
