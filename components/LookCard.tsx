@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import type { Look } from '@/lib/looks'
+import { lookTitle, type Look } from '@/lib/looks'
 import { lookImageFor } from '@/lib/lookImage'
 
 // Deterministic price of a look = sum of its products
@@ -50,7 +50,7 @@ export default function LookCard({
             </span>
           ))}
         </div>
-        <div className="look-card-name">{look.name}</div>
+      <div className="look-card-name">{lookTitle(look)}</div>
         {look.description && <div className="look-card-desc">{look.description}</div>}
         <div className="look-card-meta">
           <span className="look-card-price">₹{price.toLocaleString('en-IN')}</span>
