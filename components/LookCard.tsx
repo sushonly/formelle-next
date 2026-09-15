@@ -24,7 +24,7 @@ export default function LookCard({
         {hero ? (
           // Single hero image if present, else a stacked composition of product images
           look.hero_image ? (
-            <img src={hero} alt={look.name} />
+           <img src={hero} alt={lookTitle(look)} />
           ) : (
            <div className="look-card-stack">
   {look.products.slice(0, 3).map(p => {
