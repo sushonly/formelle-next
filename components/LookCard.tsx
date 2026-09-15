@@ -26,13 +26,16 @@ export default function LookCard({
           look.hero_image ? (
             <img src={hero} alt={look.name} />
           ) : (
-            <div className="look-card-stack">
-              {look.products.slice(0, 3).map(p => (
-                <div key={p.id} className="look-card-stack-cell">
-                  {p.images?.[0] ? <img src={p.images[0]} alt={p.name} /> : <span>{p.name}</span>}
-                </div>
-              ))}
-            </div>
+           <div className="look-card-stack">
+  {look.products.slice(0, 3).map(p => {
+    const img = lookImageFor(p)
+    return (
+      <div key={p.id} className="look-card-stack-cell">
+        {img ? <img src={img} alt={p.name} loading="lazy" /> : <span>{p.name}</span>}
+      </div>
+    )
+  })}
+</div>
           )
         ) : (
           <div className="look-card-placeholder">F</div>
