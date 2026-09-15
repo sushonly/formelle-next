@@ -1,6 +1,7 @@
 'use client'
 import Link from 'next/link'
 import type { Look } from '@/lib/looks'
+import { lookImageFor } from '@/lib/lookImage'
 
 // Deterministic price of a look = sum of its products
 function lookPrice(look: Look): number {
