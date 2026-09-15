@@ -100,37 +100,68 @@ export default async function HomePage() {
       {/* =====================================================
           OUR STORY
       ===================================================== */}
-      <section className="home-story" aria-label="Our Story">
-        <div className="home-story-copy">
-          <span className="home-story-eyebrow">Our Story</span>
-          <h2 className="home-story-title">
-            For the woman<br />who <em>leads,</em><br />not just works.
-          </h2>
+     {/* =====================================================
+    OUR PHILOSOPHY
+===================================================== */}
+<section className="home-story" aria-label="Our Philosophy">
+  <div className="home-story-copy">
+    <span className="home-story-eyebrow">Our Philosophy</span>
 
-          <div className="story-points">
-            <div className="story-point">
-              <h3 className="story-point-title">Designed for Indian women</h3>
-              <p className="story-point-body">Every silhouette is cut for the Indian body — proportions, drape, and fit that actually works.</p>
-            </div>
-            <div className="story-point">
-              <h3 className="story-point-title">Structure without stiffness</h3>
-              <p className="story-point-body">Pieces that hold their shape through long days. Formal enough for boardrooms, comfortable enough to forget you&apos;re wearing them.</p>
-            </div>
-            <div className="story-point">
-              <h3 className="story-point-title">Made for the way you work</h3>
-              <p className="story-point-body">A wardrobe designed to move between the office, the airport, the dinner, and everything in between.</p>
-            </div>
-          </div>
+    <h2 className="home-story-title">
+      For the woman<br />who <em>leads,</em><br />not just works.
+    </h2>
 
-          <Link href="/about" className="home-story-link">
-            Discover Our Story
-            <span aria-hidden="true">→</span>
-          </Link>
-        </div>
-        <div className="home-story-image">
-          <img src="/images/about-image.png" alt="Formelle woman wearing tailored workwear" />
-        </div>
-      </section>
+    <div className="philosophy-intro">
+      <h3 className="philosophy-intro-title">
+        Your clothes speak before you do.
+      </h3>
+      <p className="philosophy-intro-body">
+        Before you enter the room, before you introduce yourself,
+        people have already begun to form an impression.
+        What you wear is part of that first signal — shaping how
+        you show up, how you feel, and how you are perceived.
+      </p>
+    </div>
+
+    <div className="story-points">
+      <div className="story-point">
+        <h3 className="story-point-title">Designed for Indian women</h3>
+        <p className="story-point-body">
+          Every silhouette is cut for the Indian body — proportions,
+          drape, and fit that actually works.
+        </p>
+      </div>
+
+      <div className="story-point">
+        <h3 className="story-point-title">Structure without stiffness</h3>
+        <p className="story-point-body">
+          Pieces that hold their shape through long days. Formal enough
+          for boardrooms, comfortable enough to forget you&apos;re wearing them.
+        </p>
+      </div>
+
+      <div className="story-point">
+        <h3 className="story-point-title">Made for the way you work</h3>
+        <p className="story-point-body">
+          A wardrobe designed to move between the office, the airport,
+          the dinner, and everything in between.
+        </p>
+      </div>
+    </div>
+
+    <Link href="/about" className="home-story-link">
+      Discover Our Story
+      <span aria-hidden="true">→</span>
+    </Link>
+  </div>
+
+  <div className="home-story-image">
+    <img
+      src="/images/about-image.png"
+      alt="Formelle woman wearing tailored workwear"
+    />
+  </div>
+</section>
 
       {/* =====================================================
           FAQ
