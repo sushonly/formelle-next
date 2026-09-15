@@ -44,22 +44,20 @@ export default async function HomePage() {
         <div className="hero-text">
           <span className="hero-eyebrow">New Collection · 2026</span>
           <h1 className="hero-headline">
-            Dress like<br />the leader<br />you <em>already</em><br />are.
+           Wear who<br />you’re<br /><em>becoming.</em>
           </h1>
           <p className="hero-sub">
-            Formal wear designed for women who move through boardrooms and break through ceilings. Structured, elegant, and built for the woman in charge.
+           Identity-led workwear for the modern professional woman.
           </p>
           <div className="hero-actions">
-            <Link href="/shop" className="btn-primary">Shop Now</Link>
+            <Link href="/shop" className="btn-primary">Shop the Collection</Link>
             <Link href="/about" className="btn-outline">Our Story</Link>
           </div>
         </div>
         <div className="hero-image" aria-hidden="true">
           <img src="/images/hero.png" alt="Formelle luxury formal wear" className="hero-photo" />
           <div className="hero-image-bg"></div>
-          <div className="hero-badge" aria-hidden="true">
-            <span>Dressed</span><span>to</span><span>Lead</span>
-          </div>
+      
         </div>
       </section>
 
