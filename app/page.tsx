@@ -83,7 +83,82 @@ export default async function HomePage() {
       ===================================================== */}
       <ProductRail eyebrow="New at Formelle" title="The latest pieces" products={newArrivals} />
       <ProductRail eyebrow="Best Sellers" title="The pieces women keep coming back for" products={bestsellers} />
-     
+
+      {/* =====================================================
+    IDENTITY — HOW DO YOU WANT TO SHOW UP?
+===================================================== */}
+<section className="identity-section" aria-label="Explore Formelle identities">
+  <div className="identity-header">
+    <span className="identity-eyebrow">The Formelle Edit</span>
+
+    <h2 className="identity-title">
+      How do you want<br />
+      to <em>show up?</em>
+    </h2>
+
+    <p className="identity-intro">
+      The same woman. Different days. Different presence.
+    </p>
+  </div>
+
+  <div className="identity-grid">
+
+    <Link href="/identity/confident" className="identity-card">
+      <span className="identity-number">01</span>
+      <div className="identity-card-content">
+        <h3>Confident</h3>
+        <p>Self-assured</p>
+      </div>
+      <span className="identity-arrow">↗</span>
+    </Link>
+
+    <Link href="/identity/authoritative" className="identity-card">
+      <span className="identity-number">02</span>
+      <div className="identity-card-content">
+        <h3>Authoritative</h3>
+        <p>Commanding</p>
+      </div>
+      <span className="identity-arrow">↗</span>
+    </Link>
+
+    <Link href="/identity/composed" className="identity-card">
+      <span className="identity-number">03</span>
+      <div className="identity-card-content">
+        <h3>Composed</h3>
+        <p>Calm + polished</p>
+      </div>
+      <span className="identity-arrow">↗</span>
+    </Link>
+
+    <Link href="/identity/bold" className="identity-card">
+      <span className="identity-number">04</span>
+      <div className="identity-card-content">
+        <h3>Bold</h3>
+        <p>Assertive + expressive</p>
+      </div>
+      <span className="identity-arrow">↗</span>
+    </Link>
+
+    <Link href="/identity/magnetic" className="identity-card">
+      <span className="identity-number">05</span>
+      <div className="identity-card-content">
+        <h3>Magnetic</h3>
+        <p>Charismatic + memorable</p>
+      </div>
+      <span className="identity-arrow">↗</span>
+    </Link>
+
+    <Link href="/identity/effortless" className="identity-card">
+      <span className="identity-number">06</span>
+      <div className="identity-card-content">
+        <h3>Effortless</h3>
+        <p>Natural + understated</p>
+      </div>
+      <span className="identity-arrow">↗</span>
+    </Link>
+
+  </div>
+</section>
 
       <div style={{ textAlign: 'center', padding: '8px 24px 64px' }}>
         <Link href="/shop" className="btn-shop-collection">
