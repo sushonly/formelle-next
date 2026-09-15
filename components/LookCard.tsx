@@ -7,7 +7,7 @@ import { lookImageFor } from '@/lib/lookImage'
 function lookPrice(look: Look): number {
   return look.products.reduce((s, p) => s + p.price, 0)
 }
-
+ 
 export default function LookCard({
   look,
   contextIdentity,
