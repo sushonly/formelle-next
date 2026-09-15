@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { useCart } from '@/lib/CartContext'
-import type { Look } from '@/lib/looks'
+import { lookTitle, type Look } from '@/lib/looks'
 import type { Product } from '@/lib/types'
 
 const SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL']
@@ -61,7 +61,7 @@ export default function LookDetail({ look }: { look: Look }) {
       <nav className="breadcrumb" aria-label="Breadcrumb">
         <Link href="/">Home</Link> <span>/</span>
         <Link href="/shop">Shop</Link> <span>/</span>
-        <span>{look.name}</span>
+     <span>{lookTitle(look)}</span>
       </nav>
 
       <div className="look-detail-grid">
@@ -90,7 +90,7 @@ export default function LookDetail({ look }: { look: Look }) {
               <Link key={id} href={`/identity/${id}`} className="look-detail-tag">{id}</Link>
             ))}
           </div>
-          <h1 className="look-detail-name">{look.name}</h1>
+       <h1 className="look-detail-name">{lookTitle(look)}</h1>
           {look.description && <p className="look-detail-desc">{look.description}</p>}
           {look.why_it_works && (
             <div className="look-detail-why">
