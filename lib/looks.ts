@@ -27,7 +27,13 @@ export interface Look {
   products: Product[]      // hydrated, in sort_order
   identities: string[]     // identity ids, e.g. ['confident','authoritative']
 }
-
+export function lookTitle(look: Look): string {
+  if (look.name && look.name.trim()) return look.name
+  const names = look.products.map(p => p.name)
+  if (names.length === 0) return 'Look'
+  if (names.length === 1) return names[0]
+  return names.slice(0, 3).join(' + ')
+}
 // ── Identities ────────────────────────────────────────────────────────────
 export async function getIdentities(): Promise<Identity[]> {
   const { data } = await supabase
