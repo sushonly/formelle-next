@@ -1,4 +1,4 @@
-import { getLook, getAllLooks } from '@/lib/looks'
+import { getLook, getAllLooks, lookTitle } from '@/lib/looks'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Nav from '@/components/Nav'
@@ -15,14 +15,19 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params
   const look = await getLook(slug)
   if (!look) return { title: 'Look Not Found — Formelle' }
+
+  const title = lookTitle(look)
+
   return {
-    title: `$lookTitle(look) — Formelle`,
-    description: look.description || `Shop ${lookTitle(look), a complete Formelle look. Take the whole outfit or only the pieces you need.`,
+    title: `${title} — Formelle`,
+    description: look.description || `Shop ${title}, a complete Formelle look. Take the whole outfit or only the pieces you need.`,
     openGraph: {
-      title: `$lookTitle(look) — Formelle`,
+      title: `${title} — Formelle`,
       description: look.description || '',
       url: `https://www.formellewear.com/looks/${look.slug}`,
-      images: look.hero_image ? [{ url: look.hero_image }] : (look.products[0]?.images?.[0] ? [{ url: look.products[0].images[0] }] : []),
+      images: look.hero_image
+        ? [{ url: look.hero_image }]
+        : (look.products[0]?.images?.[0] ? [{ url: look.products[0].images[0] }] : []),
     },
   }
 }
