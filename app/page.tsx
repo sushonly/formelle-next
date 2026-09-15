@@ -65,11 +65,11 @@ export default async function HomePage() {
           TRUST BAR
       ===================================================== */}
       <div style={{ background: 'var(--parchment)', borderTop: '0.5px solid rgba(17,17,17,0.08)', borderBottom: '0.5px solid rgba(17,17,17,0.08)', display: 'grid', gridTemplateColumns: 'repeat(4,1fr)' }}>
-        {[
-          ['Free Shipping', 'On all orders'],
-          ['Made in India', 'For Indian women'],
-          ['Easy Exchange', 'Within 7 days'],
-          ['Concierge Order', 'Via WhatsApp'],
+       {[
+        ['Designed for Indian Women', 'Proportions that work with you'],
+        ['Made in India', 'Thoughtfully made, locally'],
+        ['Inclusive Sizing', 'XS–XXL · Made-to-measure beyond'],
+        ['Easy Exchange', 'Within 7 days'],
         ].map(([title, sub], i) => (
           <div key={title} style={{ padding: '20px 24px', textAlign: 'center', borderRight: i < 3 ? '0.5px solid rgba(17,17,17,0.08)' : 'none' }}>
             <div style={{ fontSize: '8.5px', letterSpacing: '2.5px', textTransform: 'uppercase', fontWeight: 600, color: 'var(--noir)', marginBottom: '4px' }}>{title}</div>
