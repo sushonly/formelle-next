@@ -87,7 +87,7 @@ export default function LookDetail({ look }: { look: Look }) {
 
           <div className="look-detail-tags">
             {look.identities.map(id => (
-              <Link key={id} href={`/identity/${id}`} className="look-detail-tag">{id}</Link>
+              <Link key={id} href={`/wardrobe/${id}`} className="look-detail-tag">{id}</Link>
             ))}
           </div>
        <h1 className="look-detail-name">{lookTitle(look)}</h1>
