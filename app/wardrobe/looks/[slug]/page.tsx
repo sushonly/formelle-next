@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     openGraph: {
       title: `${title} — Formelle`,
       description: look.description || '',
-      url: `https://www.formellewear.com/looks/${look.slug}`,
+      url: `https://www.formellewear.com/wardrobe/looks/${look.slug}`,
       images: look.hero_image
         ? [{ url: look.hero_image }]
         : (look.products[0]?.images?.[0] ? [{ url: look.products[0].images[0] }] : []),
