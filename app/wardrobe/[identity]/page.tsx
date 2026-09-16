@@ -2,7 +2,7 @@ import { getIdentity, getIdentities, getLooksByIdentity } from '@/lib/looks'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Nav from '@/components/Nav'
-import IdentityEdit from '@/components/IdentityEdit'
+import IdentityEdit from '@/components/IdentityEdit-wardrobe'
 
 export const revalidate = 60
 
