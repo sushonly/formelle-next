@@ -5,7 +5,7 @@ import { useCart } from '@/lib/CartContext'
 import { lookTitle, type Look } from '@/lib/looks'
 import type { Product } from '@/lib/types'
 
-const SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL']
+const SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL'] 
 
 export default function LookDetail({ look }: { look: Look }) {
   const { addItem, openCart } = useCart()
