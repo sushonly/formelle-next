@@ -102,7 +102,7 @@ export default async function HomePage() {
 
   <div className="identity-grid">
 
-    <Link href="/identity/confident" className="identity-card">
+    <Link href="/wardrobe/confident" className="identity-card">
       <span className="identity-number">01</span>
       <div className="identity-card-content">
         <h3>Confident</h3>
@@ -111,7 +111,7 @@ export default async function HomePage() {
       <span className="identity-arrow">↗</span>
     </Link>
 
-    <Link href="/identity/authoritative" className="identity-card">
+    <Link href="/wardrobe/authoritative" className="identity-card">
       <span className="identity-number">02</span>
       <div className="identity-card-content">
         <h3>Authoritative</h3>
@@ -120,7 +120,7 @@ export default async function HomePage() {
       <span className="identity-arrow">↗</span>
     </Link>
 
-    <Link href="/identity/composed" className="identity-card">
+    <Link href="/wardrobe/composed" className="identity-card">
       <span className="identity-number">03</span>
       <div className="identity-card-content">
         <h3>Composed</h3>
@@ -129,7 +129,7 @@ export default async function HomePage() {
       <span className="identity-arrow">↗</span>
     </Link>
 
-    <Link href="/identity/bold" className="identity-card">
+    <Link href="/wardrobe/bold" className="identity-card">
       <span className="identity-number">04</span>
       <div className="identity-card-content">
         <h3>Bold</h3>
@@ -138,7 +138,7 @@ export default async function HomePage() {
       <span className="identity-arrow">↗</span>
     </Link>
 
-    <Link href="/identity/magnetic" className="identity-card">
+    <Link href="/wardrobe/magnetic" className="identity-card">
       <span className="identity-number">05</span>
       <div className="identity-card-content">
         <h3>Magnetic</h3>
@@ -147,7 +147,7 @@ export default async function HomePage() {
       <span className="identity-arrow">↗</span>
     </Link>
 
-    <Link href="/identity/effortless" className="identity-card">
+    <Link href="/wardrobe/effortless" className="identity-card">
       <span className="identity-number">06</span>
       <div className="identity-card-content">
         <h3>Effortless</h3>
