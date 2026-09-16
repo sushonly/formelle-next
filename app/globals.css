@@ -200,9 +200,9 @@ nav { position:sticky; top:0; z-index:100; background:var(--ivory); border-botto
 
 /* ── Card ── */
 .identity-card {
-  position: relative; aspect-ratio: 3 / 4;max-height: 380px; overflow: hidden;
+  position: relative; height: 340px; overflow: hidden;
   display: block; text-decoration: none; color: #fff;
-  background: #2C2C2A;             /* fallback */
+  background: #2C2C2A;
 }
 /* Tonal grounds per identity — swap any to a real image later via
    .id-xxx { background-image: url(...); background-size: cover; } */
