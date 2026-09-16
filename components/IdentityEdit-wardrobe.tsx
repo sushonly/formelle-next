@@ -24,7 +24,7 @@ export default function IdentityEdit({
           {allIdentities.map(i => (
             <button
               key={i.id}
-              onClick={() => i.id !== identity.id && router.push(`/identity/${i.id}`)}
+              onClick={() => i.id !== identity.id && router.push(`/wardrobe/${i.id}`)}
               className={`identity-chip${i.id === identity.id ? ' active' : ''}`}
             >
               {i.name}
