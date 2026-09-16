@@ -87,83 +87,42 @@ export default async function HomePage() {
       {/* =====================================================
     IDENTITY — HOW DO YOU WANT TO SHOW UP?
 ===================================================== */}
+{/* =====================================================
+    IDENTITY — HOW DO YOU WANT TO SHOW UP?
+===================================================== */}
 <section className="identity-section" aria-label="Explore Formelle identities">
   <div className="identity-header">
-
+    <span className="identity-eyebrow">Identity-led workwear</span>
     <h2 className="identity-title">
       How do you want<br />
       to <em>show up?</em>
     </h2>
-
     <p className="identity-intro">
       The same woman. Different days. Different presence.
     </p>
   </div>
 
   <div className="identity-grid">
-
-    <Link href="/wardrobe/confident" className="identity-card">
-      <span className="identity-number">01</span>
-      <div className="identity-card-content">
-        <h3>Confident</h3>
-        <p>Self-assured</p>
-      </div>
-      <span className="identity-arrow">↗</span>
-    </Link>
-
-    <Link href="/wardrobe/authoritative" className="identity-card">
-      <span className="identity-number">02</span>
-      <div className="identity-card-content">
-        <h3>Authoritative</h3>
-        <p>Commanding</p>
-      </div>
-      <span className="identity-arrow">↗</span>
-    </Link>
-
-    <Link href="/wardrobe/composed" className="identity-card">
-      <span className="identity-number">03</span>
-      <div className="identity-card-content">
-        <h3>Composed</h3>
-        <p>Calm + polished</p>
-      </div>
-      <span className="identity-arrow">↗</span>
-    </Link>
-
-    <Link href="/wardrobe/bold" className="identity-card">
-      <span className="identity-number">04</span>
-      <div className="identity-card-content">
-        <h3>Bold</h3>
-        <p>Assertive + expressive</p>
-      </div>
-      <span className="identity-arrow">↗</span>
-    </Link>
-
-    <Link href="/wardrobe/magnetic" className="identity-card">
-      <span className="identity-number">05</span>
-      <div className="identity-card-content">
-        <h3>Magnetic</h3>
-        <p>Charismatic + memorable</p>
-      </div>
-      <span className="identity-arrow">↗</span>
-    </Link>
-
-    <Link href="/wardrobe/effortless" className="identity-card">
-      <span className="identity-number">06</span>
-      <div className="identity-card-content">
-        <h3>Effortless</h3>
-        <p>Natural + understated</p>
-      </div>
-      <span className="identity-arrow">↗</span>
-    </Link>
-
+    {[
+      { id: 'confident',     n: '01', name: 'Confident',     line: 'I know what I’m doing.',        feel: 'Self-assured' },
+      { id: 'authoritative', n: '02', name: 'Authoritative', line: 'Take me seriously.',            feel: 'Commanding' },
+      { id: 'composed',      n: '03', name: 'Composed',      line: 'I’ve got this under control.',  feel: 'Calm + polished' },
+      { id: 'bold',          n: '04', name: 'Bold',          line: 'I’m not afraid to be seen.',    feel: 'Assertive + expressive' },
+      { id: 'magnetic',      n: '05', name: 'Magnetic',      line: 'You remember me.',              feel: 'Charismatic + memorable' },
+      { id: 'effortless',    n: '06', name: 'Effortless',    line: 'I didn’t have to try too hard.', feel: 'Natural + understated' },
+    ].map((i) => (
+      <Link key={i.id} href={`/wardrobe/${i.id}`} className={`identity-card id-${i.id}`}>
+        <span className="identity-number">{i.n}</span>
+        <span className="identity-arrow" aria-hidden="true">↗</span>
+        <div className="identity-card-content">
+          <h3>{i.name}</h3>
+          <p className="identity-line">&ldquo;{i.line}&rdquo;</p>
+          <p className="identity-feel">{i.feel}</p>
+        </div>
+      </Link>
+    ))}
   </div>
 </section>
-
-      <div style={{ textAlign: 'center', padding: '8px 24px 64px' }}>
-        <Link href="/shop" className="btn-shop-collection">
-          Shop the Full Collection
-        </Link>
-      </div>
 
       {/* =====================================================
           TESTIMONIALS
