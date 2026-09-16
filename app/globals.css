@@ -171,218 +171,90 @@ nav { position:sticky; top:0; z-index:100; background:var(--ivory); border-botto
    IDENTITY — COMPACT HOMEPAGE VERSION
 ===================================================== */
 
+/* ═══════════════════════════════════════════════════════════════════════
+   IDENTITY SECTION — tonal cards (homepage)
+   Replace your existing .identity-section / .identity-grid / .identity-card
+   rules in globals.css with this block.
+   ═══════════════════════════════════════════════════════════════════════ */
+
 .identity-section {
-  padding: 64px 56px 70px;
-  background: var(--parchment);
-  color: var(--noir);
+  background: #F5F0EA;
+  padding: 80px 5%;
 }
-
-.identity-header {
-  max-width: 680px;
-  margin: 0 auto 38px;
-  text-align: center;
+.identity-header { max-width: 1200px; margin: 0 auto 52px; text-align: center; }
+.identity-eyebrow {
+  display: block; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(17,17,17,0.4); margin-bottom: 20px;
 }
-
-
-
 .identity-title {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(38px, 4vw, 56px);
-  line-height: 0.98;
-  letter-spacing: -0.025em;
-  font-weight: 300;
-  color: var(--noir);
+  font-family: 'Cormorant Garamond', serif; font-weight: 400;
+  font-size: clamp(36px, 5vw, 52px); line-height: 1.05; margin: 0;
 }
-
-.identity-title em {
-  font-style: italic;
-  font-weight: 300;
-  color: var(--accent);
-}
-
-.identity-intro {
-  max-width: 400px;
-  margin: 14px auto 0;
-  font-family: var(--font-body);
-  font-size: 10.5px;
-  line-height: 1.6;
-  font-weight: 300;
-  color: rgba(44, 44, 42, 0.55);
-}
+.identity-title em { font-style: italic; color: #8A6A48; }
+.identity-intro { font-size: 13px; color: rgba(44,44,42,0.55); margin-top: 18px; font-weight: 300; }
 
 .identity-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  border-top: 0.5px solid rgba(17, 17, 17, 0.14);
-  border-left: 0.5px solid rgba(17, 17, 17, 0.14);
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
 }
 
+/* ── Card ── */
 .identity-card {
-  position: relative;
-  height: 145px;
-  padding: 18px 22px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  text-decoration: none;
-  color: var(--noir);
-  border-right: 0.5px solid rgba(17, 17, 17, 0.14);
-  border-bottom: 0.5px solid rgba(17, 17, 17, 0.14);
-  transition:
-    background var(--tr),
-    color var(--tr);
+  position: relative; aspect-ratio: 4 / 5; overflow: hidden;
+  display: block; text-decoration: none; color: #fff;
+  background: #2C2C2A;             /* fallback */
 }
+/* Tonal grounds per identity — swap any to a real image later via
+   .id-xxx { background-image: url(...); background-size: cover; } */
+.id-confident     { background: #3A342E; }
+.id-authoritative { background: #1A1A1A; }
+.id-composed      { background: #6B5D4F; }
+.id-bold          { background: #7A2A2A; }
+.id-magnetic      { background: #4A3520; }
+.id-effortless    { background: #8A8378; }
 
-.identity-card:hover {
-  background: var(--noir);
-  color: var(--ivory);
+/* Legibility scrim */
+.identity-card::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.1) 45%, transparent 70%);
 }
 
 .identity-number {
-  font-family: var(--font-body);
-  font-size: 7px;
-  letter-spacing: 1.8px;
-  color: var(--accent);
+  position: absolute; top: 18px; left: 18px; z-index: 2;
+  font-size: 10px; letter-spacing: 0.15em; color: rgba(255,255,255,0.7);
 }
+.identity-arrow {
+  position: absolute; top: 16px; right: 18px; z-index: 2;
+  font-size: 16px; color: rgba(255,255,255,0.85);
+  opacity: 0; transform: translate(-4px, 4px); transition: all 0.3s ease;
+}
+.identity-card:hover .identity-arrow { opacity: 1; transform: translate(0, 0); }
 
 .identity-card-content {
-  margin-top: auto;
+  position: absolute; bottom: 0; left: 0; right: 0; z-index: 2; padding: 24px 22px;
+}
+.identity-card-content h3 {
+  font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 30px;
+  line-height: 1; margin: 0 0 8px; color: #fff;
+}
+.identity-line {
+  font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 15px;
+  color: rgba(255,255,255,0.85); margin: 0;
+  max-height: 0; opacity: 0; overflow: hidden; transition: all 0.35s ease;
+}
+.identity-card:hover .identity-line { max-height: 44px; opacity: 1; }
+.identity-feel {
+  font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255,255,255,0.6); margin: 6px 0 0;
 }
 
-.identity-card h3 {
-  margin: 0 0 5px;
-  font-family: var(--font-display);
-  font-size: 27px;
-  line-height: 1;
-  font-weight: 300;
-  letter-spacing: -0.015em;
-}
-
-.identity-card p {
-  margin: 0;
-  font-family: var(--font-body);
-  font-size: 7.5px;
-  line-height: 1.3;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  font-weight: 400;
-  color: rgba(44, 44, 42, 0.45);
-}
-
-.identity-card:hover p {
-  color: rgba(240, 236, 227, 0.55);
-}
-
-.identity-arrow {
-  position: absolute;
-  right: 20px;
-  bottom: 18px;
-  font-family: var(--font-body);
-  font-size: 13px;
-  font-weight: 300;
-  opacity: 0.4;
-  transition: transform var(--tr), opacity var(--tr);
-}
-
-.identity-card:hover .identity-arrow {
-  transform: translate(3px, -3px);
-  opacity: 1;
-}
-
-/* ---------------------------------------------------------
-   MOBILE
---------------------------------------------------------- */
-
+/* ── Mobile ── */
 @media (max-width: 900px) {
-
-  .home-story {grid-template-columns: 1fr;min-height: 0;}
-
-  .home-story-copy {padding: 56px 8vw 48px;}
-
-  .home-story-image { height:460px; min-height:460px; }}
- .identity-section {padding: 52px 24px 60px;}
-
-  .identity-header {margin-bottom: 30px;}
-
-  .identity-title {font-size: clamp(38px, 9vw, 50px); }
-
-  .identity-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .identity-card {
-    height: 125px;
-    padding: 16px 18px;
-  }
-
-  .identity-card h3 {
-    font-size: 24px;
-  }
-
-  .identity-arrow {
-    right: 16px;
-    bottom: 16px;
-  }
-@media (max-width: 600px) {
-
-  .home-story-copy {
-    padding: 48px 24px 44px;
-  }
-
-  .home-story-title {
-    font-size: clamp(42px, 12vw, 56px);
-  }
-
-  .home-story-text p {
-    font-size: 12px;
-  }
-
-  .home-story-image {
-    height: auto;
-    min-height: 0;
-    aspect-ratio: 4 / 5;
-  }
-  .identity-section {
-    padding: 48px 16px 54px;
-  }
-
-  .identity-header {
-    margin-bottom: 26px;
-  }
-
-  .identity-title {
-    font-size: clamp(38px, 11vw, 48px);
-  }
-
-  .identity-intro {
-    font-size: 10px;
-    max-width: 290px;
-  }
-
-  .identity-card {
-    height: 118px;
-    padding: 14px 15px;
-  }
-
-  .identity-card h3 {
-    font-size: 22px;
-  }
-
-  .identity-card p {
-    font-size: 6.8px;
-    letter-spacing: 1.2px;
-  }
-
-  .identity-number {
-    font-size: 6.5px;
-  }
-
-  .identity-arrow {
-    right: 13px;
-    bottom: 13px;
-    font-size: 12px;
-  }
+  .identity-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+}
+@media (max-width: 560px) {
+  .identity-section { padding: 56px 6%; }
+  .identity-line { max-height: 44px; opacity: 1; }  /* show voice line always on mobile (no hover) */
 }
 
 /* ============ FOOTER ============ */
