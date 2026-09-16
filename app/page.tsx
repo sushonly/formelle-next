@@ -44,22 +44,20 @@ export default async function HomePage() {
         <div className="hero-text">
           <span className="hero-eyebrow">New Collection · 2026</span>
           <h1 className="hero-headline">
-            Dress like<br />the leader<br />you <em>already</em><br />are.
+           Wear who<br />you’re<br /><em>becoming.</em>
           </h1>
           <p className="hero-sub">
-            Formal wear designed for women who move through boardrooms and break through ceilings. Structured, elegant, and built for the woman in charge.
+           Identity-led workwear for the modern professional woman.
           </p>
           <div className="hero-actions">
-            <Link href="/shop" className="btn-primary">Shop Now</Link>
+            <Link href="/shop" className="btn-primary">Shop the Collection</Link>
             <Link href="/about" className="btn-outline">Our Story</Link>
           </div>
         </div>
         <div className="hero-image" aria-hidden="true">
           <img src="/images/hero.png" alt="Formelle luxury formal wear" className="hero-photo" />
           <div className="hero-image-bg"></div>
-          <div className="hero-badge" aria-hidden="true">
-            <span>Dressed</span><span>to</span><span>Lead</span>
-          </div>
+      
         </div>
       </section>
 
@@ -67,12 +65,12 @@ export default async function HomePage() {
           TRUST BAR
       ===================================================== */}
       <div style={{ background: 'var(--parchment)', borderTop: '0.5px solid rgba(17,17,17,0.08)', borderBottom: '0.5px solid rgba(17,17,17,0.08)', display: 'grid', gridTemplateColumns: 'repeat(4,1fr)' }}>
-        {[
-          ['Free Shipping', 'On all orders'],
-          ['Made in India', 'For Indian women'],
-          ['Easy Exchange', 'Within 7 days'],
-          ['Concierge Order', 'Via WhatsApp'],
-        ].map(([title, sub], i) => (
+    {[
+  ['Designed for Indian Women', 'Proportions that work with you'],
+  ['Inclusive Sizing', 'XS–XXL'],
+  ['Concierge Order', 'Order via WhatsApp'],
+  ['Easy Exchange', 'Within 7 days'],
+].map(([title, sub], i) => (
           <div key={title} style={{ padding: '20px 24px', textAlign: 'center', borderRight: i < 3 ? '0.5px solid rgba(17,17,17,0.08)' : 'none' }}>
             <div style={{ fontSize: '8.5px', letterSpacing: '2.5px', textTransform: 'uppercase', fontWeight: 600, color: 'var(--noir)', marginBottom: '4px' }}>{title}</div>
             <div style={{ fontSize: '10px', color: 'rgba(44,44,42,0.5)', fontWeight: 300 }}>{sub}</div>
@@ -83,14 +81,48 @@ export default async function HomePage() {
       {/* =====================================================
           BEST SELLERS + NEW ARRIVALS
       ===================================================== */}
+      <ProductRail eyebrow="New at Formelle" title="The latest pieces" products={newArrivals} />
       <ProductRail eyebrow="Best Sellers" title="The pieces women keep coming back for" products={bestsellers} />
-      <ProductRail eyebrow="New Arrivals" title="Just landed" products={newArrivals} />
 
-      <div style={{ textAlign: 'center', padding: '8px 24px 64px' }}>
-        <Link href="/shop" className="btn-shop-collection">
-          Shop the Full Collection
-        </Link>
-      </div>
+      {/* =====================================================
+    IDENTITY — HOW DO YOU WANT TO SHOW UP?
+===================================================== */}
+{/* =====================================================
+    IDENTITY — HOW DO YOU WANT TO SHOW UP?
+===================================================== */}
+<section className="identity-section" aria-label="Explore Formelle identities">
+  <div className="identity-header">
+    <span className="identity-eyebrow">Identity-led workwear</span>
+    <h2 className="identity-title">
+      How do you want<br />
+      to <em>show up?</em>
+    </h2>
+    <p className="identity-intro">
+      The same woman. Different days. Different presence.
+    </p>
+  </div>
+
+  <div className="identity-grid">
+    {[
+      { id: 'confident',     n: '01', name: 'Confident',     line: 'I know what I’m doing.',        feel: 'Self-assured' },
+      { id: 'authoritative', n: '02', name: 'Authoritative', line: 'Take me seriously.',            feel: 'Commanding' },
+      { id: 'composed',      n: '03', name: 'Composed',      line: 'I’ve got this under control.',  feel: 'Calm + polished' },
+      { id: 'bold',          n: '04', name: 'Bold',          line: 'I’m not afraid to be seen.',    feel: 'Assertive + expressive' },
+      { id: 'magnetic',      n: '05', name: 'Magnetic',      line: 'You remember me.',              feel: 'Charismatic + memorable' },
+      { id: 'effortless',    n: '06', name: 'Effortless',    line: 'I didn’t have to try too hard.', feel: 'Natural + understated' },
+    ].map((i) => (
+      <Link key={i.id} href={`/wardrobe/${i.id}`} className={`identity-card id-${i.id}`}>
+        <span className="identity-number">{i.n}</span>
+        <span className="identity-arrow" aria-hidden="true">↗</span>
+        <div className="identity-card-content">
+          <h3>{i.name}</h3>
+          <p className="identity-line">&ldquo;{i.line}&rdquo;</p>
+          <p className="identity-feel">{i.feel}</p>
+        </div>
+      </Link>
+    ))}
+  </div>
+</section>
 
       {/* =====================================================
           TESTIMONIALS
@@ -100,37 +132,74 @@ export default async function HomePage() {
       {/* =====================================================
           OUR STORY
       ===================================================== */}
-      <section className="home-story" aria-label="Our Story">
-        <div className="home-story-copy">
-          <span className="home-story-eyebrow">Our Story</span>
-          <h2 className="home-story-title">
-            For the woman<br />who <em>leads,</em><br />not just works.
-          </h2>
+  {/* =====================================================
+    OUR PHILOSOPHY
+===================================================== */}
+<section className="home-story" aria-label="Our Philosophy">
+  <div className="home-story-copy">
 
-          <div className="story-points">
-            <div className="story-point">
-              <h3 className="story-point-title">Designed for Indian women</h3>
-              <p className="story-point-body">Every silhouette is cut for the Indian body — proportions, drape, and fit that actually works.</p>
-            </div>
-            <div className="story-point">
-              <h3 className="story-point-title">Structure without stiffness</h3>
-              <p className="story-point-body">Pieces that hold their shape through long days. Formal enough for boardrooms, comfortable enough to forget you&apos;re wearing them.</p>
-            </div>
-            <div className="story-point">
-              <h3 className="story-point-title">Made for the way you work</h3>
-              <p className="story-point-body">A wardrobe designed to move between the office, the airport, the dinner, and everything in between.</p>
-            </div>
-          </div>
+    <span className="home-story-eyebrow">Our Philosophy</span>
 
-          <Link href="/about" className="home-story-link">
-            Discover Our Story
-            <span aria-hidden="true">→</span>
-          </Link>
-        </div>
-        <div className="home-story-image">
-          <img src="/images/about-image.png" alt="Formelle woman wearing tailored workwear" />
-        </div>
-      </section>
+    <h2 className="home-story-title">
+      Your clothes<br />
+      speak <em>before</em><br />
+      you do.
+    </h2>
+
+    <p className="home-story-text">
+      Before you say a word, what you wear is already part of the
+      conversation. It shapes the signals you send — how you show up,
+      how you feel, and how you are perceived.
+    </p>
+
+    <div className="story-points">
+
+      <div className="story-point">
+        <h3 className="story-point-title">
+          Designed for Indian women
+        </h3>
+        <p className="story-point-body">
+          Every silhouette is considered for the Indian body —
+          proportions, drape and fit that work with you.
+        </p>
+      </div>
+
+      <div className="story-point">
+        <h3 className="story-point-title">
+          Structure without stiffness
+        </h3>
+        <p className="story-point-body">
+          Tailoring that holds its shape through long days,
+          without asking you to sacrifice comfort.
+        </p>
+      </div>
+
+      <div className="story-point">
+        <h3 className="story-point-title">
+          Made for how you work
+        </h3>
+        <p className="story-point-body">
+          Pieces designed to move with you — from the office
+          to the airport, dinner and everything in between.
+        </p>
+      </div>
+
+    </div>
+
+    <Link href="/about" className="home-story-link">
+      Discover Our Story
+      <span aria-hidden="true">→</span>
+    </Link>
+
+  </div>
+
+  <div className="home-story-image">
+    <img
+      src="/images/about-image.png"
+      alt="Formelle woman wearing tailored workwear"
+    />
+  </div>
+</section>
 
       {/* =====================================================
           FAQ
