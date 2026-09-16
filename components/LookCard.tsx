@@ -19,7 +19,7 @@ export default function LookCard({
   const hero = look.hero_image || look.products[0]?.images?.[0]
 
   return (
-    <Link href={`/looks/${look.slug}`} className="look-card">
+    <Link href={`/wardrobe/looks/${look.slug}`} className="look-card">
       <div className="look-card-img">
         {hero ? (
           // Single hero image if present, else a stacked composition of product images
