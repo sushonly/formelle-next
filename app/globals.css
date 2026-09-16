@@ -251,6 +251,11 @@ nav { position:sticky; top:0; z-index:100; background:var(--ivory); border-botto
 /* ── Mobile ── */
 @media (max-width: 900px) {
   .identity-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+ .identity-card { max-height: 260px; }
+  .identity-card-content h3 { font-size: 22px; }
+  .home-story { grid-template-columns: 1fr; }
+.home-story-copy { padding: 48px 24px; }
+.home-story-image { min-height: 320px; }
 }
 @media (max-width: 560px) {
   .identity-section { padding: 56px 6%; }
