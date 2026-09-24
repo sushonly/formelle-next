@@ -3,7 +3,9 @@ import { useState } from 'react'
 import { useCart } from '@/lib/CartContext'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
-import type { Product } from '@/lib/types' 
+import type { Product } from '@/lib/types'  
+import CouponInput from '@/components/CouponInput'
+import { checkCoupon } from '@/lib/coupons'
 
 const ALL_SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL']
 const WHATSAPP = '919989674894'
@@ -65,6 +67,11 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
   const catLabel = CAT_LABELS[product.category] || product.category
   const sgCat = SG_CAT_MAP[product.category] || 'tops'
   const price = product.price.toLocaleString('en-IN')
+  const [couponCode, setCouponCode] = useState<string | null>(null)
+  const coupon = couponCode ? checkCoupon(couponCode, product.price).coupon ?? null : null
+  const discount = coupon?.discount || 0
+  const finalTotal = product.price - discount
+  const finalPrice = finalTotal.toLocaleString('en-IN')
 
   function showToast(msg: string) {
     setToast(msg)
@@ -130,7 +137,9 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
       name: product.name,
       size: selectedSize,
       qty: 1,
-      price: product.price,
+     discount_code: coupon?.code || null,
+      discount_amount: discount,
+        total: finalTotal,
     }]
 
     try {
@@ -155,7 +164,7 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
     }
 
 
-   const msg = `Hi Formelle, I'd like to place an order.\n\n*ORDER DETAILS*\n- ${product.name} (${selectedSize}) = Rs.${price}\n\n*Total: Rs.${price}*\n\n*DELIVERY ADDRESS*\n${firstName} ${lastName}\n${phone}${email ? '\n' + email : ''}\n${address1}${address2 ? ', ' + address2 : ''}\n${city}, ${state} - ${pincode}\n\n*Pay via UPI to:* sushonly@okicici\nWe'll confirm your order once payment is received. Thank you.`
+      const msg = `Hi Formelle, I'd like to place an order.\n\n*ORDER DETAILS*\n- ${product.name} (${selectedSize}) = Rs.${price}${coupon ? `\nDiscount (${coupon.code}) = -Rs.${discount.toLocaleString('en-IN')}` : ''}\n\n*Total: Rs.${finalPrice}*\n\n*DELIVERY ADDRESS*\n${firstName} ${lastName}\n${phone}${email ? '\n' + email : ''}\n${address1}${address2 ? ', ' + address2 : ''}\n${city}, ${state} - ${pincode}\n\n*Pay via UPI to:* sushonly@okicici\nWe'll confirm your order once payment is received. Thank you.`
     window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank')
     setCheckoutOpen(false)
     showToast('Order saved — WhatsApp opened, please send your order')
@@ -411,7 +420,11 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
               <hr className="divider" />
               <p className="checkout-section-title">Order Summary</p>
               <div className="order-summary-item"><span>{product.name} ({selectedSize})</span><span style={{ fontFamily: 'var(--font-display)', fontSize: '18px' }}>₹{price}</span></div>
-              <div className="order-grand"><span>Total</span><span>₹{price}</span></div>
+              <CouponInput subtotal={product.price} applied={coupon} onApply={setCouponCode} onRemove={() => setCouponCode(null)} />
+              {coupon && (
+                <div className="price-line"><span>Discount ({coupon.code})</span><span>−₹{discount.toLocaleString('en-IN')}</span></div>
+              )}
+              <div className="order-grand"><span>Total</span><span>₹{finalPrice}</span></div>
               <hr className="divider" />
               <p className="checkout-section-title">Payment</p>
               <div className="wa-info">
