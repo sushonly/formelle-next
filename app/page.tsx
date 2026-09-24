@@ -69,7 +69,7 @@ export default async function HomePage() {
   ['Designed for Indian Women', 'Proportions that work with you'],
   ['Inclusive Sizing', 'XS–XXL'],
   ['Concierge Order', 'Order via WhatsApp'],
-  ['Easy Exchange', 'Within 7 days'],
+  ['Exchange', 'Within 4 days'],
 ].map(([title, sub], i) => (
           <div key={title} style={{ padding: '20px 24px', textAlign: 'center', borderRight: i < 3 ? '0.5px solid rgba(17,17,17,0.08)' : 'none' }}>
             <div style={{ fontSize: '8.5px', letterSpacing: '2.5px', textTransform: 'uppercase', fontWeight: 600, color: 'var(--noir)', marginBottom: '4px' }}>{title}</div>
@@ -228,8 +228,7 @@ export default async function HomePage() {
             <div className="footer-col-title">Help</div>
             <ul className="footer-links">
               <li><Link href="/#faq">FAQs</Link></li>
-              <li><Link href="/#faq">Shipping Info</Link></li>
-              <li><Link href="/#faq">Returns</Link></li>
+              <li><Link href="/#faq">Shipping and Exchange</Link></li>
               <li><a href="mailto:formellewear@outlook.com">Contact</a></li>
             </ul>
           </div>
