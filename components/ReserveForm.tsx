@@ -4,11 +4,12 @@ import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 
 const WHATSAPP = '919989674894'
-const EVENT = 'taj-sept-2026'
 const SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL']
-const WA_TEXT = encodeURIComponent('Hi Formelle, I saw you at the Taj.')
-
-export default function TajReserve({ pieces }: { pieces: string[] }) {
+const EVENT_LINES: Record<string, string> = {
+  taj: 'Stall 50 · Taj Krishna · 26–28 Sept',
+}
+export default function ReserveForm({ pieces, source }: { pieces: string[]; source: string }) {
+  const WA_TEXT = encodeURIComponent(source === 'taj' ? 'Hi Formelle, I saw you at the Taj.' : 'Hi Formelle.')
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
   const [piece, setPiece] = useState('')
@@ -31,7 +32,7 @@ export default function TajReserve({ pieces }: { pieces: string[] }) {
     setSaving(true)
     setSaveFailed(false)
     const { error } = await supabase.from('event_leads').insert([{
-      event: EVENT,
+      event: source,
       name: name.trim(),
       phone: digits,
       piece,
@@ -58,7 +59,7 @@ export default function TajReserve({ pieces }: { pieces: string[] }) {
       </header>
 
       <section className="taj-hero">
-        <div className="taj-eyebrow">Stall 50 · Taj Krishna · 26–28 Sept</div>
+                {EVENT_LINES[source] && <div className="taj-eyebrow">{EVENT_LINES[source]}</div>}
         <h1 className="taj-title">Good to<br /><em>meet you.</em></h1>
         <p className="taj-sub">Everything on the rail today, and the pieces that didn&rsquo;t fit on it.</p>
       </section>
