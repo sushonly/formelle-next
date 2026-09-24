@@ -24,6 +24,11 @@ const SG_DATA: Record<string, { headers: string[]; rows: string[][] }> = {
   },
 }
 const CAT_LABELS: Record<string, string> = { top: 'Top', trouser: 'Trouser', dress: 'Dress', blazer: 'Blazer' }
+const WEIGHT_COPY: Record<string, [string, string]> = {
+  light:      ['Light',      'Fluid drape, minimal structure.'],
+  mid:        ['Mid',        'Holds a clean line without stiffness.'],
+  structured: ['Structured', 'Firm hand. Keeps its shape through the day.'],
+}
 const SG_CAT_MAP: Record<string, string> = { trouser: 'trousers', dress: 'dresses' }
 
 export default function ProductDetail({ product, relatedProducts }: { product: Product; relatedProducts: Product[] }) {
@@ -157,16 +162,19 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
   }
 
   const accordions = [
-    product.fabric ? { title: 'Fabric & Material', content: product.fabric, tags: product.fabric_tags } : null,
+    (product.fabric || product.fabric_weight) ? {
+      title: 'Fabric & Material',
+      content: product.fabric,
+      tags: product.fabric_tags,
+      jsx: product.fabric_weight && WEIGHT_COPY[product.fabric_weight] ? (
+        <div style={{ marginTop: product.fabric ? '12px' : 0, padding: '10px 12px', background: 'rgba(140,115,85,0.1)', borderLeft: '2px solid var(--accent)' }}>
+          <strong>Weight:</strong> {WEIGHT_COPY[product.fabric_weight][0]} — {WEIGHT_COPY[product.fabric_weight][1]}
+        </div>
+      ) : null,
+    } : null,
     product.fit_notes ? { title: 'Fit & Sizing', content: product.fit_notes } : null,
     product.details?.length ? { title: 'Product Details', list: product.details } : null,
     product.care?.length ? { title: 'Care Instructions', list: product.care } : null,
-    { title: 'Shipping & Returns', jsx: (
-      <>
-        <strong>Shipping:</strong> Pan-India delivery. 4-7 business days. Free shipping.<br /><br />
-        <strong>Returns:</strong> Exchange within 7 days for sizing issues. Contact formellewear@outlook.com or WhatsApp.
-      </>
-    ) },
   ].filter(Boolean) as { title: string; content?: string; list?: string[]; tags?: string[]; jsx?: React.ReactNode }[]
 
   return (
@@ -257,6 +265,11 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
           <div className="cta-row">
             <button className="btn-add-bag" onClick={addToBag}>Add to Bag</button>
             <button className="btn-whatsapp-order" onClick={openCheckout}>💬 &nbsp; Order on WhatsApp</button>
+          </div>
+
+          <div className="policy-strip">
+            <p><span>Delivery</span>Free across India. 5–7 days outside Hyderabad.</p>
+            <p><span>Exchange</span>Within 4 days of delivery.</p>
           </div>
 
           <div className="accordion">
@@ -405,6 +418,7 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
                 <div className="wa-info-icon">💬</div>
                 <div className="wa-info-text"><strong>How it works</strong>WhatsApp opens with your full order pre-filled. Send it and we reply with our UPI ID within minutes.</div>
               </div>
+              <p className="secure-note" style={{ marginBottom: '12px' }}>Exchange within 4 days of delivery. Returns are not accepted.</p>
               <button className="btn-wa" onClick={sendToWhatsApp}>✅ &nbsp; Confirm Order on WhatsApp</button>
               <p className="secure-note">Zero extra charges · Pay via UPI after confirmation</p>
             </div>
