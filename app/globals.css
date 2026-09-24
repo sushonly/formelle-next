@@ -795,3 +795,15 @@ footer { background:var(--noir); padding:64px 80px 32px; }
 .taj-done { text-align: center; padding: 16px 0 8px; }
 .taj-done-title { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: 30px; color: var(--accent); margin-bottom: 8px; }
 .taj-foot { background: var(--noir); color: rgba(240,236,227,0.5); text-align: center; padding: 16px 0; font-size: 9.5px; letter-spacing: 2.5px; text-transform: uppercase; }
+
+/* ── Discount code at checkout ── */
+.coupon { margin: 4px 0 16px; }
+.coupon-label { display: block; font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; color: var(--noir); margin-bottom: 6px; }
+.coupon-row { display: flex; gap: 6px; }
+.coupon-input { flex: 1; min-width: 0; border: 1px solid rgba(17,17,17,0.2); background: #fff; padding: 11px 12px; font-family: var(--font-body); font-size: 14px; letter-spacing: 1px; text-transform: uppercase; color: var(--noir); border-radius: 0; }
+.coupon-apply { padding: 0 18px; background: var(--noir); color: var(--ivory); font-family: var(--font-body); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-weight: 500; border: none; cursor: pointer; }
+.coupon-error { font-size: 12px; color: #8a2f2f; margin-top: 6px; }
+.coupon-applied { display: flex; justify-content: space-between; align-items: center; margin: 4px 0 16px; padding: 11px 12px; border: 1px dashed rgba(17,17,17,0.3); font-size: 12px; color: var(--charcoal); }
+.coupon-applied strong { font-weight: 600; letter-spacing: 1px; color: var(--noir); }
+.coupon-remove { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: underline; color: var(--charcoal); background: none; border: none; cursor: pointer; }
+.price-line { display: flex; justify-content: space-between; font-size: 12px; color: var(--charcoal); margin-bottom: 6px; }
