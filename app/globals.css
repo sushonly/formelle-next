@@ -110,10 +110,10 @@ nav { position:sticky; top:0; z-index:100; background:var(--ivory); border-botto
 .about-tagline { position:absolute; bottom:40px; left:0; right:0; z-index:2; text-align:center; font-family:var(--font-display); font-size:16px; font-style:italic; color:var(--accent-light); letter-spacing:2px; }
 
 /* -----------------------------------------------
-   HOME — STORY
+   HOME â€” STORY
 ------------------------------------------------ */
 /* =========================================================
-   FORMELLE — FINAL HOME STORY + PHILOSOPHY FIX
+   FORMELLE â€” FINAL HOME STORY + PHILOSOPHY FIX
    Incremental override only.
    No font changes.
    ========================================================= */
@@ -168,14 +168,14 @@ nav { position:sticky; top:0; z-index:100; background:var(--ivory); border-botto
 .story-point-body { font-family:var(--font-body); font-size:11.5px; font-weight:300; line-height:1.65; color:rgba(240,236,227,0.55); margin:0; }
 
 /* =====================================================
-   IDENTITY — COMPACT HOMEPAGE VERSION
+   IDENTITY â€” COMPACT HOMEPAGE VERSION
 ===================================================== */
 
-/* ═══════════════════════════════════════════════════════════════════════
-   IDENTITY SECTION — tonal cards (homepage)
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   IDENTITY SECTION â€” tonal cards (homepage)
    Replace your existing .identity-section / .identity-grid / .identity-card
    rules in globals.css with this block.
-   ═══════════════════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 .identity-section {
   background: #F5F0EA;
@@ -198,13 +198,13 @@ nav { position:sticky; top:0; z-index:100; background:var(--ivory); border-botto
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
 }
 
-/* ── Card ── */
+/* â”€â”€ Card â”€â”€ */
 .identity-card {
   position: relative; height: 340px; overflow: hidden;
   display: block; text-decoration: none; color: #fff;
   background: #2C2C2A;
 }
-/* Tonal grounds per identity — swap any to a real image later via
+/* Tonal grounds per identity â€” swap any to a real image later via
    .id-xxx { background-image: url(...); background-size: cover; } */
 .id-confident     { background: #3A342E; }
 .id-authoritative { background: #1A1A1A; }
@@ -248,7 +248,7 @@ nav { position:sticky; top:0; z-index:100; background:var(--ivory); border-botto
   color: rgba(255,255,255,0.6); margin: 6px 0 0;
 }
 
-/* ── Mobile ── */
+/* â”€â”€ Mobile â”€â”€ */
 @media (max-width: 900px) {
   .identity-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
  .identity-card { max-height: 260px; }
@@ -566,14 +566,14 @@ footer { background:var(--noir); padding:64px 80px 32px; }
   .testi-card { width:82%; }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════
-   IDENTITY → LOOK  (Phase 2)   append to globals.css
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   IDENTITY â†’ LOOK  (Phase 2)   append to globals.css
    Uses the existing Formelle palette + type. No changes to existing rules.
-   ═══════════════════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 .identity-edit { max-width: 1180px; margin: 0 auto; padding: 32px 5% 80px; }
 
-/* ── Identity switcher ── */
+/* â”€â”€ Identity switcher â”€â”€ */
 .identity-switcher { text-align: center; margin-bottom: 44px; }
 .identity-switcher-label {
   font-family: 'Cormorant Garamond', serif; font-size: 15px; font-style: italic;
@@ -590,7 +590,7 @@ footer { background:var(--noir); padding:64px 80px 32px; }
 .identity-chip:hover { border-color: #111; color: #111; }
 .identity-chip.active { background: #111; color: #F0ECE3; border-color: #111; }
 
-/* ── Edit header ── */
+/* â”€â”€ Edit header â”€â”€ */
 .identity-edit-head {
   display: flex; justify-content: space-between; align-items: flex-end;
   flex-wrap: wrap; gap: 12px; margin-bottom: 34px;
@@ -606,7 +606,7 @@ footer { background:var(--noir); padding:64px 80px 32px; }
   color: rgba(17,17,17,0.5);
 }
 
-/* ── Look grid ── */
+/* â”€â”€ Look grid â”€â”€ */
 .look-grid {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
 }
@@ -643,12 +643,12 @@ footer { background:var(--noir); padding:64px 80px 32px; }
   border-bottom: 0.5px solid #111; padding-bottom: 3px;
 }
 
-/* ── Empty state ── */
+/* â”€â”€ Empty state â”€â”€ */
 .identity-edit-empty { padding: 60px 0; text-align: center; }
 .identity-edit-empty p { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: rgba(17,17,17,0.5); margin-bottom: 14px; }
 .identity-edit-shoplink { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #111; text-decoration: none; border-bottom: 0.5px solid #111; padding-bottom: 3px; }
 
-/* ── Mobile ── */
+/* â”€â”€ Mobile â”€â”€ */
 @media (max-width: 850px) {
   .look-grid { grid-template-columns: 1fr; gap: 30px; }
   .identity-switcher-row { flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; padding-bottom: 6px; }
@@ -659,14 +659,14 @@ footer { background:var(--noir); padding:64px 80px 32px; }
   .look-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    LOOK DETAIL  (Phase 3)   append to globals.css
-   ═══════════════════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 .look-detail { max-width: 1140px; margin: 0 auto; padding: 8px 5% 80px; }
 .look-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
 
-/* ── Left visual ── */
+/* â”€â”€ Left visual â”€â”€ */
 .look-detail-img { width: 100%; aspect-ratio: 3 / 4; background: #ece9e2; overflow: hidden; margin-bottom: 20px; }
 .look-detail-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .look-detail-stack { display: flex; width: 100%; height: 100%; }
@@ -683,7 +683,7 @@ footer { background:var(--noir); padding:64px 80px 32px; }
 .look-detail-why-label { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(17,17,17,0.4); margin-bottom: 8px; }
 .look-detail-why p { font-size: 13px; line-height: 1.7; color: rgba(17,17,17,0.6); }
 
-/* ── Right pieces ── */
+/* â”€â”€ Right pieces â”€â”€ */
 .look-detail-pieces-head { margin-bottom: 16px; }
 .look-detail-pieces-title { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(17,17,17,0.5); font-weight: 500; margin-bottom: 6px; }
 .look-detail-pieces-sub { font-size: 12px; color: rgba(17,17,17,0.45); }
@@ -721,15 +721,15 @@ footer { background:var(--noir); padding:64px 80px 32px; }
 .look-detail-add { width: 100%; background: #111; color: #F0ECE3; border: none; cursor: pointer; padding: 15px 0; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; font-family: inherit; transition: background 0.2s; }
 .look-detail-add:hover { background: #000; }
 
-/* ── Mobile ── */
+/* â”€â”€ Mobile â”€â”€ */
 @media (max-width: 850px) {
   .look-detail-grid { grid-template-columns: 1fr; gap: 32px; }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    THE WARDROBE PAGE   append to globals.css
    (reuses existing .identity-grid / .identity-card from the homepage)
-   ═══════════════════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 .wardrobe-hero {
   max-width: 800px; margin: 0 auto; padding: 72px 5% 40px; text-align: center;
@@ -756,3 +756,8 @@ footer { background:var(--noir); padding:64px 80px 32px; }
 @media (max-width: 640px) {
   .wardrobe-hero { padding: 48px 6% 28px; }
 }
+
+/* Policy strip under product CTAs */
+.policy-strip { margin: 4px 0 24px; padding: 14px 0; border-top: 0.5px solid rgba(17,17,17,0.1); border-bottom: 0.5px solid rgba(17,17,17,0.1); }
+.policy-strip p { font-size: 11px; line-height: 1.9; color: rgba(44,44,42,0.7); }
+.policy-strip span { display: inline-block; min-width: 72px; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; color: var(--noir); }
