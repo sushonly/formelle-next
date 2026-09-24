@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { supabase } from '@/lib/supabase'
-import ReserveForm from '@/components/ReserveForm'
+import ReserveForm from '@/components/ReserveForm' 
 
 export const metadata: Metadata = {
   title: 'Reserve your size | Formelle',
