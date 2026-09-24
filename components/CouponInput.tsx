@@ -41,7 +41,7 @@ export default function CouponInput({
           className="coupon-input"
           type="text"
           autoCapitalize="characters"
-          placeholder="FORMELLE10"
+          placeholder="Enter Coupon Code"
           value={code}
           onChange={e => { setCode(e.target.value); setError('') }}
           onKeyDown={e => { if (e.key === 'Enter') { e.preventDefault(); apply() } }}
