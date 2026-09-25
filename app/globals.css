@@ -831,7 +831,7 @@ footer { background:var(--noir); padding:64px 80px 32px; }
 .brief-opt:hover, .brief-opt.on { color: var(--ivory); background: rgba(240,236,227,0.08); }
 .brief-backdrop { display: none; }
 
-.brief-result { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 40px; align-items: end; max-width: 1080px; margin: 64px auto 0; padding-top: 40px; border-top: 0.5px solid rgba(17,17,17,0.15); text-align: left; }
+.brief-result { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 40px; align-items: center; max-width: 1080px; margin: 64px auto 0; padding-top: 40px; border-top: 0.5px solid rgba(17,17,17,0.15); text-align: left; }
 .brief-looks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 .brief-look { display: block; position: relative; aspect-ratio: 3 / 4; overflow: hidden; background: #e8e2d8; color: var(--ivory); }
 .brief-look img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
