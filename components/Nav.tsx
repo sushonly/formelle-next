@@ -19,8 +19,8 @@ export default function Nav() {
           </span>
         </Link>
         <ul className="nav-links">
-          <li><Link href="/shop">Shop</Link></li>
           <li><Link href="/wardrobe">The Wardrobe</Link></li>
+           <li><Link href="/shop">Shop</Link></li>
           <li><Link href="/about">About</Link></li>
           <li><Link href="/#faq">FAQ</Link></li>
           <li><a href="https://instagram.com/formellewear" target="_blank" rel="noopener noreferrer">Instagram</a></li>
