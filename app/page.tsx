@@ -69,7 +69,7 @@ export default async function HomePage() {
           </div>
         </div>
         <div className="hero-image" aria-hidden="true">
-          <img src="/images/hero.png" alt="Formelle luxury formal wear" className="hero-photo" />
+          <img src="/images/hero.png" alt="FWoman in Formelle tailored workwear" className="hero-photo" />
           <div className="hero-image-bg"></div>
       
         </div>
