@@ -5,6 +5,8 @@ import ProductRail from '@/components/ProductRail'
 import TestimonialsRail from '@/components/TestimonialsRail'
 import FaqSection from '@/components/FaqSection'
 import Link from 'next/link'
+import IdentityBrief, { type BriefLook } from '@/components/IdentityBrief'
+import { getAllLooks, lookTitle } from '@/lib/looks'
 
 export const revalidate = 60
 
@@ -29,6 +31,18 @@ async function getTestimonials() {
 export default async function HomePage() {
   const products = await getProducts()
   const testimonials = await getTestimonials()
+    const looks = await getAllLooks()
+
+  // Up to 2 looks per identity for the "How do you want to show up?" section
+  const looksByIdentity: Record<string, BriefLook[]> = {}
+  for (const look of looks) {
+    const image = look.hero_image || look.products[0]?.images?.[0] || null
+    for (const id of look.identities) {
+      if (!looksByIdentity[id]) looksByIdentity[id] = []
+      if (looksByIdentity[id].length < 2) looksByIdentity[id].push({ slug: look.slug, title: lookTitle(look), image })
+    }
+  }
+  
 
   const bestsellers = products.filter(p => p.is_bestseller)
   const newArrivals = products.filter(p => (p.tag || '').toLowerCase() === 'new')
@@ -60,7 +74,12 @@ export default async function HomePage() {
       
         </div>
       </section>
-
+      
+      {/* =====================================================
+          IDENTITY — HOW DO YOU WANT TO SHOW UP?
+      ===================================================== */}
+      <IdentityBrief looksByIdentity={looksByIdentity} />
+      
       {/* =====================================================
           TRUST BAR
       ===================================================== */}
@@ -84,45 +103,7 @@ export default async function HomePage() {
       <ProductRail eyebrow="New at Formelle" title="The latest pieces" products={newArrivals} />
       <ProductRail eyebrow="Best Sellers" title="The pieces women keep coming back for" products={bestsellers} />
 
-      {/* =====================================================
-    IDENTITY — HOW DO YOU WANT TO SHOW UP?
-===================================================== */}
-{/* =====================================================
-    IDENTITY — HOW DO YOU WANT TO SHOW UP?
-===================================================== */}
-<section className="identity-section" aria-label="Explore Formelle identities">
-  <div className="identity-header">
-    <span className="identity-eyebrow">Identity-led workwear</span>
-    <h2 className="identity-title">
-      How do you want<br />
-      to <em>show up?</em>
-    </h2>
-    <p className="identity-intro">
-      The same woman. Different days. Different presence.
-    </p>
-  </div>
-
-  <div className="identity-grid">
-    {[
-      { id: 'confident',     n: '01', name: 'Confident',     line: 'I know what I’m doing.',        feel: 'Self-assured' },
-      { id: 'authoritative', n: '02', name: 'Authoritative', line: 'Take me seriously.',            feel: 'Commanding' },
-      { id: 'composed',      n: '03', name: 'Composed',      line: 'I’ve got this under control.',  feel: 'Calm + polished' },
-      { id: 'bold',          n: '04', name: 'Bold',          line: 'I’m not afraid to be seen.',    feel: 'Assertive + expressive' },
-      { id: 'magnetic',      n: '05', name: 'Magnetic',      line: 'You remember me.',              feel: 'Charismatic + memorable' },
-      { id: 'effortless',    n: '06', name: 'Effortless',    line: 'I didn’t have to try too hard.', feel: 'Natural + understated' },
-    ].map((i) => (
-      <Link key={i.id} href={`/wardrobe/${i.id}`} className={`identity-card id-${i.id}`}>
-        <span className="identity-number">{i.n}</span>
-        <span className="identity-arrow" aria-hidden="true">↗</span>
-        <div className="identity-card-content">
-          <h3>{i.name}</h3>
-          <p className="identity-line">&ldquo;{i.line}&rdquo;</p>
-          <p className="identity-feel">{i.feel}</p>
-        </div>
-      </Link>
-    ))}
-  </div>
-</section>
+  
 
       {/* =====================================================
           TESTIMONIALS
