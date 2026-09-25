@@ -807,3 +807,50 @@ footer { background:var(--noir); padding:64px 80px 32px; }
 .coupon-applied strong { font-weight: 600; letter-spacing: 1px; color: var(--noir); }
 .coupon-remove { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: underline; color: var(--charcoal); background: none; border: none; cursor: pointer; }
 .price-line { display: flex; justify-content: space-between; font-size: 12px; color: var(--charcoal); margin-bottom: 6px; }
+
+
+/* ── Identity brief: "Tomorrow, I walk into…" (homepage) ── */
+.brief { background: var(--parchment); padding: 88px 6% 80px; text-align: center; position: relative; }
+.brief-eyebrow { display: block; font-size: 9.5px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 500; color: var(--accent); margin-bottom: 22px; }
+.brief-sentence { font-family: var(--font-display); font-weight: 300; font-size: clamp(28px, 4.2vw, 50px); line-height: 1.4; color: rgba(17,17,17,0.5); max-width: 980px; margin: 0 auto; }
+.brief-slot-wrap { position: relative; display: inline-block; }
+.brief-slot { font: inherit; color: var(--noir); background: none; border: none; border-bottom: 1px solid var(--noir); padding: 0 0 1px; cursor: pointer; transition: color 0.3s, border-color 0.3s, font-weight 0.3s, letter-spacing 0.3s; }
+.brief-slot:hover, .brief-slot[aria-expanded="true"] { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* Type register — the line looks like the presence it describes */
+.brief-reg-confident     { font-weight: 400; font-style: normal; }
+.brief-reg-authoritative { font-weight: 500; font-style: normal; letter-spacing: 0.5px; }
+.brief-reg-composed      { font-weight: 300; font-style: normal; }
+.brief-reg-bold          { font-weight: 500; font-style: italic; }
+.brief-reg-magnetic      { font-weight: 400; font-style: italic; }
+.brief-reg-effortless    { font-weight: 300; font-style: italic; }
+
+.brief-menu { position: absolute; left: 50%; transform: translateX(-50%); top: calc(100% + 10px); z-index: 30; display: flex; flex-direction: column; min-width: 300px; background: var(--noir); padding: 10px 0; text-align: left; box-shadow: 0 18px 40px rgba(17,17,17,0.18); }
+.brief-menu-title { display: none; }
+.brief-opt { font-family: var(--font-display); font-size: 21px; font-weight: 300; text-align: left; color: rgba(240,236,227,0.7); background: none; border: none; padding: 9px 22px; cursor: pointer; white-space: nowrap; }
+.brief-opt:hover, .brief-opt.on { color: var(--ivory); background: rgba(240,236,227,0.08); }
+.brief-backdrop { display: none; }
+
+.brief-result { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 40px; align-items: end; max-width: 1080px; margin: 64px auto 0; padding-top: 40px; border-top: 0.5px solid rgba(17,17,17,0.15); text-align: left; }
+.brief-looks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.brief-look { display: block; position: relative; aspect-ratio: 3 / 4; overflow: hidden; background: #e8e2d8; color: var(--ivory); }
+.brief-look img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
+.brief-look:hover img { transform: scale(1.04); }
+.brief-look-title { position: absolute; left: 0; right: 0; bottom: 0; padding: 28px 14px 12px; font-size: 9.5px; letter-spacing: 1.5px; text-transform: uppercase; background: linear-gradient(transparent, rgba(17,17,17,0.6)); }
+.brief-look-empty { display: block; width: 100%; height: 100%; background: var(--charcoal); }
+.brief-look-soon { grid-column: 1 / -1; aspect-ratio: auto; min-height: 200px; display: flex; align-items: center; justify-content: center; background: transparent; border: 0.5px dashed rgba(17,17,17,0.25); color: rgba(44,44,42,0.6); font-family: var(--font-display); font-style: italic; font-size: 20px; padding: 24px; text-align: center; }
+.brief-tag { font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; font-weight: 500; color: var(--accent); }
+.brief-title { font-family: var(--font-display); font-weight: 300; font-size: 36px; line-height: 1.1; margin: 10px 0 10px; color: var(--noir); }
+.brief-sub { font-size: 13px; line-height: 1.8; color: rgba(44,44,42,0.65); margin-bottom: 22px; }
+.brief-cta { display: inline-block; background: var(--noir); color: var(--ivory); padding: 15px 26px; font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 500; }
+
+@media (max-width: 768px) {
+  .brief { padding: 60px 6% 56px; }
+  .brief-sentence { font-size: 28px; }
+  .brief-result { grid-template-columns: 1fr; gap: 24px; margin-top: 40px; padding-top: 28px; }
+  /* Menus become a bottom sheet on phones */
+  .brief-backdrop { display: block; position: fixed; inset: 0; background: rgba(17,17,17,0.45); z-index: 90; }
+  .brief-menu { position: fixed; left: 0; right: 0; bottom: 0; top: auto; transform: none; z-index: 100; min-width: 0; padding: 20px 0 calc(24px + env(safe-area-inset-bottom, 0px)); }
+  .brief-menu-title { display: block; font-size: 9.5px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 500; color: rgba(240,236,227,0.5); padding: 0 24px 12px; font-family: var(--font-body); }
+  .brief-opt { font-size: 22px; padding: 12px 24px; white-space: normal; }
+}
