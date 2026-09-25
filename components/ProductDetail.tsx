@@ -190,7 +190,7 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
     <main>
       <nav className="breadcrumb" aria-label="Breadcrumb">
         <Link href="/">Home</Link> <span>/</span>
-        <Link href="/#shop">Shop</Link> <span>/</span>
+        <Link href="/shop">Shop</Link> <span>/</span>
         <span>{product.name}</span>
       </nav>
 
@@ -308,7 +308,8 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
         <section className="also-like">
           <div className="also-header">
             <h2 className="also-title">You may <em>also like</em></h2>
-            <Link href="/#shop" style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'var(--charcoal)', fontWeight: 500, textDecoration: 'underline' }}>View all</Link>
+          
+          <Link href="/shop" style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'var(--charcoal)', fontWeight: 500, textDecoration: 'underline' }}>View all</Link>
           </div>
           <div className="also-grid">
             {relatedProducts.slice(0, 4).map(p => (
