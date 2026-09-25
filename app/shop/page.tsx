@@ -9,7 +9,7 @@ export const revalidate = 60
 
 export const metadata: Metadata = {
   title: "Shop — Formelle | Women's Formal Wear India",
-  description: 'Browse the full Formelle collection — formal trousers, tops, dresses, and blazers for women in India. Free shipping, all sizes available.',
+   description: 'Shop Formelle workwear for women in India: formal trousers, tops, dresses and blazers. XS to XXL, made to measure beyond. Free delivery across India.',
 }
 
 async function getProducts(): Promise<Product[]> {
