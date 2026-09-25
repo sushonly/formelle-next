@@ -92,7 +92,7 @@ export default function IdentityBrief({ looksByIdentity }: { looksByIdentity: Re
               {l.image
                 ? <img src={l.image} alt={l.title} loading="lazy" />
                 : <span className="brief-look-empty" />}
-              <span className="brief-look-title">{l.title}</span>
+              <span className="brief-look-cta">Shop the look <span aria-hidden="true">→</span></span>
             </Link>
           )) : (
             <div className="brief-look brief-look-soon"><span>New looks for this edit are on their way.</span></div>
