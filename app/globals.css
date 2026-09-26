@@ -110,10 +110,10 @@ nav { position:sticky; top:0; z-index:100; background:var(--ivory); border-botto
 .about-tagline { position:absolute; bottom:40px; left:0; right:0; z-index:2; text-align:center; font-family:var(--font-display); font-size:16px; font-style:italic; color:var(--accent-light); letter-spacing:2px; }
 
 /* -----------------------------------------------
-   HOME — STORY
+   HOME â€” STORY
 ------------------------------------------------ */
 /* =========================================================
-   FORMELLE — FINAL HOME STORY + PHILOSOPHY FIX
+   FORMELLE â€” FINAL HOME STORY + PHILOSOPHY FIX
    Incremental override only.
    No font changes.
    ========================================================= */
@@ -168,14 +168,14 @@ nav { position:sticky; top:0; z-index:100; background:var(--ivory); border-botto
 .story-point-body { font-family:var(--font-body); font-size:11.5px; font-weight:300; line-height:1.65; color:rgba(240,236,227,0.55); margin:0; }
 
 /* =====================================================
-   IDENTITY — COMPACT HOMEPAGE VERSION
+   IDENTITY â€” COMPACT HOMEPAGE VERSION
 ===================================================== */
 
-/* ═══════════════════════════════════════════════════════════════════════
-   IDENTITY SECTION — tonal cards (homepage)
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   IDENTITY SECTION â€” tonal cards (homepage)
    Replace your existing .identity-section / .identity-grid / .identity-card
    rules in globals.css with this block.
-   ═══════════════════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 .identity-section {
   background: #F5F0EA;
@@ -198,13 +198,13 @@ nav { position:sticky; top:0; z-index:100; background:var(--ivory); border-botto
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
 }
 
-/* ── Card ── */
+/* â”€â”€ Card â”€â”€ */
 .identity-card {
   position: relative; height: 340px; overflow: hidden;
   display: block; text-decoration: none; color: #fff;
   background: #2C2C2A;
 }
-/* Tonal grounds per identity — swap any to a real image later via
+/* Tonal grounds per identity â€” swap any to a real image later via
    .id-xxx { background-image: url(...); background-size: cover; } */
 .id-confident     { background: #3A342E; }
 .id-authoritative { background: #1A1A1A; }
@@ -248,7 +248,7 @@ nav { position:sticky; top:0; z-index:100; background:var(--ivory); border-botto
   color: rgba(255,255,255,0.6); margin: 6px 0 0;
 }
 
-/* ── Mobile ── */
+/* â”€â”€ Mobile â”€â”€ */
 @media (max-width: 900px) {
   .identity-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
  .identity-card { max-height: 260px; }
@@ -566,14 +566,14 @@ footer { background:var(--noir); padding:64px 80px 32px; }
   .testi-card { width:82%; }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════
-   IDENTITY → LOOK  (Phase 2)   append to globals.css
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   IDENTITY â†’ LOOK  (Phase 2)   append to globals.css
    Uses the existing Formelle palette + type. No changes to existing rules.
-   ═══════════════════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 .identity-edit { max-width: 1180px; margin: 0 auto; padding: 32px 5% 80px; }
 
-/* ── Identity switcher ── */
+/* â”€â”€ Identity switcher â”€â”€ */
 .identity-switcher { text-align: center; margin-bottom: 44px; }
 .identity-switcher-label {
   font-family: 'Cormorant Garamond', serif; font-size: 15px; font-style: italic;
@@ -590,7 +590,7 @@ footer { background:var(--noir); padding:64px 80px 32px; }
 .identity-chip:hover { border-color: #111; color: #111; }
 .identity-chip.active { background: #111; color: #F0ECE3; border-color: #111; }
 
-/* ── Edit header ── */
+/* â”€â”€ Edit header â”€â”€ */
 .identity-edit-head {
   display: flex; justify-content: space-between; align-items: flex-end;
   flex-wrap: wrap; gap: 12px; margin-bottom: 34px;
@@ -606,7 +606,7 @@ footer { background:var(--noir); padding:64px 80px 32px; }
   color: rgba(17,17,17,0.5);
 }
 
-/* ── Look grid ── */
+/* â”€â”€ Look grid â”€â”€ */
 .look-grid {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
 }
@@ -643,12 +643,12 @@ footer { background:var(--noir); padding:64px 80px 32px; }
   border-bottom: 0.5px solid #111; padding-bottom: 3px;
 }
 
-/* ── Empty state ── */
+/* â”€â”€ Empty state â”€â”€ */
 .identity-edit-empty { padding: 60px 0; text-align: center; }
 .identity-edit-empty p { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: rgba(17,17,17,0.5); margin-bottom: 14px; }
 .identity-edit-shoplink { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #111; text-decoration: none; border-bottom: 0.5px solid #111; padding-bottom: 3px; }
 
-/* ── Mobile ── */
+/* â”€â”€ Mobile â”€â”€ */
 @media (max-width: 850px) {
   .look-grid { grid-template-columns: 1fr; gap: 30px; }
   .identity-switcher-row { flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; padding-bottom: 6px; }
@@ -659,14 +659,14 @@ footer { background:var(--noir); padding:64px 80px 32px; }
   .look-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    LOOK DETAIL  (Phase 3)   append to globals.css
-   ═══════════════════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 .look-detail { max-width: 1140px; margin: 0 auto; padding: 8px 5% 80px; }
 .look-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
 
-/* ── Left visual ── */
+/* â”€â”€ Left visual â”€â”€ */
 .look-detail-img { width: 100%; aspect-ratio: 3 / 4; background: #ece9e2; overflow: hidden; margin-bottom: 20px; }
 .look-detail-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .look-detail-stack { display: flex; width: 100%; height: 100%; }
@@ -683,7 +683,7 @@ footer { background:var(--noir); padding:64px 80px 32px; }
 .look-detail-why-label { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(17,17,17,0.4); margin-bottom: 8px; }
 .look-detail-why p { font-size: 13px; line-height: 1.7; color: rgba(17,17,17,0.6); }
 
-/* ── Right pieces ── */
+/* â”€â”€ Right pieces â”€â”€ */
 .look-detail-pieces-head { margin-bottom: 16px; }
 .look-detail-pieces-title { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(17,17,17,0.5); font-weight: 500; margin-bottom: 6px; }
 .look-detail-pieces-sub { font-size: 12px; color: rgba(17,17,17,0.45); }
@@ -721,15 +721,15 @@ footer { background:var(--noir); padding:64px 80px 32px; }
 .look-detail-add { width: 100%; background: #111; color: #F0ECE3; border: none; cursor: pointer; padding: 15px 0; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; font-family: inherit; transition: background 0.2s; }
 .look-detail-add:hover { background: #000; }
 
-/* ── Mobile ── */
+/* â”€â”€ Mobile â”€â”€ */
 @media (max-width: 850px) {
   .look-detail-grid { grid-template-columns: 1fr; gap: 32px; }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    THE WARDROBE PAGE   append to globals.css
    (reuses existing .identity-grid / .identity-card from the homepage)
-   ═══════════════════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 .wardrobe-hero {
   max-width: 800px; margin: 0 auto; padding: 72px 5% 40px; text-align: center;
@@ -755,4 +755,104 @@ footer { background:var(--noir); padding:64px 80px 32px; }
 
 @media (max-width: 640px) {
   .wardrobe-hero { padding: 48px 6% 28px; }
+}
+
+/* Policy strip under product CTAs */
+.policy-strip { margin: 4px 0 24px; padding: 14px 0; border-top: 0.5px solid rgba(17,17,17,0.1); border-bottom: 0.5px solid rgba(17,17,17,0.1); }
+.policy-strip p { font-size: 11px; line-height: 1.9; color: rgba(44,44,42,0.7); }
+.policy-strip span { display: inline-block; min-width: 72px; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; color: var(--noir); }
+
+/* ── /taj exhibition landing page ── */
+.taj { max-width: 480px; margin: 0 auto; min-height: 100vh; background: var(--parchment); color: var(--noir); font-family: var(--font-body); font-weight: 300; }
+.taj-head { display: flex; flex-direction: column; align-items: center; padding: 20px 0 14px; border-bottom: 0.5px solid rgba(17,17,17,0.1); }
+.taj-wordmark { font-family: var(--font-display); font-weight: 500; font-size: 15px; letter-spacing: 5px; color: var(--noir); }
+.taj-rule { width: 92px; height: 0.5px; background: rgba(17,17,17,0.3); margin: 4px 0 3px; }
+.taj-tagline { font-family: var(--font-display); font-style: italic; font-size: 12px; opacity: 0.6; }
+.taj-hero { background: var(--noir); color: var(--ivory); padding: 36px 24px 32px; }
+.taj-eyebrow { font-size: 9.5px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 500; color: var(--accent-light); margin-bottom: 14px; }
+.taj-eyebrow-dark { color: var(--accent); margin-bottom: 8px; }
+.taj-title { font-family: var(--font-display); font-weight: 300; font-size: 42px; line-height: 1.05; margin-bottom: 12px; }
+.taj-title em { color: var(--accent-light); }
+.taj-sub { font-size: 12.5px; line-height: 1.8; color: rgba(240,236,227,0.7); }
+.taj-actions { padding: 24px 24px 22px; border-bottom: 0.5px solid rgba(17,17,17,0.12); display: flex; flex-direction: column; gap: 8px; }
+.taj-btn { display: block; width: 100%; text-align: center; padding: 14px 0; font-family: var(--font-body); font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 500; border: 1px solid var(--noir); color: var(--noir); background: transparent; cursor: pointer; }
+.taj-btn-solid { background: var(--noir); color: var(--ivory); }
+.taj-btn:disabled { opacity: 0.6; }
+.taj-reserve { padding: 26px 24px 30px; }
+.taj-reserve-title { font-family: var(--font-display); font-weight: 300; font-size: 30px; line-height: 1.1; margin-bottom: 8px; }
+.taj-reserve-title em { color: var(--accent); }
+.taj-reserve-sub { font-size: 12.5px; line-height: 1.8; color: rgba(44,44,42,0.7); margin-bottom: 20px; }
+.taj-label { display: block; font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; margin-bottom: 6px; }
+.taj-input { width: 100%; background: #fff; border: 1px solid rgba(17,17,17,0.15); border-radius: 0; padding: 12px; font-family: var(--font-body); font-size: 16px; color: var(--noir); margin-bottom: 14px; -webkit-appearance: none; appearance: none; }
+.taj-sizes { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; margin-bottom: 6px; }
+.taj-size { padding: 10px 0; font-family: var(--font-body); font-size: 11px; letter-spacing: 1px; border: 1px solid rgba(17,17,17,0.2); background: transparent; color: var(--charcoal); cursor: pointer; }
+.taj-size.on { background: var(--noir); color: var(--ivory); border-color: var(--noir); }
+.taj-size-wide { width: 100%; margin-bottom: 16px; }
+.taj-submit { margin-top: 6px; }
+.taj-error { font-size: 12px; color: #8a2f2f; margin: -6px 0 12px; }
+.taj-error a { text-decoration: underline; }
+.taj-fine { font-size: 10.5px; text-align: center; color: rgba(44,44,42,0.5); margin-top: 8px; }
+.taj-done { text-align: center; padding: 16px 0 8px; }
+.taj-done-title { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: 30px; color: var(--accent); margin-bottom: 8px; }
+.taj-foot { background: var(--noir); color: rgba(240,236,227,0.5); text-align: center; padding: 16px 0; font-size: 9.5px; letter-spacing: 2.5px; text-transform: uppercase; }
+
+/* ── Discount code at checkout ── */
+.coupon { margin: 4px 0 16px; }
+.coupon-label { display: block; font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; color: var(--noir); margin-bottom: 6px; }
+.coupon-row { display: flex; gap: 6px; }
+.coupon-input { flex: 1; min-width: 0; border: 1px solid rgba(17,17,17,0.2); background: #fff; padding: 11px 12px; font-family: var(--font-body); font-size: 14px; letter-spacing: 1px; text-transform: uppercase; color: var(--noir); border-radius: 0; }
+.coupon-apply { padding: 0 18px; background: var(--noir); color: var(--ivory); font-family: var(--font-body); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-weight: 500; border: none; cursor: pointer; }
+.coupon-error { font-size: 12px; color: #8a2f2f; margin-top: 6px; }
+.coupon-applied { display: flex; justify-content: space-between; align-items: center; margin: 4px 0 16px; padding: 11px 12px; border: 1px dashed rgba(17,17,17,0.3); font-size: 12px; color: var(--charcoal); }
+.coupon-applied strong { font-weight: 600; letter-spacing: 1px; color: var(--noir); }
+.coupon-remove { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: underline; color: var(--charcoal); background: none; border: none; cursor: pointer; }
+.price-line { display: flex; justify-content: space-between; font-size: 12px; color: var(--charcoal); margin-bottom: 6px; }
+
+
+/* ── Identity brief: "Tomorrow, I walk into…" (homepage) ── */
+.brief { background: var(--parchment); padding: 88px 6% 80px; text-align: center; position: relative; }
+.brief-eyebrow { display: block; font-size: 9.5px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 500; color: var(--accent); margin-bottom: 22px; }
+.brief-sentence { font-family: var(--font-display); font-weight: 300; font-size: clamp(28px, 4.2vw, 50px); line-height: 1.4; color: rgba(17,17,17,0.5); max-width: 980px; margin: 0 auto; }
+.brief-slot-wrap { position: relative; display: inline-block; }
+.brief-slot { font: inherit; color: var(--noir); background: none; border: none; border-bottom: 1px solid var(--noir); padding: 0 0 1px; cursor: pointer; transition: color 0.3s, border-color 0.3s, font-weight 0.3s, letter-spacing 0.3s; }
+.brief-slot:hover, .brief-slot[aria-expanded="true"] { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* Type register — the line looks like the presence it describes */
+.brief-reg-confident     { font-weight: 400; font-style: normal; }
+.brief-reg-authoritative { font-weight: 500; font-style: normal; letter-spacing: 0.5px; }
+.brief-reg-composed      { font-weight: 300; font-style: normal; }
+.brief-reg-bold          { font-weight: 500; font-style: italic; }
+.brief-reg-magnetic      { font-weight: 400; font-style: italic; }
+.brief-reg-effortless    { font-weight: 300; font-style: italic; }
+
+.brief-menu { position: absolute; left: 50%; transform: translateX(-50%); top: calc(100% + 10px); z-index: 30; display: flex; flex-direction: column; min-width: 300px; background: var(--noir); padding: 10px 0; text-align: left; box-shadow: 0 18px 40px rgba(17,17,17,0.18); }
+.brief-menu-title { display: none; }
+.brief-opt { font-family: var(--font-display); font-size: 21px; font-weight: 300; text-align: left; color: rgba(240,236,227,0.7); background: none; border: none; padding: 9px 22px; cursor: pointer; white-space: nowrap; }
+.brief-opt:hover, .brief-opt.on { color: var(--ivory); background: rgba(240,236,227,0.08); }
+.brief-backdrop { display: none; }
+
+.brief-result { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 40px; align-items: center; max-width: 1080px; margin: 64px auto 0; padding-top: 40px; border-top: 0.5px solid rgba(17,17,17,0.15); text-align: left; }
+.brief-looks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.brief-look { display: block; position: relative; aspect-ratio: 3 / 4; overflow: hidden; background: #e8e2d8; color: var(--ivory); }
+.brief-look img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
+.brief-look:hover img { transform: scale(1.04); }
+.brief-look-cta { position: absolute; left: 0; right: 0; bottom: 0; padding: 36px 16px 14px; font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; font-weight: 500; color: var(--ivory); background: linear-gradient(transparent, rgba(17,17,17,0.55)); opacity: 0; transition: opacity 0.4s; }
+.brief-look:hover .brief-look-cta { opacity: 1; }
+.brief-look-empty { display: block; width: 100%; height: 100%; background: var(--charcoal); }
+.brief-look-soon { grid-column: 1 / -1; aspect-ratio: auto; min-height: 200px; display: flex; align-items: center; justify-content: center; background: transparent; border: 0.5px dashed rgba(17,17,17,0.25); color: rgba(44,44,42,0.6); font-family: var(--font-display); font-style: italic; font-size: 20px; padding: 24px; text-align: center; }
+.brief-tag { font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; font-weight: 500; color: var(--accent); }
+.brief-title { font-family: var(--font-display); font-weight: 300; font-size: 36px; line-height: 1.1; margin: 10px 0 10px; color: var(--noir); }
+.brief-sub { font-size: 13px; line-height: 1.8; color: rgba(44,44,42,0.65); margin-bottom: 22px; }
+.brief-cta { display: inline-block; background: var(--noir); color: var(--ivory); padding: 15px 26px; font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 500; }
+
+@media (max-width: 768px) {
+  .brief { padding: 60px 6% 56px; }
+  .brief-sentence { font-size: 28px; }
+  .brief-result { grid-template-columns: 1fr; gap: 24px; margin-top: 40px; padding-top: 28px; }
+  /* Menus become a bottom sheet on phones */
+  .brief-backdrop { display: block; position: fixed; inset: 0; background: rgba(17,17,17,0.45); z-index: 90; }
+  .brief-menu { position: fixed; left: 0; right: 0; bottom: 0; top: auto; transform: none; z-index: 100; min-width: 0; padding: 20px 0 calc(24px + env(safe-area-inset-bottom, 0px)); }
+  .brief-menu-title { display: block; font-size: 9.5px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 500; color: rgba(240,236,227,0.5); padding: 0 24px 12px; font-family: var(--font-body); }
+  .brief-opt { font-size: 22px; padding: 12px 24px; white-space: normal; }
+   .brief-look-cta { opacity: 1; }
 }

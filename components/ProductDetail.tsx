@@ -3,7 +3,9 @@ import { useState } from 'react'
 import { useCart } from '@/lib/CartContext'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
-import type { Product } from '@/lib/types' 
+import type { Product } from '@/lib/types'  
+import CouponInput from '@/components/CouponInput'
+import { checkCoupon } from '@/lib/coupons'
 
 const ALL_SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL']
 const WHATSAPP = '919989674894'
@@ -24,6 +26,11 @@ const SG_DATA: Record<string, { headers: string[]; rows: string[][] }> = {
   },
 }
 const CAT_LABELS: Record<string, string> = { top: 'Top', trouser: 'Trouser', dress: 'Dress', blazer: 'Blazer' }
+const WEIGHT_COPY: Record<string, [string, string]> = {
+  light:      ['Light',      'Fluid drape, minimal structure.'],
+  mid:        ['Mid',        'Holds a clean line without stiffness.'],
+  structured: ['Structured', 'Firm hand. Keeps its shape through the day.'],
+}
 const SG_CAT_MAP: Record<string, string> = { trouser: 'trousers', dress: 'dresses' }
 
 export default function ProductDetail({ product, relatedProducts }: { product: Product; relatedProducts: Product[] }) {
@@ -60,6 +67,11 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
   const catLabel = CAT_LABELS[product.category] || product.category
   const sgCat = SG_CAT_MAP[product.category] || 'tops'
   const price = product.price.toLocaleString('en-IN')
+  const [couponCode, setCouponCode] = useState<string | null>(null)
+  const coupon = couponCode ? checkCoupon(couponCode, product.price).coupon ?? null : null
+  const discount = coupon?.discount || 0
+  const finalTotal = product.price - discount
+  const finalPrice = finalTotal.toLocaleString('en-IN')
 
   function showToast(msg: string) {
     setToast(msg)
@@ -125,7 +137,9 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
       name: product.name,
       size: selectedSize,
       qty: 1,
-      price: product.price,
+     discount_code: coupon?.code || null,
+      discount_amount: discount,
+        total: finalTotal,
     }]
 
     try {
@@ -150,30 +164,33 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
     }
 
 
-   const msg = `Hi Formelle, I'd like to place an order.\n\n*ORDER DETAILS*\n- ${product.name} (${selectedSize}) = Rs.${price}\n\n*Total: Rs.${price}*\n\n*DELIVERY ADDRESS*\n${firstName} ${lastName}\n${phone}${email ? '\n' + email : ''}\n${address1}${address2 ? ', ' + address2 : ''}\n${city}, ${state} - ${pincode}\n\n*Pay via UPI to:* sushonly@okicici\nWe'll confirm your order once payment is received. Thank you.`
+      const msg = `Hi Formelle, I'd like to place an order.\n\n*ORDER DETAILS*\n- ${product.name} (${selectedSize}) = Rs.${price}${coupon ? `\nDiscount (${coupon.code}) = -Rs.${discount.toLocaleString('en-IN')}` : ''}\n\n*Total: Rs.${finalPrice}*\n\n*DELIVERY ADDRESS*\n${firstName} ${lastName}\n${phone}${email ? '\n' + email : ''}\n${address1}${address2 ? ', ' + address2 : ''}\n${city}, ${state} - ${pincode}\n\n*Pay via UPI to:* sushonly@okicici\nWe'll confirm your order once payment is received. Thank you.`
     window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank')
     setCheckoutOpen(false)
     showToast('Order saved — WhatsApp opened, please send your order')
   }
 
   const accordions = [
-    product.fabric ? { title: 'Fabric & Material', content: product.fabric, tags: product.fabric_tags } : null,
+    (product.fabric || product.fabric_weight) ? {
+      title: 'Fabric & Material',
+      content: product.fabric,
+      tags: product.fabric_tags,
+      jsx: product.fabric_weight && WEIGHT_COPY[product.fabric_weight] ? (
+        <div style={{ marginTop: product.fabric ? '12px' : 0, padding: '10px 12px', background: 'rgba(140,115,85,0.1)', borderLeft: '2px solid var(--accent)' }}>
+          <strong>Weight:</strong> {WEIGHT_COPY[product.fabric_weight][0]} — {WEIGHT_COPY[product.fabric_weight][1]}
+        </div>
+      ) : null,
+    } : null,
     product.fit_notes ? { title: 'Fit & Sizing', content: product.fit_notes } : null,
     product.details?.length ? { title: 'Product Details', list: product.details } : null,
     product.care?.length ? { title: 'Care Instructions', list: product.care } : null,
-    { title: 'Shipping & Returns', jsx: (
-      <>
-        <strong>Shipping:</strong> Pan-India delivery. 4-7 business days. Free shipping.<br /><br />
-        <strong>Returns:</strong> Exchange within 7 days for sizing issues. Contact formellewear@outlook.com or WhatsApp.
-      </>
-    ) },
   ].filter(Boolean) as { title: string; content?: string; list?: string[]; tags?: string[]; jsx?: React.ReactNode }[]
 
   return (
     <main>
       <nav className="breadcrumb" aria-label="Breadcrumb">
         <Link href="/">Home</Link> <span>/</span>
-        <Link href="/#shop">Shop</Link> <span>/</span>
+        <Link href="/shop">Shop</Link> <span>/</span>
         <span>{product.name}</span>
       </nav>
 
@@ -259,6 +276,11 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
             <button className="btn-whatsapp-order" onClick={openCheckout}>💬 &nbsp; Order on WhatsApp</button>
           </div>
 
+          <div className="policy-strip">
+            <p><span>Delivery</span>Free across India. 5–7 days outside Hyderabad.</p>
+            <p><span>Exchange</span>Within 4 days of delivery.</p>
+          </div>
+
           <div className="accordion">
             {accordions.map((acc, i) => (
               <div key={i} className="acc-item">
@@ -286,7 +308,8 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
         <section className="also-like">
           <div className="also-header">
             <h2 className="also-title">You may <em>also like</em></h2>
-            <Link href="/#shop" style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'var(--charcoal)', fontWeight: 500, textDecoration: 'underline' }}>View all</Link>
+          
+          <Link href="/shop" style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'var(--charcoal)', fontWeight: 500, textDecoration: 'underline' }}>View all</Link>
           </div>
           <div className="also-grid">
             {relatedProducts.slice(0, 4).map(p => (
@@ -398,13 +421,18 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
               <hr className="divider" />
               <p className="checkout-section-title">Order Summary</p>
               <div className="order-summary-item"><span>{product.name} ({selectedSize})</span><span style={{ fontFamily: 'var(--font-display)', fontSize: '18px' }}>₹{price}</span></div>
-              <div className="order-grand"><span>Total</span><span>₹{price}</span></div>
+              <CouponInput subtotal={product.price} applied={coupon} onApply={setCouponCode} onRemove={() => setCouponCode(null)} />
+              {coupon && (
+                <div className="price-line"><span>Discount ({coupon.code})</span><span>−₹{discount.toLocaleString('en-IN')}</span></div>
+              )}
+              <div className="order-grand"><span>Total</span><span>₹{finalPrice}</span></div>
               <hr className="divider" />
               <p className="checkout-section-title">Payment</p>
               <div className="wa-info">
                 <div className="wa-info-icon">💬</div>
                 <div className="wa-info-text"><strong>How it works</strong>WhatsApp opens with your full order pre-filled. Send it and we reply with our UPI ID within minutes.</div>
               </div>
+              <p className="secure-note" style={{ marginBottom: '12px' }}>Exchange within 4 days of delivery. Returns are not accepted.</p>
               <button className="btn-wa" onClick={sendToWhatsApp}>✅ &nbsp; Confirm Order on WhatsApp</button>
               <p className="secure-note">Zero extra charges · Pay via UPI after confirmation</p>
             </div>

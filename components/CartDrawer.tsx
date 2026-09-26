@@ -2,6 +2,8 @@
 import { useState } from 'react'
 import { useCart } from '@/lib/CartContext'
 import { supabase } from '@/lib/supabase'
+import CouponInput from '@/components/CouponInput'
+import { checkCoupon } from '@/lib/coupons'
 
 const WHATSAPP = '919989674894'
 const INDIAN_STATES = ['Andhra Pradesh','Arunachal Pradesh','Assam','Bihar','Chhattisgarh','Delhi','Goa','Gujarat','Haryana','Himachal Pradesh','Jharkhand','Karnataka','Kerala','Madhya Pradesh','Maharashtra','Manipur','Meghalaya','Mizoram','Nagaland','Odisha','Punjab','Rajasthan','Sikkim','Tamil Nadu','Telangana','Tripura','Uttar Pradesh','Uttarakhand','West Bengal','Other']
@@ -20,6 +22,10 @@ export default function CartDrawer() {
   const [state, setState] = useState('')
   const [formError, setFormError] = useState(false)
   const [submitting, setSubmitting] = useState(false)
+   const [couponCode, setCouponCode] = useState<string | null>(null)
+  const coupon = couponCode ? checkCoupon(couponCode, subtotal).coupon ?? null : null
+  const discount = coupon?.discount || 0
+  const finalTotal = subtotal - discount
 
   if (!isOpen) return null
 
@@ -52,17 +58,20 @@ export default function CartDrawer() {
         items: orderItems,
         subtotal,
         shipping: 0,
-        total: subtotal,
+         discount_code: coupon?.code || null,
+        discount_amount: discount,
+        total: finalTotal,
         status: 'pending',
         notes: null,
       }])
     } catch {}
 
     const lines = items.map(i => `- ${i.name} (${i.size}) x${i.qty} = Rs.${(i.price * i.qty).toLocaleString('en-IN')}`).join('\n')
-const msg = `Hi Formelle! I'd like to place an order:\n\n*ORDER DETAILS*\n${lines}\n\n*Total: Rs.${subtotal.toLocaleString('en-IN')}*\n\n*DELIVERY ADDRESS*\nName: ${firstName} ${lastName}\nPhone: ${phone}${email ? '\nEmail: ' + email : ''}\nAddress: ${address1}${address2 ? ', ' + address2 : ''}\n${city}, ${state} - ${pincode}\n\nPlease share your UPI ID to complete payment. Thank you!`
+const msg = `Hi Formelle! I'd like to place an order:\n\n*ORDER DETAILS*\n${lines}${coupon ? `\nDiscount (${coupon.code}) = -Rs.${discount.toLocaleString('en-IN')}` : ''}\n\n*Total: Rs.${finalTotal.toLocaleString('en-IN')}*\n\n*DELIVERY ADDRESS*\nName: ${firstName} ${lastName}\nPhone: ${phone}${email ? '\nEmail: ' + email : ''}\nAddress: ${address1}${address2 ? ', ' + address2 : ''}\n${city}, ${state} - ${pincode}\n\nPlease share your UPI ID to complete payment. Thank you!`
     window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank')
     setSubmitting(false)
     clearCart()
+    setCouponCode(null)
     setCheckoutOpen(false)
     closeCart()
   }
@@ -144,9 +153,16 @@ const msg = `Hi Formelle! I'd like to place an order:\n\n*ORDER DETAILS*\n${line
               {formError && <p className="size-error" style={{ marginBottom: '12px' }}>Please fill in all required fields</p>}
             </div>
             <div className="cart-footer">
+                           <CouponInput subtotal={subtotal} applied={coupon} onApply={setCouponCode} onRemove={() => setCouponCode(null)} />
+              {coupon && (
+                <>
+                  <div className="price-line"><span>Subtotal</span><span>₹{subtotal.toLocaleString('en-IN')}</span></div>
+                  <div className="price-line"><span>Discount ({coupon.code})</span><span>−₹{discount.toLocaleString('en-IN')}</span></div>
+                </>
+              )}
               <div className="cart-total-row">
                 <span className="cart-total-label">Total</span>
-                <span className="cart-total-amount">₹{subtotal.toLocaleString('en-IN')}</span>
+                <span className="cart-total-amount">₹{finalTotal.toLocaleString('en-IN')}</span>
               </div>
               <div className="wa-info">
                 <div className="wa-info-icon">💬</div>

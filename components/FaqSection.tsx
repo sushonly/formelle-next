@@ -4,8 +4,8 @@ import { useState } from 'react'
 const FAQS = [
   { q: 'How do I place an order?', a: 'Add to bag, fill your delivery details, and confirm on WhatsApp. We respond with our UPI ID — pay via GPay, PhonePe, or Paytm. Zero extra charges.' },
   { q: 'What sizes does Formelle offer?', a: 'All sizes — XS through XXXL.' },
-  { q: 'Does Formelle ship across India?', a: 'Yes — pan-India delivery on all orders, free shipping. Delivery takes 4–7 business days.' },
-  { q: 'What is your exchange policy?', a: 'Exchanges within 7 days of delivery for sizing issues. Reach out on WhatsApp or at formellewear@outlook.com.' },
+  { q: 'Does Formelle ship across India?', a: 'Yes — free shipping across India. Orders outside Hyderabad arrive in 5–7 days.' },
+  { q: 'What is your exchange policy?', a: 'We don’t accept returns. Exchanges are available within 4 days of delivery — reach out on WhatsApp or at formellewear@outlook.com.' },
 ]
 
 export default function FaqSection() {
