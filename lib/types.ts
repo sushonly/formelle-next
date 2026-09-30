@@ -10,6 +10,7 @@ export interface Product {
   images: string[]
   fabric?: string
   fabric_tags?: string[]
+  fabric_weight?: 'light' | 'mid' | 'structured' | null
   fit_notes?: string
   care?: string[]
   details?: string[]
