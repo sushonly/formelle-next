@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
+import { track } from '@/lib/analytics'
 
 const WHATSAPP = '919989674894'
 const SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL']
@@ -40,6 +41,7 @@ export default function ReserveForm({ pieces, source }: { pieces: string[]; sour
     }])
     setSaving(false)
     if (error) { setSaveFailed(true); return }
+    track('generate_lead', { lead_source: source, item_name: piece, item_variant: size })
     setDone(true)
   }
 
