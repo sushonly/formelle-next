@@ -1,4 +1,5 @@
 'use client'
+import { track, gaItem } from '@/lib/analytics'
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react'
 
 export interface CartItem {
@@ -49,6 +50,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   function addItem(item: Omit<CartItem, 'key' | 'qty'>) {
     const key = `${item.id}-${item.size}`
+    track('add_to_cart', { currency: 'INR', value: item.price, items: [gaItem(item)] })
     setItems(prev => {
       const existing = prev.find(i => i.key === key)
       if (existing) {
