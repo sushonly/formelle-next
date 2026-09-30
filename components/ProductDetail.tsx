@@ -1,11 +1,12 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useCart } from '@/lib/CartContext'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import type { Product } from '@/lib/types'  
 import CouponInput from '@/components/CouponInput'
 import { checkCoupon } from '@/lib/coupons'
+import { track, gaItem, newOrderRef } from '@/lib/analytics'
 
 const ALL_SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL']
 const WHATSAPP = '919989674894'
@@ -72,7 +73,10 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
   const discount = coupon?.discount || 0
   const finalTotal = product.price - discount
   const finalPrice = finalTotal.toLocaleString('en-IN')
-
+  useEffect(() => {
+    track('view_item', { currency: 'INR', value: product.price, items: [gaItem({ id: product.id, name: product.name, price: product.price, category: product.category })] })
+  }, [product.id, product.name, product.price, product.category])
+  
   function showToast(msg: string) {
     setToast(msg)
     setTimeout(() => setToast(''), 3000)
@@ -125,6 +129,7 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
     if (!selectedSize) { setSizeError(true); return }
     setFormError(false)
     setCheckoutOpen(true)
+    track('begin_checkout', { currency: 'INR', value: product.price, items: [gaItem({ id: product.id, name: product.name, price: product.price, size: selectedSize, category: product.category })] })
   }
 
   async function sendToWhatsApp() {
@@ -163,7 +168,14 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
       // the order still reaches the customer's WhatsApp message either way
     }
 
-
+ track('purchase', {
+      transaction_id: newOrderRef(),
+      currency: 'INR',
+      value: finalTotal,
+      ...(coupon ? { coupon: coupon.code } : {}),
+      items: [gaItem({ id: product.id, name: product.name, price: product.price, size: selectedSize, category: product.category })],
+    })
+    
       const msg = `Hi Formelle, I'd like to place an order.\n\n*ORDER DETAILS*\n- ${product.name} (${selectedSize}) = Rs.${price}${coupon ? `\nDiscount (${coupon.code}) = -Rs.${discount.toLocaleString('en-IN')}` : ''}\n\n*Total: Rs.${finalPrice}*\n\n*DELIVERY ADDRESS*\n${firstName} ${lastName}\n${phone}${email ? '\n' + email : ''}\n${address1}${address2 ? ', ' + address2 : ''}\n${city}, ${state} - ${pincode}\n\n*Pay via UPI to:* sushonly@okicici\nWe'll confirm your order once payment is received. Thank you.`
     window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank')
     setCheckoutOpen(false)
