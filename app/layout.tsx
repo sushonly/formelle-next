@@ -3,6 +3,7 @@ import { CartProvider } from '@/lib/CartContext'
 import CartDrawer from '@/components/CartDrawer'
 import Script from 'next/script'
 import './globals.css'
+  import MetaPixel from "@/components/MetaPixel";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.formellewear.com'),
@@ -47,6 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <CartProvider>
+          <MetaPixel />
           {children}
           <CartDrawer />
         </CartProvider>
