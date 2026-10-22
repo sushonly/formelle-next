@@ -18,7 +18,9 @@ export const metadata: Metadata = {
     locale: 'en_IN',
     type: 'website',
     images: [{ url: '/images/hero.png', width: 1200, height: 630 }],
-    other: { 'facebook-domain-verification': 'ewznu74e6lzbgc5ukqhyrduzfj7ytv' },
+  },
+    other: {'facebook-domain-verification': 'ewznu74e6lzbgc5ukqhyrduzfj7ytv' ,
+           },
   robots: { index: true, follow: true },
 }
 
