@@ -6,78 +6,19 @@ import { useEffect, useRef } from "react";
 
 const PIXEL_ID = "1443147871111165";
 
-// Button labels to watch (lowercase). Edit these if your button text differs.
-const ADD_TO_CART_LABELS = ["add to bag", "add to cart"];
-const CHECKOUT_LABELS = ["whatsapp"]; // the button that sends the order to WhatsApp
-
-declare global {
-  interface Window {
-    fbq?: (...args: unknown[]) => void;
-  }
-}
-
-function track(event: string, params?: Record<string, unknown>) {
-  if (typeof window !== "undefined" && window.fbq) {
-    window.fbq("track", event, params);
-  }
-}
-
-function productName() {
-  // Uses the product's main heading, falling back to the page title
-  const h1 = document.querySelector("h1")?.textContent?.trim();
-  return h1 || document.title.split("|")[0].trim();
-}
-
+// Loads the Meta pixel and sends PageView on every page change.
+// ViewContent, AddToCart, InitiateCheckout, Purchase and Lead are sent from
+// lib/analytics.ts, at the same moments as Google Analytics, with prices and product ids.
 export default function MetaPixel() {
   const pathname = usePathname();
   const firstLoad = useRef(true);
 
-  // PageView on every page change + ViewContent on product pages
   useEffect(() => {
     if (firstLoad.current) {
       firstLoad.current = false;
-    } else {
-      track("PageView");
+      return;
     }
-    if (pathname?.startsWith("/product/")) {
-      // small delay so the product heading has rendered
-      const t = setTimeout(() => {
-        track("ViewContent", {
-          content_name: productName(),
-          content_type: "product",
-          currency: "INR",
-        });
-      }, 800);
-      return () => clearTimeout(t);
-    }
-  }, [pathname]);
-
-  // AddToCart + InitiateCheckout from button clicks anywhere on the site
-  useEffect(() => {
-    const onClick = (e: MouseEvent) => {
-      const el = (e.target as HTMLElement)?.closest("button, a");
-      if (!el) return;
-      const text = (el.textContent || "").toLowerCase();
-      const href = (el.getAttribute("href") || "").toLowerCase();
-
-      if (ADD_TO_CART_LABELS.some((l) => text.includes(l))) {
-        track("AddToCart", {
-          content_name: pathname?.startsWith("/product/") ? productName() : undefined,
-          currency: "INR",
-        });
-        return;
-      }
-
-      const isWhatsApp =
-        CHECKOUT_LABELS.some((l) => text.includes(l)) ||
-        href.includes("wa.me") ||
-        href.includes("api.whatsapp.com");
-      if (isWhatsApp) {
-        track("InitiateCheckout", { currency: "INR" });
-      }
-    };
-    document.addEventListener("click", onClick, true);
-    return () => document.removeEventListener("click", onClick, true);
+    if (typeof window !== "undefined" && window.fbq) window.fbq("track", "PageView");
   }, [pathname]);
 
   return (
