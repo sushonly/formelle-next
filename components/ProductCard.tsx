@@ -56,17 +56,17 @@ export default function ProductCard({
     </div>
   )
 
-  // SOLD OUT IN EVERY SIZE — clear image, Sold Out tag, waitlist button instead of Shop Now
+  // SOLD OUT IN EVERY SIZE — Sold Out tag; hover shows Join the Waitlist in place of Shop Now
   if (soldOut) {
     return (
       <article className="product-card is-sold-out" data-product-id={product.id}>
         <div className="product-image-wrap">
           {image}
           <div className="product-tag sold-out-tag">Sold Out</div>
-          <div className="sold-out-veil">
+          <div className="product-overlay">
             <button
               type="button"
-              className="sold-out-btn"
+              className="product-quick-add"
               onClick={() => setWaitlistOpen(true)}
             >
               Join the Waitlist
