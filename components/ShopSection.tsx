@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import type { Product } from '@/lib/types'
 import ProductCard from '@/components/ProductCard'
+import { isFullySoldOut } from '@/lib/stock'
 
 export default function ShopSection({ products }: { products: Product[] }) {
   const [filter, setFilter] = useState('all')
@@ -13,7 +14,11 @@ export default function ShopSection({ products }: { products: Product[] }) {
     dress: products.filter(p => p.category === 'dress').length,
   }
 
-  const filtered = filter === 'all' ? products : products.filter(p => p.category === filter)
+  // In-stock pieces first; pieces sold out in every size move to the end (order otherwise kept)
+  const filtered = (filter === 'all' ? products : products.filter(p => p.category === filter))
+    .map((p, i) => ({ p, i, out: isFullySoldOut(p) ? 1 : 0 }))
+    .sort((a, b) => a.out - b.out || a.i - b.i)
+    .map(x => x.p)
 
   return (
     <section id="shop" aria-label="Shop — Women's Formal Wear Collection">
