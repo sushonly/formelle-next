@@ -56,15 +56,14 @@ export default function ProductCard({
     </div>
   )
 
-  // SOLD OUT IN EVERY SIZE — blurred image, waitlist button instead of Shop Now
+  // SOLD OUT IN EVERY SIZE — clear image, Sold Out tag, waitlist button instead of Shop Now
   if (soldOut) {
     return (
       <article className="product-card is-sold-out" data-product-id={product.id}>
         <div className="product-image-wrap">
           {image}
+          <div className="product-tag sold-out-tag">Sold Out</div>
           <div className="sold-out-veil">
-            <span className="sold-out-eyebrow">Sold Out</span>
-            <span className="sold-out-line">Returning soon</span>
             <button
               type="button"
               className="sold-out-btn"

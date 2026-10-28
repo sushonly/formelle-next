@@ -860,18 +860,16 @@ footer { background:var(--noir); padding:64px 80px 32px; }
 /* SOLD OUT — product card shown when every size is sold out */
 .product-card.is-sold-out { cursor:default; }
 .product-card.is-sold-out .product-image-wrap img,
-.product-card.is-sold-out .product-placeholder { filter:blur(1.5px) grayscale(20%); transform:scale(1.02); }
-.product-card.is-sold-out:hover .product-image-wrap img { transform:scale(1.02); }
-.sold-out-veil { position:absolute; inset:0; background:linear-gradient(to top, rgba(240,236,227,0.95) 0%, rgba(240,236,227,0.75) 22%, rgba(240,236,227,0) 48%); display:flex; flex-direction:column; align-items:center; justify-content:flex-end; gap:8px; padding:28px 24px; text-align:center; }
-.sold-out-eyebrow { font-size:9px; letter-spacing:3px; text-transform:uppercase; font-weight:600; color:var(--noir); }
-.sold-out-line { font-family:var(--font-display); font-size:26px; font-style:italic; font-weight:300; color:var(--noir); line-height:1.1; margin-bottom:8px; }
+.product-card.is-sold-out .product-placeholder { filter:saturate(85%); opacity:0.92; }
+.product-card.is-sold-out:hover .product-image-wrap img { transform:none; }
+.sold-out-veil { position:absolute; left:0; right:0; bottom:0; display:flex; justify-content:center; padding:24px; }
 .sold-out-btn { background:var(--noir); color:var(--ivory); padding:12px 26px; font-size:9px; letter-spacing:2.5px; font-weight:600; text-transform:uppercase; border:1px solid var(--noir); transition:all var(--tr); white-space:nowrap; }
-.sold-out-btn:hover { background:transparent; color:var(--noir); }
+.sold-out-btn:hover { background:var(--ivory); color:var(--noir); }
 .product-card.is-sold-out .product-name { color:rgba(17,17,17,0.6); }
 .waitlist-sizes { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px; }
 .waitlist-size { min-width:44px; padding:9px 10px; font-size:10px; letter-spacing:1px; font-weight:500; color:var(--charcoal); border:1px solid rgba(17,17,17,0.15); background:var(--parchment); }
 .waitlist-size.active { background:var(--noir); color:var(--ivory); border-color:var(--noir); }
 @media (max-width:640px) {
-  .sold-out-line { font-size:20px; }
-  .sold-out-btn { padding:10px 16px; letter-spacing:2px; }
+  .sold-out-veil { padding:14px; }
+  .sold-out-btn { padding:10px 14px; letter-spacing:1.5px; }
 }
