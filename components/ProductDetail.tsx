@@ -7,6 +7,7 @@ import type { Product } from '@/lib/types'
 import CouponInput from '@/components/CouponInput'
 import { checkCoupon } from '@/lib/coupons'
 import { track, gaItem, newOrderRef } from '@/lib/analytics'
+import { sessionId, logCheckoutOpen, openWhatsApp } from '@/lib/funnel'
 
 const ALL_SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL']
 const WHATSAPP = '919989674894'
@@ -130,58 +131,50 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
     setFormError(false)
     setCheckoutOpen(true)
     track('begin_checkout', { currency: 'INR', value: product.price, items: [gaItem({ id: product.id, name: product.name, price: product.price, size: selectedSize, category: product.category })] })
+     logCheckoutOpen('product', [{ name: product.name, price: product.price }])
   }
 
-  async function sendToWhatsApp() {
+    function sendToWhatsApp() {
     if (!firstName || !phone || !address1 || !city || !pincode || !state) {
       setFormError(true)
       return
     }
 
-    const orderItems = [{
-      name: product.name,
-      size: selectedSize,
-      qty: 1,
-     discount_code: coupon?.code || null,
+    const orderItems = [{ name: product.name, size: selectedSize, qty: 1, price: product.price }]
+    const msg = `Hi Formelle, I'd like to place an order.\n\n*ORDER DETAILS*\n- ${product.name} (${selectedSize}) = Rs.${price}${coupon ? `\nDiscount (${coupon.code}) = -Rs.${discount.toLocaleString('en-IN')}` : ''}\n\n*Total: Rs.${finalPrice}*\n\n*DELIVERY ADDRESS*\n${firstName} ${lastName}\n${phone}${email ? '\n' + email : ''}\n${address1}${address2 ? ', ' + address2 : ''}\n${city}, ${state} - ${pincode}\n\n*Pay via UPI to:* sushonly@okicici\nWe'll confirm your order once payment is received. Thank you.`
+
+    // Save the order in the background, then open WhatsApp straight from the tap
+    supabase.from('orders').insert([{
+      customer_name: `${firstName} ${lastName}`.trim(),
+      phone,
+      email: email || null,
+      address: `${address1}${address2 ? ', ' + address2 : ''}`,
+      city,
+      state,
+      pincode,
+      items: orderItems,
+      subtotal: product.price,
+      shipping: 0,
+      discount_code: coupon?.code || null,
       discount_amount: discount,
-        total: finalTotal,
-    }]
+      total: finalTotal,
+      status: 'pending',
+      notes: null,
+      session_id: sessionId(),
+    }]).then(() => {}, () => {})
 
-    try {
-      await supabase.from('orders').insert([{
-        customer_name: `${firstName} ${lastName}`.trim(),
-        phone: phone,
-        email: email || null,
-        address: `${address1}${address2 ? ', ' + address2 : ''}`,
-        city: city,
-        state: state,
-        pincode: pincode,
-        items: orderItems,
-        subtotal: product.price,
-        shipping: 0,
-        total: product.price,
-        status: 'pending',
-        notes: null,
-      }])
-    } catch (err) {
-      // Don't block the WhatsApp flow even if the save fails —
-      // the order still reaches the customer's WhatsApp message either way
-    }
-
- track('purchase', {
+    track('purchase', {
       transaction_id: newOrderRef(),
       currency: 'INR',
       value: finalTotal,
       ...(coupon ? { coupon: coupon.code } : {}),
       items: [gaItem({ id: product.id, name: product.name, price: product.price, size: selectedSize, category: product.category })],
     })
-    
-      const msg = `Hi Formelle, I'd like to place an order.\n\n*ORDER DETAILS*\n- ${product.name} (${selectedSize}) = Rs.${price}${coupon ? `\nDiscount (${coupon.code}) = -Rs.${discount.toLocaleString('en-IN')}` : ''}\n\n*Total: Rs.${finalPrice}*\n\n*DELIVERY ADDRESS*\n${firstName} ${lastName}\n${phone}${email ? '\n' + email : ''}\n${address1}${address2 ? ', ' + address2 : ''}\n${city}, ${state} - ${pincode}\n\n*Pay via UPI to:* sushonly@okicici\nWe'll confirm your order once payment is received. Thank you.`
-    window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank')
+
+    openWhatsApp(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`)
     setCheckoutOpen(false)
     showToast('Order saved — WhatsApp opened, please send your order')
   }
-
   const accordions = [
     (product.fabric || product.fabric_weight) ? {
       title: 'Fabric & Material',
