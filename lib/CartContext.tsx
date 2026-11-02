@@ -2,6 +2,7 @@
 import { track, gaItem } from '@/lib/analytics'
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react'
 import { supabase } from '@/lib/supabase'
+import { sessionId } from '@/lib/funnel'
 
 export interface CartItem {
   key: string
@@ -28,16 +29,7 @@ interface CartContextType {
 
 const CartContext = createContext<CartContextType | undefined>(undefined)
 const STORAGE_KEY = 'formelle_cart'
-const SESSION_KEY = 'formelle_sid'
-
-// Anonymous id for this browser tab session, so repeat adds by one shopper can be counted once
-function sessionId(): string {
-  try {
-    let id = sessionStorage.getItem(SESSION_KEY)
-    if (!id) { id = Math.random().toString(36).slice(2) + Date.now().toString(36); sessionStorage.setItem(SESSION_KEY, id) }
-    return id
-  } catch { return 'unknown' }
-}
+const CART_DAYS = 20 // a saved bag is kept for 20 days
 
 // Saves an add-to-bag to Supabase for product and size demand. Never blocks the cart.
 function logCartEvent(item: { id: number; name: string; size: string; price: number }) {
@@ -58,8 +50,14 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     try {
-      const saved = sessionStorage.getItem(STORAGE_KEY)
-      if (saved) setItems(JSON.parse(saved))
+      // Kept on the device (not just this tab), so the bag survives closing Instagram or the browser
+      const saved = localStorage.getItem(STORAGE_KEY) || sessionStorage.getItem(STORAGE_KEY)
+      if (saved) {
+        const parsed = JSON.parse(saved)
+        const list = Array.isArray(parsed) ? parsed : parsed.items
+        const savedAt = Array.isArray(parsed) ? Date.now() : parsed.savedAt
+        if (Array.isArray(list) && Date.now() - savedAt < CART_DAYS * 86400000) setItems(list)
+      }
     } catch {}
     setLoaded(true)
   }, [])
@@ -67,7 +65,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (!loaded) return
     try {
-      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(items))
+          localStorage.setItem(STORAGE_KEY, JSON.stringify({ items, savedAt: Date.now() }))
     } catch {}
   }, [items, loaded])
 
@@ -82,6 +80,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       }
       return [...prev, { ...item, key, qty: 1 }]
     })
+        setIsOpen(true) // open the bag so the next step (Checkout) is in front of her
   }
 
   function removeItem(key: string) {
