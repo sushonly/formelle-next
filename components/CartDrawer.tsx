@@ -5,6 +5,7 @@ import { supabase } from '@/lib/supabase'
 import CouponInput from '@/components/CouponInput'
 import { checkCoupon } from '@/lib/coupons'
 import { track, gaItem, newOrderRef } from '@/lib/analytics'
+import { sessionId, logCheckoutOpen, openWhatsApp } from '@/lib/funnel'
 
 const WHATSAPP = '919989674894'
 const INDIAN_STATES = ['Andhra Pradesh','Arunachal Pradesh','Assam','Bihar','Chhattisgarh','Delhi','Goa','Gujarat','Haryana','Himachal Pradesh','Jharkhand','Karnataka','Kerala','Madhya Pradesh','Maharashtra','Manipur','Meghalaya','Mizoram','Nagaland','Odisha','Punjab','Rajasthan','Sikkim','Tamil Nadu','Telangana','Tripura','Uttar Pradesh','Uttarakhand','West Bengal','Other']
@@ -35,13 +36,14 @@ export default function CartDrawer() {
     setFormError(false)
     setCheckoutOpen(true)
     track('begin_checkout', { currency: 'INR', value: subtotal, items: items.map(i => gaItem({ id: i.id, name: i.name, price: i.price, size: i.size, qty: i.qty })) })
+   logCheckoutOpen('bag', items)
   }
 
   function backToCart() {
     setCheckoutOpen(false)
   }
 
-  async function sendToWhatsApp() {
+    function sendToWhatsApp() {
     if (!firstName || !phone || !address1 || !city || !pincode || !state) {
       setFormError(true)
       return
@@ -49,36 +51,36 @@ export default function CartDrawer() {
     setSubmitting(true)
 
     const orderItems = items.map(i => ({ name: i.name, size: i.size, qty: i.qty, price: i.price }))
+    const lines = items.map(i => `- ${i.name} (${i.size}) x${i.qty} = Rs.${(i.price * i.qty).toLocaleString('en-IN')}`).join('\n')
+    const msg = `Hi Formelle! I'd like to place an order:\n\n*ORDER DETAILS*\n${lines}${coupon ? `\nDiscount (${coupon.code}) = -Rs.${discount.toLocaleString('en-IN')}` : ''}\n\n*Total: Rs.${finalTotal.toLocaleString('en-IN')}*\n\n*DELIVERY ADDRESS*\nName: ${firstName} ${lastName}\nPhone: ${phone}${email ? '\nEmail: ' + email : ''}\nAddress: ${address1}${address2 ? ', ' + address2 : ''}\n${city}, ${state} - ${pincode}\n\nPlease share your UPI ID to complete payment. Thank you!`
 
-    try {
-      await supabase.from('orders').insert([{
-        customer_name: `${firstName} ${lastName}`.trim(),
-        phone,
-        email: email || null,
-        address: `${address1}${address2 ? ', ' + address2 : ''}`,
-        city, state, pincode,
-        items: orderItems,
-        subtotal,
-        shipping: 0,
-         discount_code: coupon?.code || null,
-        discount_amount: discount,
-        total: finalTotal,
-        status: 'pending',
-        notes: null,
-      }])
-    } catch {}
+    // Save the order in the background, then open WhatsApp straight from the tap
+    supabase.from('orders').insert([{
+      customer_name: `${firstName} ${lastName}`.trim(),
+      phone,
+      email: email || null,
+      address: `${address1}${address2 ? ', ' + address2 : ''}`,
+      city, state, pincode,
+      items: orderItems,
+      subtotal,
+      shipping: 0,
+      discount_code: coupon?.code || null,
+      discount_amount: discount,
+      total: finalTotal,
+      status: 'pending',
+      notes: null,
+      session_id: sessionId(),
+    }]).then(() => {}, () => {})
 
-     track('purchase', {
+    track('purchase', {
       transaction_id: newOrderRef(),
       currency: 'INR',
       value: finalTotal,
       ...(coupon ? { coupon: coupon.code } : {}),
       items: items.map(i => gaItem({ id: i.id, name: i.name, price: i.price, size: i.size, qty: i.qty })),
     })
-    const lines = items.map(i => `- ${i.name} (${i.size}) x${i.qty} = Rs.${(i.price * i.qty).toLocaleString('en-IN')}`).join('\n')
-    
-const msg = `Hi Formelle! I'd like to place an order:\n\n*ORDER DETAILS*\n${lines}${coupon ? `\nDiscount (${coupon.code}) = -Rs.${discount.toLocaleString('en-IN')}` : ''}\n\n*Total: Rs.${finalTotal.toLocaleString('en-IN')}*\n\n*DELIVERY ADDRESS*\nName: ${firstName} ${lastName}\nPhone: ${phone}${email ? '\nEmail: ' + email : ''}\nAddress: ${address1}${address2 ? ', ' + address2 : ''}\n${city}, ${state} - ${pincode}\n\nPlease share your UPI ID to complete payment. Thank you!`
-    window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank')
+
+    openWhatsApp(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`)
     setSubmitting(false)
     clearCart()
     setCouponCode(null)
