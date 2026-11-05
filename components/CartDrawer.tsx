@@ -1,11 +1,11 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useCart } from '@/lib/CartContext'
 import { supabase } from '@/lib/supabase'
 import CouponInput from '@/components/CouponInput'
 import { checkCoupon } from '@/lib/coupons'
 import { track, gaItem, newOrderRef } from '@/lib/analytics'
-import { sessionId, logCheckoutOpen, openWhatsApp } from '@/lib/funnel'
+import { sessionId, logCheckoutOpen, openWhatsApp, saveCheckoutDraft } from '@/lib/funnel'
 
 const WHATSAPP = '919989674894'
 const INDIAN_STATES = ['Andhra Pradesh','Arunachal Pradesh','Assam','Bihar','Chhattisgarh','Delhi','Goa','Gujarat','Haryana','Himachal Pradesh','Jharkhand','Karnataka','Kerala','Madhya Pradesh','Maharashtra','Manipur','Meghalaya','Mizoram','Nagaland','Odisha','Punjab','Rajasthan','Sikkim','Tamil Nadu','Telangana','Tripura','Uttar Pradesh','Uttarakhand','West Bengal','Other']
@@ -29,6 +29,12 @@ export default function CartDrawer() {
   const discount = coupon?.discount || 0
   const finalTotal = subtotal - discount
 
+    // Save what she types, so an unfinished checkout can be followed up
+  useEffect(() => {
+    if (!checkoutOpen) return
+    saveCheckoutDraft({ firstName, lastName, phone, email, address1, address2, city, state, pincode }, items)
+  }, [checkoutOpen, firstName, lastName, phone, email, address1, address2, city, state, pincode, items])
+  
   if (!isOpen) return null
 
   function goToCheckout() {
@@ -147,7 +153,7 @@ export default function CartDrawer() {
                 <div className="form-group"><label>First Name *</label><input type="text" value={firstName} onChange={e => setFirstName(e.target.value)} /></div>
                 <div className="form-group"><label>Last Name</label><input type="text" value={lastName} onChange={e => setLastName(e.target.value)} /></div>
               </div>
-              <div className="form-group"><label>Phone *</label><input type="tel" value={phone} onChange={e => setPhone(e.target.value)} /></div>
+             <div className="form-group"><label>Phone *</label><input type="tel" value={phone} onChange={e => setPhone(e.target.value)} /><p className="form-hint" style={{ fontSize: '11px', color: 'rgba(44,44,42,0.55)', marginTop: '4px' }}>We&rsquo;ll only use this to confirm your order on WhatsApp.</p></div>
               <div className="form-group"><label>Email</label><input type="email" value={email} onChange={e => setEmail(e.target.value)} /></div>
               <div className="form-group"><label>Address Line 1 *</label><input type="text" placeholder="Flat / Building / Street" value={address1} onChange={e => setAddress1(e.target.value)} /></div>
               <div className="form-group"><label>Address Line 2</label><input type="text" placeholder="Area / Landmark (optional)" value={address2} onChange={e => setAddress2(e.target.value)} /></div>
