@@ -7,7 +7,7 @@ import type { Product } from '@/lib/types'
 import CouponInput from '@/components/CouponInput'
 import { checkCoupon } from '@/lib/coupons'
 import { track, gaItem, newOrderRef } from '@/lib/analytics'
-import { sessionId, logCheckoutOpen, openWhatsApp } from '@/lib/funnel'
+import { sessionId, logCheckoutOpen, openWhatsApp, saveCheckoutDraft } from '@/lib/funnel'
 
 const ALL_SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL']
 const WHATSAPP = '919989674894'
@@ -74,6 +74,13 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
   const discount = coupon?.discount || 0
   const finalTotal = product.price - discount
   const finalPrice = finalTotal.toLocaleString('en-IN')
+    // Save what she types, so an unfinished checkout can be followed up
+  useEffect(() => {
+    if (!checkoutOpen) return
+    saveCheckoutDraft({ firstName, lastName, phone, email, address1, address2, city, state, pincode },
+      [{ name: product.name, size: selectedSize, qty: 1, price: product.price }])
+  }, [checkoutOpen, firstName, lastName, phone, email, address1, address2, city, state, pincode, selectedSize, product.name, product.price])
+  
   useEffect(() => {
     track('view_item', { currency: 'INR', value: product.price, items: [gaItem({ id: product.id, name: product.name, price: product.price, category: product.category })] })
   }, [product.id, product.name, product.price, product.category])
@@ -407,7 +414,7 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
                 <div className="form-group"><label>First Name *</label><input type="text" value={firstName} onChange={e => setFirstName(e.target.value)} /></div>
                 <div className="form-group"><label>Last Name</label><input type="text" value={lastName} onChange={e => setLastName(e.target.value)} /></div>
               </div>
-              <div className="form-group"><label>Phone *</label><input type="tel" value={phone} onChange={e => setPhone(e.target.value)} /></div>
+                          <div className="form-group"><label>Phone *</label><input type="tel" value={phone} onChange={e => setPhone(e.target.value)} /><p className="form-hint" style={{ fontSize: '11px', color: 'rgba(44,44,42,0.55)', marginTop: '4px' }}>We&rsquo;ll use this to confirm your order on WhatsApp.</p></div>
               <div className="form-group"><label>Email</label><input type="email" value={email} onChange={e => setEmail(e.target.value)} /></div>
               <div className="form-group"><label>Address Line 1 *</label><input type="text" placeholder="Flat / Building / Street" value={address1} onChange={e => setAddress1(e.target.value)} /></div>
               <div className="form-group"><label>Address Line 2</label><input type="text" placeholder="Area / Landmark (optional)" value={address2} onChange={e => setAddress2(e.target.value)} /></div>
