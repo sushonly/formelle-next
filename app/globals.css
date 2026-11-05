@@ -856,3 +856,17 @@ footer { background:var(--noir); padding:64px 80px 32px; }
   .brief-opt { font-size: 22px; padding: 12px 24px; white-space: normal; }
    .brief-look-cta { opacity: 1; }
 }
+
+/* SOLD OUT — product card shown when every size is sold out */
+.product-card.is-sold-out { cursor:default; }
+.product-card.is-sold-out .product-image-wrap img,
+.product-card.is-sold-out .product-placeholder { filter:saturate(85%); opacity:0.92; }
+.product-card.is-sold-out:hover .product-image-wrap img { transform:none; }
+.product-card.is-sold-out .product-name { color:rgba(17,17,17,0.6); }
+.waitlist-sizes { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px; }
+.waitlist-size { min-width:44px; padding:9px 10px; font-size:10px; letter-spacing:1px; font-weight:500; color:var(--charcoal); border:1px solid rgba(17,17,17,0.15); background:var(--parchment); }
+.waitlist-size.active { background:var(--noir); color:var(--ivory); border-color:var(--noir); }
+/* Phones have no hover — keep the waitlist button visible on sold-out cards */
+@media (hover:none) {
+  .product-card.is-sold-out .product-quick-add { opacity:1; transform:translateY(0); }
+}
