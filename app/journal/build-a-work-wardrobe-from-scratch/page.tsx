@@ -19,7 +19,9 @@ export const metadata: Metadata = {
     description: 'Eight pieces, six months, and a morning that takes two minutes.',
     url: `https://www.formellewear.com/journal/${SLUG}`,
     type: 'article',
+    images: [{ url: '/journal/build-a-work-wardrobe-og.jpg', width: 1200, height: 630 }],
   },
+  twitter: { card: 'summary_large_image', images: ['/journal/build-a-work-wardrobe-og.jpg'] },
 }
 
 // The three pieces to start with, in buying order.
@@ -61,6 +63,7 @@ const articleJsonLd = {
   headline: 'How to build a work wardrobe from scratch, without buying everything at once',
   description: post.dek,
   datePublished: post.date,
+  image: `https://www.formellewear.com${post.ogImage}`,
   author: { '@type': 'Person', name: 'Sushma Pawar' },
   publisher: { '@type': 'Organization', name: 'Formelle', url: 'https://www.formellewear.com' },
   mainEntityOfPage: `https://www.formellewear.com/journal/${SLUG}`,
@@ -91,6 +94,10 @@ export default async function BuildAWorkWardrobe() {
             By Sushma Pawar &nbsp;·&nbsp; {formatPostDate(post.date)} &nbsp;·&nbsp; {post.readMinutes} min read
           </p>
         </header>
+
+        <figure className="jr-cover">
+          <img src={post.cover} alt={post.coverAlt} fetchPriority="high" />
+        </figure>
 
         <article>
           <div className="jr-body">

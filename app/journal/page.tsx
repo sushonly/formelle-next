@@ -24,7 +24,9 @@ export default function JournalIndex() {
         <section className="jr-index">
           {JOURNAL_POSTS.map((post) => (
             <Link key={post.slug} href={`/journal/${post.slug}`} className="jr-card">
-              <div className="jr-card-photo" aria-hidden="true" />
+              <div className="jr-card-photo">
+                <img src={post.cover} alt={post.coverAlt} />
+              </div>
               <div className="jr-card-body">
                 <p className="jr-label">{post.category}</p>
                 <h2 className="jr-card-title">
