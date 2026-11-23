@@ -21,6 +21,7 @@ export default function Nav() {
         <ul className="nav-links">
           <li><Link href="/wardrobe">The Wardrobe</Link></li>
            <li><Link href="/shop">Shop</Link></li>
+          <li><Link href="/journal">Journal</Link></li>
           <li><Link href="/about">About</Link></li>
           <li><Link href="/#faq">FAQ</Link></li>
           <li><a href="https://instagram.com/formellewear" target="_blank" rel="noopener noreferrer">Instagram</a></li>
@@ -44,6 +45,7 @@ export default function Nav() {
         <div className="mobile-menu">
            <Link href="/wardrobe" onClick={() => setMenuOpen(false)}>The Wardrobe</Link>
           <Link href="/shop" onClick={() => setMenuOpen(false)}>Shop</Link>
+          <Link href="/journal" onClick={() => setMenuOpen(false)}>Journal</Link>
           <Link href="/about" onClick={() => setMenuOpen(false)}>About</Link>
           <Link href="/#faq" onClick={() => setMenuOpen(false)}>FAQ</Link>
           <a href="https://instagram.com/formellewear" target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)}>Instagram</a>
