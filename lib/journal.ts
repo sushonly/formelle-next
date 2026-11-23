@@ -6,6 +6,9 @@ export type JournalPost = {
   category: string
   date: string // ISO, publish date
   readMinutes: number
+  cover: string
+  coverAlt: string
+  ogImage: string
 }
 
 // Newest first. Add a post here and create app/journal/<slug>/page.tsx.
@@ -18,6 +21,9 @@ export const JOURNAL_POSTS: JournalPost[] = [
     category: 'Building a wardrobe',
     date: '2026-11-23',
     readMinutes: 6,
+    cover: '/journal/build-a-work-wardrobe-cover.webp',
+    coverAlt: 'A black clothes rail against a warm plaster wall holding a few Formelle pieces: an ivory vest, navy pinstripe, chocolate brown dresses and taupe blazers.',
+    ogImage: '/journal/build-a-work-wardrobe-og.jpg',
   },
 ]
 
