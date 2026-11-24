@@ -51,7 +51,7 @@ const CATEGORY_LABEL: Record<string, string> = {
   trouser: 'Trousers', trousers: 'Trousers', bottom: 'Trousers', bottoms: 'Trousers',
   dress: 'Dresses', dresses: 'Dresses',
   blazer: 'Blazers', blazers: 'Blazers',
-  coord: 'Co-ord Sets', 'co-ord': 'Co-ord Sets', set: 'Co-ord Sets', sets: 'Co-ord Sets',
+  coord: 'Co-ord Sets', 'co-ord': 'Co-ord Sets', set: 'Co-ord Sets', sets: 'Co-ord Sets', other: 'Co-ord Sets',
 }
 
 export function categoryLabel(category: string | undefined) {

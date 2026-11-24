@@ -19,4 +19,6 @@ export interface Product {
   is_bestseller?: boolean
   sort_order?: number
   flat_image?: string
+  seo_title?: string | null
+  seo_description?: string | null
 }

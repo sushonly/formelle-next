@@ -18,8 +18,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const product = await getProduct(slug)
   if (!product) return { title: 'Product Not Found — Formelle' }
   return {
-    title: `${product.name} | Women's ${categoryLabel(product.category)} | Formelle`,
-    description: metaDescription(product.description, 'Premium workwear for women, XS to XXXL. Free shipping across India.'),
+    // seo_title already ends in "| Formelle"; absolute stops any layout template adding it twice
+    title: product.seo_title ? { absolute: product.seo_title } : `${product.name} | Women's ${categoryLabel(product.category)} | Formelle`,
+    description: product.seo_description || metaDescription(product.description, 'Premium workwear for women, XS to XXXL. Free shipping across India.'),
     alternates: { canonical: `/product/${product.slug}` },
     openGraph: {
       title: `Formelle — ${product.name}`,

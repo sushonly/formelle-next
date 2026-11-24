@@ -395,6 +395,8 @@ input,select,textarea{font-family:var(--fb);}
           <p class="form-hint">Press Enter after each tag (e.g. "Cotton Blend", "Breathable").</p>
         </div>
         <div class="form-group"><label>Fit & Sizing Notes</label><textarea id="fFit" placeholder="e.g. Regular fit. True to size. Model is 5'6&quot; and wears size M."></textarea></div>
+        <div class="form-group"><label>SEO Title (Google)</label><input type="text" id="fSeoTitle" maxlength="70" placeholder="e.g. Chocolate Brown Formal Dress with Sleeves | Formelle"><p class="form-hint">What people search, then | Formelle. Aim for under 60 characters. Leave blank to use the product name.</p></div>
+        <div class="form-group"><label>SEO Description (Google)</label><textarea id="fSeoDesc" maxlength="170" placeholder="One or two sentences with the words people search for. 140 to 160 characters."></textarea><p class="form-hint">Shown under the title in Google. Leave blank to use the description.</p></div>
         <div class="form-group">
           <label>Sold Out Sizes</label>
           <div class="tags-input-wrap" id="soldOutTagsWrap" onclick="document.getElementById('soldOutTagInput').focus()">
@@ -569,7 +571,7 @@ function openProductModal(id=null) {
 function closeProductModal() { document.getElementById('productModal').classList.remove('open'); document.body.style.overflow=''; editingId=null; }
 
 function resetForm() {
-  ['fName','fSlug','fPrice', 'fOriginalPrice','fTag','fDesc','fFabric','fWeight','fFit'].forEach(id=>document.getElementById(id).value='');
+  ['fName','fSlug','fPrice', 'fOriginalPrice','fTag','fDesc','fFabric','fWeight','fFit','fSeoTitle','fSeoDesc'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('fCategory').value='';
   document.getElementById('fBestseller').checked=false;
   document.getElementById('fabricTagsWrap').querySelectorAll('.tag-chip').forEach(t=>t.remove());
@@ -591,6 +593,8 @@ function populateForm(p) {
   document.getElementById('fFabric').value   = p.fabric||'';
   document.getElementById('fWeight').value   = p.fabric_weight||'';
   document.getElementById('fFit').value      = p.fit_notes||'';
+  document.getElementById('fSeoTitle').value = p.seo_title||'';
+  document.getElementById('fSeoDesc').value  = p.seo_description||'';
   fabricTags=[...(p.fabric_tags||[])]; renderFabricTags();
   soldOutSizes=[...(p.sold_out_sizes||[])]; renderSoldOutTags();
   (p.care||[]).forEach(c=>addListItem('careList','care',c));
@@ -678,6 +682,8 @@ async function saveProduct() {
   const fabric=document.getElementById('fFabric').value.trim();
   const fabric_weight=document.getElementById('fWeight').value||null;
   const fit=document.getElementById('fFit').value.trim();
+  const seo_title=document.getElementById('fSeoTitle').value.trim()||null;
+  const seo_description=document.getElementById('fSeoDesc').value.trim()||null;
   const care=getListValues('careList'); const details=getListValues('detailsList');
   const images=imageSlots.filter(Boolean);
   if(!name){showToast('Product name is required','error');return;}
@@ -686,7 +692,7 @@ async function saveProduct() {
   if(!price||price<1){showToast('Please enter a valid price','error');return;}
   if ( original_price !== null &&  original_price <= price) { showToast('Original price must be higher than the selling price','error');return;}
   if(!desc){showToast('Please add a description','error');return;}
-  const payload={name,slug,category,price,original_price,tag,is_bestseller:isBestseller,description:desc,fabric,fabric_weight,fabric_tags:fabricTags,sold_out_sizes:soldOutSizes,fit_notes:fit,care,details,images,updated_at:new Date().toISOString()};
+  const payload={name,slug,category,price,original_price,tag,is_bestseller:isBestseller,description:desc,fabric,fabric_weight,fabric_tags:fabricTags,sold_out_sizes:soldOutSizes,fit_notes:fit,seo_title,seo_description,care,details,images,updated_at:new Date().toISOString()};
   const btn=document.getElementById('saveBtn'); btn.textContent='Saving…'; btn.disabled=true;
   let error;
   if(editingId){({error}=await db.from('products').update(payload).eq('id',editingId));}
