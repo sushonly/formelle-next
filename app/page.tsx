@@ -93,9 +93,9 @@ export default async function HomePage() {
       <div style={{ background: 'var(--parchment)', borderTop: '0.5px solid rgba(17,17,17,0.08)', borderBottom: '0.5px solid rgba(17,17,17,0.08)', display: 'grid', gridTemplateColumns: 'repeat(4,1fr)' }}>
     {[
   ['Designed for Indian Women', 'Proportions that work with you'],
-  ['Inclusive Sizing', 'XS–XXL'],
+  ['Inclusive Sizing', 'XS–XXXL'],
   ['Concierge Order', 'Order via WhatsApp'],
-  ['Exchange', 'Within 4 days'],
+  ['Free Returns', 'Within 3 days'],
 ].map(([title, sub], i) => (
           <div key={title} style={{ padding: '20px 24px', textAlign: 'center', borderRight: i < 3 ? '0.5px solid rgba(17,17,17,0.08)' : 'none' }}>
             <div style={{ fontSize: '8.5px', letterSpacing: '2.5px', textTransform: 'uppercase', fontWeight: 600, color: 'var(--noir)', marginBottom: '4px' }}>{title}</div>

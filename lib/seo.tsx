@@ -8,7 +8,7 @@ export const FAQS = [
   { q: 'How do I place an order?', a: 'Add to bag, fill your delivery details, and confirm on WhatsApp. We respond with our UPI ID — pay via GPay, PhonePe, or Paytm. Zero extra charges.' },
   { q: 'What sizes does Formelle offer?', a: 'All sizes — XS through XXXL.' },
   { q: 'Does Formelle ship across India?', a: 'Yes — free shipping across India. Orders outside Hyderabad arrive in 5–7 days.' },
-  { q: 'What is your exchange policy?', a: 'We don’t accept returns. Free exchanges are available within 4 days of delivery for unworn pieces with tags on — reach out on WhatsApp or at formellewear@outlook.com. Full details: formellewear.com/shipping-and-exchange.' },
+  { q: 'What is your returns and exchange policy?', a: 'Free returns within 3 days of delivery, and free exchanges within 7 days, for unworn pieces with tags on. We cover the shipping. Reach out on WhatsApp or at formellewear@outlook.com. Full details: formellewear.com/shipping-and-exchange.' },
 ]
 
 export const faqSchema = {
@@ -94,7 +94,11 @@ export function productSchema(product: Product) {
       hasMerchantReturnPolicy: {
         '@type': 'MerchantReturnPolicy',
         applicableCountry: 'IN',
-        returnPolicyCategory: 'https://schema.org/MerchantReturnNotPermitted',
+        returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+        merchantReturnDays: 3,
+        returnMethod: 'https://schema.org/ReturnByMail',
+        returnFees: 'https://schema.org/FreeReturn',
+        refundType: 'https://schema.org/FullRefund',
         merchantReturnLink: `${SITE_URL}/shipping-and-exchange`,
       },
     },

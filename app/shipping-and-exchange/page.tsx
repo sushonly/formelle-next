@@ -5,7 +5,7 @@ import { JsonLd, breadcrumbSchema } from '@/lib/seo'
 
 export const metadata: Metadata = {
   title: 'Shipping, Returns and Exchange Policy | Formelle',
-  description: 'Free shipping across India. Dispatch in 1 to 2 working days. Free exchanges within 4 days of delivery. No returns, except for damaged or wrong items.',
+  description: 'Free shipping across India. Dispatch in 1 to 2 working days. Free returns within 3 days and free exchanges within 7 days of delivery.',
   alternates: { canonical: '/shipping-and-exchange' },
 }
 
@@ -22,8 +22,8 @@ const SUMMARY = [
   ['Shipping', 'Free across India'],
   ['Dispatch', 'Within 1 to 2 working days'],
   ['Delivery', 'Hyderabad 1 to 3 days. Rest of India 5 to 7 days'],
-  ['Exchanges', 'Free, within 4 days of delivery'],
-  ['Returns and refunds', 'Not offered, except for damaged, defective or wrong items'],
+  ['Returns', 'Free, within 3 days of delivery'],
+  ['Exchanges', 'Free, within 7 days of delivery'],
 ]
 
 export default function ShippingAndExchangePage() {
@@ -58,31 +58,37 @@ export default function ShippingAndExchangePage() {
             <li>Orders within Hyderabad arrive in 1 to 3 days. Orders to the rest of India arrive in 5 to 7 days.</li>
           </ul>
 
+          <h2 style={sectionTitle}>Returns</h2>
+          <p style={para}>Try it on at home. If it is not right for you, send it back.</p>
+          <ul style={list}>
+            <li>Request a return within 3 days of delivery.</li>
+            <li>The piece must be unworn and unwashed, with all original tags attached.</li>
+            <li>Returns are free. We cover the shipping.</li>
+            <li>Once we receive and check the piece, we refund the full amount to the account you paid from.</li>
+          </ul>
+
           <h2 style={sectionTitle}>Exchanges</h2>
           <p style={para}>If the size or fit is not right, you can exchange your piece for a different size.</p>
           <ul style={list}>
-            <li>Request an exchange within 4 days of delivery.</li>
+            <li>Request an exchange within 7 days of delivery.</li>
             <li>The piece must be unworn and unwashed, with all original tags attached.</li>
-            <li>Exchanges are free. We cover shipping both ways: the pickup or return of your piece, and delivery of the new one.</li>
-            <li>Exchanges depend on availability of the size you choose.</li>
+            <li>Exchanges are free. We cover shipping both ways: your piece coming back to us, and delivery of the new one.</li>
+            <li>Exchanges depend on availability of the size you choose. If it is not available, you can return the piece instead.</li>
           </ul>
 
-          <h2 style={sectionTitle}>Returns and refunds</h2>
-          <p style={para}>We do not accept returns or offer refunds for a change of mind. We offer free exchanges instead, as above.</p>
-
           <h2 style={sectionTitle}>Damaged, defective or wrong items</h2>
-          <p style={para}>If your piece arrives damaged, defective or different from what you ordered, tell us within 4 days of delivery with your order number and a photo.</p>
+          <p style={para}>If your piece arrives damaged, defective or different from what you ordered, tell us within 7 days of delivery with your order number and a photo.</p>
           <ul style={list}>
             <li>We replace it free of charge, including all shipping.</li>
             <li>If a replacement is not available, we give you a full refund to the account you paid from.</li>
           </ul>
 
-          <h2 style={sectionTitle}>How to request an exchange</h2>
+          <h2 style={sectionTitle}>How to request a return or exchange</h2>
           <ol style={list}>
-            <li>Message us on WhatsApp at <a href={WHATSAPP_LINK} style={{ color: 'var(--accent)' }}>{WHATSAPP}</a> or email <a href={`mailto:${EMAIL}`} style={{ color: 'var(--accent)' }}>{EMAIL}</a> within 4 days of delivery.</li>
-            <li>Share your order number, the piece, and the size you would like instead.</li>
+            <li>Message us on WhatsApp at <a href={WHATSAPP_LINK} style={{ color: 'var(--accent)' }}>{WHATSAPP}</a> or email <a href={`mailto:${EMAIL}`} style={{ color: 'var(--accent)' }}>{EMAIL}</a>: within 3 days of delivery for a return, or 7 days for an exchange.</li>
+            <li>Share your order number, the piece, and whether you would like a refund or a different size.</li>
             <li>We arrange how your piece comes back to us, at no cost to you.</li>
-            <li>Once we receive and check the piece, we dispatch your exchange.</li>
+            <li>Once we receive and check the piece, we send your refund or dispatch your exchange.</li>
           </ol>
 
           <h2 style={sectionTitle}>Questions</h2>

@@ -291,7 +291,7 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
 
           <div className="policy-strip">
             <p><span>Delivery</span>Free across India. 5–7 days outside Hyderabad.</p>
-            <p><span>Exchange</span>Within 4 days of delivery.</p>
+            <p><span>Returns</span>Free returns within 3 days, free exchanges within 7 days of delivery. <a href="/shipping-and-exchange" style={{ textDecoration: 'underline' }}>Details</a></p>
           </div>
 
           <div className="accordion">
@@ -445,7 +445,7 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
                 <div className="wa-info-icon">💬</div>
                 <div className="wa-info-text"><strong>How it works</strong>WhatsApp opens with your full order pre-filled. Send it and we reply with our UPI ID within minutes.</div>
               </div>
-              <p className="secure-note" style={{ marginBottom: '12px' }}>Exchange within 4 days of delivery. Returns are not accepted.</p>
+              <p className="secure-note" style={{ marginBottom: '12px' }}>Free returns within 3 days and free exchanges within 7 days of delivery.</p>
               <button className="btn-wa" onClick={sendToWhatsApp}>✅ &nbsp; Confirm Order on WhatsApp</button>
               <p className="secure-note">Zero extra charges · Pay via UPI after confirmation</p>
             </div>
