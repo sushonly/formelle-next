@@ -34,8 +34,8 @@ export default function AboutPage() {
               <p>It&apos;s about walking into the room knowing you belong there.</p>
             </div>
             <div style={{ marginTop: '56px', paddingTop: '32px', borderTop: '0.5px solid rgba(240,236,227,0.15)' }}>
-              <p style={{ fontFamily: 'var(--font-cormorant)', fontSize: '16px', fontWeight: 500, letterSpacing: '0.04em', marginBottom: '6px' }}>Sushma Pawar</p>
-              <p style={{ fontSize: '9px', fontWeight: 400, letterSpacing: '0.12em', color: 'rgba(240,236,227,0.35)' }}>FOUNDER, FORMELLE</p>
+              <p style={{ fontFamily: 'var(--font-cormorant)', fontSize: '16px', fontWeight: 500, letterSpacing: '0.04em', marginBottom: '6px' }}></p>
+              <p style={{ fontSize: '9px', fontWeight: 400, letterSpacing: '0.12em', color: 'rgba(240,236,227,0.35)' }}></p>
             </div>
           </section>
 
