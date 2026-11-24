@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import Img from '@/components/Img'
 
 export interface BriefLook {
   slug: string
@@ -90,7 +91,7 @@ export default function IdentityBrief({ looksByIdentity }: { looksByIdentity: Re
           {looks.length > 0 ? looks.map(l => (
             <Link key={l.slug} href={`/wardrobe/looks/${l.slug}`} className="brief-look">
               {l.image
-                ? <img src={l.image} alt={l.title} loading="lazy" />
+                ? <Img src={l.image} alt={l.title} sizes="(max-width: 900px) 50vw, 33vw" />
                 : <span className="brief-look-empty" />}
               <span className="brief-look-cta">Shop the look <span aria-hidden="true">→</span></span>
             </Link>

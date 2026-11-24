@@ -7,6 +7,13 @@ import FaqSection from '@/components/FaqSection'
 import Link from 'next/link'
 import IdentityBrief, { type BriefLook } from '@/components/IdentityBrief'
 import { getAllLooks, lookTitle } from '@/lib/looks'
+import type { Metadata } from 'next'
+import Img from '@/components/Img'
+import { JsonLd, faqSchema, organizationSchema, websiteSchema } from '@/lib/seo'
+
+export const metadata: Metadata = {
+  alternates: { canonical: '/' },
+}
 
 export const revalidate = 60
 
@@ -68,8 +75,8 @@ export default async function HomePage() {
             <Link href="/about" className="btn-outline">Our Story</Link>
           </div>
         </div>
-        <div className="hero-image" aria-hidden="true">
-          <img src="/images/hero.png" alt="FWoman in Formelle tailored workwear" className="hero-photo" />
+        <div className="hero-image">
+          <Img src="/images/hero.png" alt="Woman in Formelle tailored workwear" className="hero-photo" sizes="(max-width: 900px) 16px, 50vw" preload />
           <div className="hero-image-bg"></div>
       
         </div>
@@ -175,9 +182,10 @@ export default async function HomePage() {
   </div>
 
   <div className="home-story-image">
-    <img
+    <Img
       src="/images/about-image.png"
       alt="Formelle woman wearing tailored workwear"
+      sizes="(max-width: 768px) 100vw, 50vw"
     />
   </div>
 </section>
@@ -186,6 +194,9 @@ export default async function HomePage() {
           FAQ
       ===================================================== */}
       <FaqSection />
+      <JsonLd data={faqSchema} />
+      <JsonLd data={organizationSchema} />
+      <JsonLd data={websiteSchema} />
 
       {/* =====================================================
           FOOTER
@@ -201,8 +212,8 @@ export default async function HomePage() {
             <div className="footer-col-title">Shop</div>
             <ul className="footer-links">
               <li><Link href="/shop">All Products</Link></li>
-              <li><Link href="/shop">Tops — Free Size</Link></li>
-              <li><Link href="/shop">Trousers — XS to XL</Link></li>
+              <li><Link href="/shop">Tops</Link></li>
+              <li><Link href="/shop">Trousers</Link></li>
             </ul>
           </div>
           <div>

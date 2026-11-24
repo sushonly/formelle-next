@@ -8,6 +8,7 @@ import CouponInput from '@/components/CouponInput'
 import { checkCoupon } from '@/lib/coupons'
 import { track, gaItem, newOrderRef } from '@/lib/analytics'
 import { sessionId, logCheckoutOpen, openWhatsApp, saveCheckoutDraft } from '@/lib/funnel'
+import Img from '@/components/Img'
 
 const ALL_SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL']
 const WHATSAPP = '919989674894'
@@ -211,14 +212,14 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
           <div className="thumb-strip">
             {images.map((img, i) => (
               <div key={i} className={`thumb ${i === activeImg ? 'active' : ''}`} onClick={() => setActiveImg(i)}>
-                <img src={img} alt={product.name} loading="lazy" />
+                <Img src={img} alt={`${product.name} thumbnail ${i + 1}`} sizes="96px" />
               </div>
             ))}
           </div>
           <div className="main-img-area">
             {images.map((img, i) => (
               <div key={i} className={`main-img-slide ${i === activeImg ? 'active' : ''}`}>
-                <img src={img} alt={product.name} />
+                <Img src={img} alt={i === 0 ? product.name : `${product.name}, view ${i + 1} of ${images.length}`} sizes="(max-width: 900px) 100vw, 50vw" preload={i === 0} />
               </div>
             ))}
             {images.length > 1 && <div className="img-counter">{activeImg + 1} / {images.length}</div>}
@@ -226,7 +227,7 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
           <div className="mobile-carousel">
             <div className="carousel-track" style={{ transform: `translateX(-${activeImg * 100}%)` }}>
               {images.map((img, i) => (
-                <div key={i} className="carousel-slide"><img src={img} alt={product.name} loading="lazy" /></div>
+                <div key={i} className="carousel-slide"><Img src={img} alt={i === 0 ? product.name : `${product.name}, view ${i + 1} of ${images.length}`} sizes="(max-width: 900px) 100vw, 50vw" preload={i === 0} /></div>
               ))}
             </div>
             {images.length > 1 && <>
@@ -327,7 +328,7 @@ export default function ProductDetail({ product, relatedProducts }: { product: P
             {relatedProducts.slice(0, 4).map(p => (
               <Link key={p.id} href={`/product/${p.slug}`} className="also-card">
                 <div className="also-img">
-                  {p.images?.[0] && <img src={p.images[0]} alt={p.name} loading="lazy" />}
+                  {p.images?.[0] && <Img src={p.images[0]} alt={p.name} sizes="(max-width: 900px) 50vw, 25vw" />}
                 </div>
                 <div className="also-info">
                   <div className="also-cat">{CAT_LABELS[p.category] || p.category}</div>

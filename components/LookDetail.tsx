@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useCart } from '@/lib/CartContext'
 import { lookTitle, type Look } from '@/lib/looks'
 import type { Product } from '@/lib/types'
+import Img from '@/components/Img'
 
 const SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL'] 
 
@@ -69,7 +70,7 @@ export default function LookDetail({ look }: { look: Look }) {
         <div className="look-detail-visual">
           <div className="look-detail-img">
             {hero ? (
-              <img src={hero} alt={lookTitle(look)} />
+              <Img src={hero} alt={lookTitle(look)} sizes="(max-width: 900px) 100vw, 50vw" preload />
             ) : (
               <div className="look-detail-stack">
                 {look.products.map(p => (
@@ -78,7 +79,7 @@ export default function LookDetail({ look }: { look: Look }) {
                     className="look-detail-stack-cell"
                     style={{ opacity: keep[p.id] ? 1 : 0.2 }}
                   >
-                    {p.images?.[0] ? <img src={p.images[0]} alt={p.name} /> : <span>{p.name}</span>}
+                    {p.images?.[0] ? <Img src={p.images[0]} alt={p.name} sizes="(max-width: 900px) 50vw, 25vw" /> : <span>{p.name}</span>}
                   </div>
                 ))}
               </div>
@@ -115,7 +116,7 @@ export default function LookDetail({ look }: { look: Look }) {
                   <div className="look-piece-row" onClick={() => toggle(p.id)}>
                     <span className={`look-piece-check${on ? ' on' : ''}`}>{on ? '✓' : ''}</span>
                     <div className="look-piece-thumb">
-                      {p.images?.[0] ? <img src={p.images[0]} alt={p.name} /> : <span>F</span>}
+                      {p.images?.[0] ? <Img src={p.images[0]} alt={p.name} sizes="96px" /> : <span>F</span>}
                     </div>
                     <div className="look-piece-info">
                       <div className="look-piece-name">{p.name}</div>

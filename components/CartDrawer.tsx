@@ -6,6 +6,7 @@ import CouponInput from '@/components/CouponInput'
 import { checkCoupon } from '@/lib/coupons'
 import { track, gaItem, newOrderRef } from '@/lib/analytics'
 import { sessionId, logCheckoutOpen, openWhatsApp, saveCheckoutDraft } from '@/lib/funnel'
+import Img from '@/components/Img'
 
 const WHATSAPP = '919989674894'
 const INDIAN_STATES = ['Andhra Pradesh','Arunachal Pradesh','Assam','Bihar','Chhattisgarh','Delhi','Goa','Gujarat','Haryana','Himachal Pradesh','Jharkhand','Karnataka','Kerala','Madhya Pradesh','Maharashtra','Manipur','Meghalaya','Mizoram','Nagaland','Odisha','Punjab','Rajasthan','Sikkim','Tamil Nadu','Telangana','Tripura','Uttar Pradesh','Uttarakhand','West Bengal','Other']
@@ -115,7 +116,7 @@ export default function CartDrawer() {
                 items.map(item => (
                   <div key={item.key} className="cart-item">
                     <div className="cart-item-img">
-                      {item.img ? <img src={item.img} alt={item.name} /> : <div className="cart-item-img-placeholder">F</div>}
+                      {item.img ? <Img src={item.img} alt={item.name} sizes="80px" /> : <div className="cart-item-img-placeholder">F</div>}
                     </div>
                     <div className="cart-item-details">
                       <div className="cart-item-name">{item.name}</div>

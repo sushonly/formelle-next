@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next'
 import { supabase } from '@/lib/supabase'
 import { JOURNAL_POSTS } from '@/lib/journal'
+import { getIdentities, getAllLooks } from '@/lib/looks'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const { data: products } = await supabase
@@ -15,7 +16,34 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }))
 
+  const [identities, looks] = await Promise.all([
+    getIdentities().catch(() => []),
+    getAllLooks().catch(() => []),
+  ])
+
+  const wardrobeEntries: MetadataRoute.Sitemap = [
+    { url: 'https://www.formellewear.com/wardrobe', lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
+    ...identities.map((i) => ({
+      url: `https://www.formellewear.com/wardrobe/${i.id}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.6,
+    })),
+    ...looks.map((l) => ({
+      url: `https://www.formellewear.com/wardrobe/looks/${l.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.5,
+    })),
+  ]
+
   return [
+    {
+      url: 'https://www.formellewear.com/shop',
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
     {
       url: 'https://www.formellewear.com/',
       lastModified: new Date(),
@@ -41,5 +69,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     })),
     ...productEntries,
+    ...wardrobeEntries,
   ]
 }

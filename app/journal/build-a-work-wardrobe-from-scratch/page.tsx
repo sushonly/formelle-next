@@ -4,6 +4,7 @@ import Nav from '@/components/Nav'
 import JournalFooter from '@/components/JournalFooter'
 import { supabase } from '@/lib/supabase'
 import { getPost, formatPostDate } from '@/lib/journal'
+import Img from '@/components/Img'
 
 const SLUG = 'build-a-work-wardrobe-from-scratch'
 const post = getPost(SLUG)!
@@ -96,7 +97,7 @@ export default async function BuildAWorkWardrobe() {
         </header>
 
         <figure className="jr-cover">
-          <img src={post.cover} alt={post.coverAlt} fetchPriority="high" />
+          <Img src={post.cover} alt={post.coverAlt} sizes="(max-width: 1200px) 100vw, 1200px" width={1600} height={900} preload />
         </figure>
 
         <article>
@@ -144,7 +145,7 @@ export default async function BuildAWorkWardrobe() {
                 return (
                   <Link key={p.slug} href={`/product/${p.slug}`} className="jr-piece">
                     <div className="jr-piece-photo" style={{ background: p.tone }}>
-                      {img && <img src={img} alt={p.name} loading="lazy" />}
+                      {img && <Img src={img} alt={p.name} sizes="(max-width: 900px) 50vw, 25vw" />}
                     </div>
                     <span className="jr-label">{p.label}</span>
                     <span className="jr-piece-name">{p.name}</span>

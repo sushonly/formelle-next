@@ -4,7 +4,8 @@ import type { Product } from '@/lib/types'
 import ProductCard from '@/components/ProductCard'
 import { isFullySoldOut } from '@/lib/stock'
 
-export default function ShopSection({ products }: { products: Product[] }) {
+export default function ShopSection({ products, headingLevel = 2 }: { products: Product[]; headingLevel?: 1 | 2 }) {
+  const Heading = headingLevel === 1 ? 'h1' : 'h2'
   const [filter, setFilter] = useState('all')
 
   const counts = {
@@ -23,7 +24,7 @@ export default function ShopSection({ products }: { products: Product[] }) {
   return (
     <section id="shop" aria-label="Shop — Women's Formal Wear Collection">
       <div className="section-header">
-        <h2 className="section-title">Our Collection</h2>
+        <Heading className="section-title">{headingLevel === 1 ? <>Women&apos;s Workwear Collection</> : <>Our Collection</>}</Heading>
       </div>
       <div className="filter-tabs" role="tablist" aria-label="Filter products">
         <button className={`filter-tab ${filter === 'all' ? 'active' : ''}`} onClick={() => setFilter('all')}>

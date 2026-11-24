@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'About — Formelle | The Founder Story',
   description: 'Why Formelle exists. The story behind the brand, the founder, and the philosophy that drives every piece.',
+  alternates: { canonical: '/about' },
 }
 
 export default function AboutPage() {
@@ -14,7 +15,7 @@ export default function AboutPage() {
         <div style={{ maxWidth: '720px', margin: '0 auto', padding: '96px 48px' }}>
 
           <section style={{ marginBottom: '80px' }}>
-            <p style={{ fontSize: '9px', fontWeight: 500, letterSpacing: '0.2em', color: 'rgba(240,236,227,0.3)', marginBottom: '48px' }}>ABOUT THE FOUNDER</p>
+            <h1 style={{ fontSize: '9px', fontWeight: 500, letterSpacing: '0.2em', color: 'rgba(240,236,227,0.3)', marginBottom: '48px' }}>ABOUT FORMELLE AND ITS FOUNDER</h1>
             <div style={{ fontFamily: 'var(--font-cormorant)', fontSize: '20px', fontWeight: 400, lineHeight: 1.85, color: 'var(--ivory)' }}>
               <p style={{ marginBottom: '1.4em' }}>There wasn&apos;t a single moment when Formelle was born.</p>
               <p style={{ marginBottom: '1.4em' }}>It started with a question.</p>
@@ -41,7 +42,7 @@ export default function AboutPage() {
           <hr style={{ border: 'none', borderTop: '0.5px solid rgba(240,236,227,0.15)', margin: 0 }} />
 
           <section style={{ padding: '80px 0 96px' }}>
-            <p style={{ fontSize: '9px', fontWeight: 500, letterSpacing: '0.2em', color: 'rgba(240,236,227,0.3)', marginBottom: '48px' }}>OUR DESIGN PHILOSOPHY</p>
+            <h2 style={{ fontSize: '9px', fontWeight: 500, letterSpacing: '0.2em', color: 'rgba(240,236,227,0.3)', marginBottom: '48px' }}>OUR DESIGN PHILOSOPHY</h2>
             <div style={{ fontFamily: 'var(--font-cormorant)', fontSize: '20px', fontWeight: 400, lineHeight: 1.85, color: 'var(--ivory)' }}>
               <p style={{ marginBottom: '1.2em' }}>We don&apos;t chase trends.</p>
               <p>We build pieces that are still the right choice three years from now. Clean silhouettes. Considered details. Nothing that needs justifying.</p>

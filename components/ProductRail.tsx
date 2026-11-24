@@ -2,6 +2,7 @@
 import { useRef } from 'react'
 import Link from 'next/link'
 import type { Product } from '@/lib/types'
+import Img from '@/components/Img'
 
 const CAT_LABELS: Record<string, string> = { top: 'Top', trouser: 'Trouser', dress: 'Dress', blazer: 'Blazer' }
 
@@ -44,7 +45,7 @@ export default function ProductRail({ eyebrow, title, products }: { eyebrow: str
             <Link key={p.id} href={`/product/${p.slug}`} className="rail-card">
               <div className="rail-image-wrap">
                 {heroImg ? (
-                  <img src={heroImg} alt={p.name} loading="lazy" />
+                  <Img src={heroImg} alt={p.name} sizes="(max-width: 900px) 60vw, 25vw" />
                 ) : (
                   <div className="product-placeholder" aria-hidden="true">{catLabel.charAt(0)}</div>
                 )}

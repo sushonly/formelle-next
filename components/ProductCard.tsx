@@ -4,6 +4,7 @@ import Link from 'next/link'
 import type { Product } from '@/lib/types'
 import { isFullySoldOut } from '@/lib/stock'
 import WaitlistModal from '@/components/WaitlistModal'
+import Img from '@/components/Img'
 
 const CAT_LABELS: Record<string, string> = {
   top: 'Top',
@@ -25,10 +26,10 @@ export default function ProductCard({
   const soldOut = isFullySoldOut(product)
 
   const image = heroImg ? (
-    <img
+    <Img
       src={heroImg}
       alt={product.name}
-      loading="lazy"
+      sizes="(max-width: 900px) 50vw, 25vw"
       style={{ width: '100%', height: '100%', objectFit: 'cover' }}
     />
   ) : (

@@ -20,6 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ identity:
   return {
     title: `${cap} Workwear for Women | Formelle`,
     description: `Explore Formelle's ${cap} Edit — identity-led workwear designed for women who want to show up with intention.`,
+    alternates: { canonical: `/wardrobe/${identity.id}` },
     openGraph: {
       title: `The ${cap} Edit — Formelle`,
       description: identity.description || `Looks that make ${cap.toLowerCase()} visible.`,
