@@ -870,6 +870,25 @@ footer { background:var(--noir); padding:64px 80px 32px; }
 @media (hover:none) {
   .product-card.is-sold-out .product-quick-add { opacity:1; transform:translateY(0); }
 }
+/* ── Exit survey popup ── */
+.exit-overlay { position:fixed; inset:0; z-index:1200; background:rgba(17,17,17,0.55); display:flex; align-items:center; justify-content:center; padding:16px; }
+.exit-modal { position:relative; width:100%; max-width:400px; max-height:calc(100vh - 32px); overflow-y:auto; background:#F5F0EA; color:#111; padding:30px 28px 24px; font-family:'Montserrat',sans-serif; }
+.exit-close { position:absolute; top:8px; right:12px; background:none; border:0; font-size:22px; color:#7A7268; cursor:pointer; line-height:1; padding:6px; }
+.exit-eyebrow { margin:0; font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:#8C7355; font-weight:600; }
+.exit-title { margin:10px 0 8px; font-family:'Cormorant Garamond',Georgia,serif; font-weight:300; font-size:32px; line-height:1.1; }
+.exit-title em { color:#8C7355; }
+.exit-text { display:block; margin:0 0 14px; font-size:12px; line-height:1.7; font-weight:300; color:#2C2C2A; }
+.exit-chips { display:flex; flex-wrap:wrap; gap:8px; }
+.exit-chip { border:0.5px solid #B9AF9F; background:transparent; padding:9px 12px; font-family:inherit; font-size:11px; letter-spacing:.06em; color:#2C2C2A; cursor:pointer; }
+.exit-chip.on { background:#111; color:#F0ECE3; border-color:#111; }
+.exit-rule { border-top:0.5px solid #C9BFB1; margin:18px 0 16px; }
+.exit-phone { display:flex; border:0.5px solid #B9AF9F; background:#fff; margin-top:-6px; }
+.exit-phone span { padding:12px 10px; font-size:13px; color:#7A7268; border-right:0.5px solid #D9D1C5; }
+.exit-phone input { flex:1; min-width:0; border:0; outline:0; padding:12px 10px; font-family:inherit; font-size:16px; background:transparent; color:#111; }
+.exit-error { margin:8px 0 0; font-size:11px; color:#A32D2D; }
+.exit-send { display:block; width:100%; margin-top:14px; background:#111; color:#F0ECE3; border:0; padding:14px 0; font-family:inherit; font-size:11px; letter-spacing:.16em; text-transform:uppercase; cursor:pointer; }
+.exit-skip { display:block; margin:12px auto 0; background:none; border:0; font-family:inherit; font-size:11px; color:#7A7268; text-decoration:underline; cursor:pointer; }
+.exit-done { padding:8px 0 6px; }
 
 /* ============ JOURNAL ============ */
 .jr { background:var(--parchment); color:var(--noir); }
