@@ -47,6 +47,7 @@ export default async function ShopPage() {
             <div className="footer-col-title">Help</div>
             <ul className="footer-links">
               <li><Link href="/#faq">FAQs</Link></li>
+              <li><Link href="/shipping-and-exchange">Shipping and Exchange</Link></li>
               <li><a href="mailto:formellewear@outlook.com">Contact</a></li>
             </ul>
           </div>

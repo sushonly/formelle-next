@@ -51,6 +51,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1.0,
     },
     {
+      url: 'https://www.formellewear.com/shipping-and-exchange',
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.4,
+    },
+    {
       url: 'https://www.formellewear.com/about',
       lastModified: new Date(),
       changeFrequency: 'monthly',
