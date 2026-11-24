@@ -9,7 +9,8 @@ export const revalidate = 60
 
 export const metadata: Metadata = {
   title: "Shop — Formelle | Women's Formal Wear India",
-   description: 'Shop Formelle workwear for women in India: formal trousers, tops, dresses and blazers. XS to XXL, made to measure beyond. Free delivery across India.',
+  description: 'Shop Formelle workwear for women in India: formal trousers, tops, dresses, blazers and co-ord sets in sizes XS to XXXL. Free delivery across India.',
+  alternates: { canonical: '/shop' },
 }
 
 async function getProducts(): Promise<Product[]> {
@@ -26,7 +27,7 @@ export default async function ShopPage() {
         <Link href="/">Home</Link> <span>/</span>
         <span>Shop</span>
       </nav>
-      <ShopSection products={products} />
+      <ShopSection products={products} headingLevel={1} />
       <footer>
         <div className="footer-top">
           <div>

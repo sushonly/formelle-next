@@ -1,5 +1,6 @@
 'use client'
 import { useRef } from 'react'
+import Img from '@/components/Img'
 
 interface Testimonial {
   id: number
@@ -45,7 +46,7 @@ export default function TestimonialsRail({ testimonials }: { testimonials: Testi
           <div key={t.id} className="rail-card testi-card">
             <div className="rail-image-wrap testi-card-image">
               {t.img ? (
-                <img src={t.img} alt={t.customer_name} loading="lazy" />
+                <Img src={t.img} alt={`${t.customer_name} wearing Formelle`} sizes="(max-width: 900px) 70vw, 25vw" />
               ) : (
                 <div className="product-placeholder" aria-hidden="true">{t.customer_name.charAt(0)}</div>
               )}

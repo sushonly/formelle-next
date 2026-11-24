@@ -7,6 +7,8 @@
 }
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior:smooth; }
+/* next/image sets width/height attributes; keep natural aspect unless a class sets a height */
+:where(img[data-nimg]) { height:auto; }
 body { font-family:var(--font-body); background:var(--ivory); color:var(--noir); overflow-x:hidden; }
 a { text-decoration:none; color:inherit; }
 button { cursor:pointer; border:none; background:none; font-family:var(--font-body); }

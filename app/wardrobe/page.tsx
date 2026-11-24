@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Nav from '@/components/Nav'
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/wardrobe' },
   title: 'The Wardrobe — How do you want to show up? | Formelle',
   description: 'Identity-led workwear. Choose the energy — Confident, Authoritative, Composed, Bold, Magnetic, Effortless — and Formelle curates the looks.',
 }

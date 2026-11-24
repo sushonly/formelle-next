@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Nav from '@/components/Nav'
 import ProductDetail from '@/components/ProductDetail'
+import { JsonLd, productSchema, breadcrumbSchema, metaDescription, categoryLabel } from '@/lib/seo'
 
 export const revalidate = 60
 
@@ -17,8 +18,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const product = await getProduct(slug)
   if (!product) return { title: 'Product Not Found — Formelle' }
   return {
-    title: `Formelle — ${product.name} | Women's Formal Wear India`,
-    description: `${product.description} Premium workwear for professional women. Free shipping across India.`,
+    // seo_title already ends in "| Formelle"; absolute stops any layout template adding it twice
+    title: product.seo_title ? { absolute: product.seo_title } : `${product.name} | Women's ${categoryLabel(product.category)} | Formelle`,
+    description: product.seo_description || metaDescription(product.description, 'Premium workwear for women, XS to XXXL. Free shipping across India.'),
+    alternates: { canonical: `/product/${product.slug}` },
     openGraph: {
       title: `Formelle — ${product.name}`,
       description: product.description,
@@ -35,19 +38,11 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
   const { data: allProducts } = await supabase.from('products').select('*').eq('is_active', true).neq('id', product.id).limit(4)
 
-  const productSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: product.name,
-    description: product.description,
-    brand: { '@type': 'Brand', name: 'Formelle' },
-    image: product.images,
-    offers: { '@type': 'Offer', price: product.price, priceCurrency: 'INR', availability: 'https://schema.org/InStock', url: `https://www.formellewear.com/product/${product.slug}` },
-  }
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }} />
+      <JsonLd data={productSchema(product)} />
+      <JsonLd data={breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'Shop', path: '/shop' }, { name: product.name, path: `/product/${product.slug}` }])} />
       <Nav />
       <ProductDetail product={product} relatedProducts={allProducts || []} />
     </>

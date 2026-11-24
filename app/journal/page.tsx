@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import Nav from '@/components/Nav'
 import JournalFooter from '@/components/JournalFooter'
 import { JOURNAL_POSTS, formatPostDate } from '@/lib/journal'
+import Img from '@/components/Img'
 
 export const metadata: Metadata = {
   title: 'The Journal — Formelle | Building a Work Wardrobe',
@@ -25,7 +26,7 @@ export default function JournalIndex() {
           {JOURNAL_POSTS.map((post) => (
             <Link key={post.slug} href={`/journal/${post.slug}`} className="jr-card">
               <div className="jr-card-photo">
-                <img src={post.cover} alt={post.coverAlt} />
+                <Img src={post.cover} alt={post.coverAlt} sizes="(max-width: 900px) 100vw, 50vw" />
               </div>
               <div className="jr-card-body">
                 <p className="jr-label">{post.category}</p>

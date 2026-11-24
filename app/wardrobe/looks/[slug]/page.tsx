@@ -21,6 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: `${title} — Formelle`,
     description: look.description || `Shop ${title}, a complete Formelle look. Take the whole outfit or only the pieces you need.`,
+    alternates: { canonical: `/wardrobe/looks/${look.slug}` },
     openGraph: {
       title: `${title} — Formelle`,
       description: look.description || '',

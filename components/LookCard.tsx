@@ -2,6 +2,7 @@
 import Link from 'next/link'
 import { lookTitle, type Look } from '@/lib/looks'
 import { lookImageFor } from '@/lib/lookImage'
+import Img from '@/components/Img'
 
 // Deterministic price of a look = sum of its products
 function lookPrice(look: Look): number {
@@ -24,14 +25,14 @@ export default function LookCard({
         {hero ? (
           // Single hero image if present, else a stacked composition of product images
           look.hero_image ? (
-           <img src={hero} alt={lookTitle(look)} />
+           <Img src={hero} alt={lookTitle(look)} sizes="(max-width: 900px) 50vw, 33vw" />
           ) : (
            <div className="look-card-stack">
   {look.products.slice(0, 3).map(p => {
     const img = lookImageFor(p)
     return (
       <div key={p.id} className="look-card-stack-cell">
-        {img ? <img src={img} alt={p.name} loading="lazy" /> : <span>{p.name}</span>}
+        {img ? <Img src={img} alt={p.name} sizes="(max-width: 900px) 25vw, 15vw" /> : <span>{p.name}</span>}
       </div>
     )
   })}

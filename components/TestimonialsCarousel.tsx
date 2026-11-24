@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import Img from '@/components/Img'
 
 const TESTIMONIALS = [
   {
@@ -33,7 +34,7 @@ export default function TestimonialsCarousel() {
         <div className="testi-slide">
           <div className="testi-photo-wrap">
             {t.img && (
-              <img src={t.img} alt={t.name} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+              <Img src={t.img} alt={`${t.name} wearing Formelle`} style={{ width: '100%', height: '100%', objectFit: 'contain' }} sizes="(max-width: 900px) 100vw, 40vw" />
             )}
           </div>
           <div className="testi-content">
