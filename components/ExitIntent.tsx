@@ -59,16 +59,8 @@ export default function ExitIntent() {
     const onMouseOut = (e: MouseEvent) => { if (!e.relatedTarget && e.clientY <= 0) show() }
 
     // Phone: a quick scroll back up towards the top, the usual move before leaving
-    let lastY = window.scrollY, lastT = Date.now()
-    const onScroll = () => {
-      const y = window.scrollY, t = Date.now()
-      if (lastY - y > 120 && t - lastT < 250 && y < 600) show()
-      lastY = y; lastT = t
-    }
-
-    document.addEventListener('mouseout', onMouseOut)
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => { document.removeEventListener('mouseout', onMouseOut); window.removeEventListener('scroll', onScroll) }
+       document.addEventListener('mouseout', onMouseOut)
+    return () => document.removeEventListener('mouseout', onMouseOut)
   }, [])
 
   // Close on Escape
