@@ -221,7 +221,9 @@ export default async function HomePage() {
             <ul className="footer-links">
               <li><Link href="/#faq">FAQs</Link></li>
               <li><Link href="/shipping-and-exchange">Shipping and Exchange</Link></li>
-              <li><a href="mailto:formellewear@outlook.com">Contact</a></li>
+              <li><Link href="/privacy-policy">Privacy Policy</Link></li>
+              <li><Link href="/terms">Terms and Conditions</Link></li>
+              <li><Link href="/contact">Contact</Link></li>
             </ul>
           </div>
           <div>

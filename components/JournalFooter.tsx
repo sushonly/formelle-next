@@ -5,6 +5,9 @@ export default function JournalFooter() {
     <footer className="jr-footer">
       <span className="jr-footer-mark">FORMELLE</span>
       <Link href="/shipping-and-exchange" className="jr-footer-link">SHIPPING AND EXCHANGE</Link>
+      <Link href="/privacy-policy" className="jr-footer-link">PRIVACY</Link>
+      <Link href="/terms" className="jr-footer-link">TERMS</Link>
+      <Link href="/contact" className="jr-footer-link">CONTACT</Link>
       <Link href="/" className="jr-footer-link">FORMELLEWEAR.COM</Link>
     </footer>
   )
